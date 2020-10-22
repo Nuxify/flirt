@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-import '../routes/generate.dart';
-import '../routes/scan.dart';
+import '../routes/qr-generate.dart';
+import '../routes/qr-scan.dart';
 
 class MainButtonBar extends StatelessWidget {
   @override
@@ -66,7 +66,7 @@ class MainButtonBar extends StatelessWidget {
                           style:
                               theme.textTheme.bodyText1.copyWith(fontSize: 20),
                         ),
-                        onPressed: () => navigator(Generate()),
+                        onPressed: () => navigator(QRGenerate()),
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
                         color: Colors.transparent,
@@ -86,7 +86,7 @@ class MainButtonBar extends StatelessWidget {
                         label: Text('SCAN',
                             style: theme.textTheme.bodyText1
                                 .copyWith(fontSize: 20)),
-                        onPressed: () => navigator(Scan()),
+                        onPressed: () => navigator(QRScan()),
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
                         color: Colors.transparent,
