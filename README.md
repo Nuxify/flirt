@@ -1,4 +1,4 @@
-# qr_scanner
+# Flirt
 
 A new Flutter project.
 
