@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
+import '../routes/generate.dart';
+import '../routes/scan.dart';
+
 class MainButtonBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final theme = Theme.of(context);
     final lrPadding = 30.0;
+
+    void navigator(route) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => route),
+      );
+    }
+
     return Positioned(
       top: 0,
       child: Container(
@@ -49,13 +60,13 @@ class MainButtonBar extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: FlatButton.icon(
-                        icon: Icon(Icons.add_box),
+                        icon: Icon(Icons.select_all),
                         label: Text(
                           'GENERATE',
                           style:
                               theme.textTheme.bodyText1.copyWith(fontSize: 20),
                         ),
-                        onPressed: () {},
+                        onPressed: () => navigator(Generate()),
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
                         color: Colors.transparent,
@@ -75,7 +86,7 @@ class MainButtonBar extends StatelessWidget {
                         label: Text('SCAN',
                             style: theme.textTheme.bodyText1
                                 .copyWith(fontSize: 20)),
-                        onPressed: () {},
+                        onPressed: () => navigator(Scan()),
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
                         color: Colors.transparent,
