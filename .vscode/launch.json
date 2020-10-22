@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "qr_scanner",
+            "name": "Flirt",
             "request": "launch",
             "type": "dart"
         }
