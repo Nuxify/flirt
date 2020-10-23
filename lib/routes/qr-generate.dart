@@ -9,6 +9,7 @@ class QRGenerate extends StatefulWidget {
 }
 
 class _QRGenerateState extends State<QRGenerate> {
+  final _headerTitle = "Generate a QR code";
   var _idTextField = '';
   var _qrOpacity = 0.0;
 
@@ -24,7 +25,7 @@ class _QRGenerateState extends State<QRGenerate> {
     final _theme = Theme.of(context);
 
     return Scaffold(
-      appBar: Header(),
+      appBar: Header(_headerTitle),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(

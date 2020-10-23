@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
+  final String title;
+
+  Header(this.title);
+
   @override
   Size get preferredSize => Size.fromHeight(55);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Generate a QR code'),
+      title: Text(title),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(15),
