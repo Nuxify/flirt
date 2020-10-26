@@ -48,6 +48,7 @@ class MainButtonBar extends StatelessWidget {
                 width: mediaQuery.size.width,
                 padding: EdgeInsets.only(top: 50),
                 child: ButtonBar(
+                  overflowButtonSpacing: 10,
                   alignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
@@ -64,7 +65,7 @@ class MainButtonBar extends StatelessWidget {
                         label: Text(
                           'GENERATE',
                           style:
-                              theme.textTheme.bodyText1.copyWith(fontSize: 20),
+                              theme.textTheme.bodyText1.copyWith(fontSize: 18),
                         ),
                         onPressed: () => navigator(QRGenerate()),
                         padding: EdgeInsets.only(
@@ -83,9 +84,13 @@ class MainButtonBar extends StatelessWidget {
                       ),
                       child: FlatButton.icon(
                         icon: Icon(Icons.center_focus_weak),
-                        label: Text('SCAN',
+                        label: Flexible(
+                          child: Text(
+                            'SCAN',
                             style: theme.textTheme.bodyText1
-                                .copyWith(fontSize: 20)),
+                                .copyWith(fontSize: 18),
+                          ),
+                        ),
                         onPressed: () => navigator(QRScan()),
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
