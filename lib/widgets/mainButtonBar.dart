@@ -90,8 +90,6 @@ class MainButtonBar extends StatelessWidget {
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
                         color: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(5.0)),
                       ),
                     )
                   ],
