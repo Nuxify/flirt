@@ -24,14 +24,6 @@ class _QRScanState extends State<QRScan> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isFlashOn(String current) {
-      return flashOn == current;
-    }
-
-    bool _isBackCamera(String current) {
-      return backCamera == current;
-    }
-
     @override
     void dispose() {
       controller.dispose();
@@ -63,25 +55,31 @@ class _QRScanState extends State<QRScan> {
       });
     }
 
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: Header(_headerTitle),
-      body: Row(children: [
-        Expanded(
-          flex: 1,
-          child: QRView(
-            key: qrKey,
-            onQRViewCreated: onQRViewCreated,
-            overlay: QrScannerOverlayShape(
-              borderColor: Colors.red,
-              borderRadius: 30,
-              borderLength: 30,
-              borderWidth: 10,
-              cutOutSize: 300,
+    return WillPopScope(
+      onWillPop: () async {
+        controller.pauseCamera();
+        return true;
+      },
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: Header(_headerTitle),
+        body: Row(children: [
+          Expanded(
+            flex: 1,
+            child: QRView(
+              key: qrKey,
+              onQRViewCreated: onQRViewCreated,
+              overlay: QrScannerOverlayShape(
+                borderColor: Colors.red,
+                borderRadius: 30,
+                borderLength: 30,
+                borderWidth: 10,
+                cutOutSize: 300,
+              ),
             ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }
