@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-import '../routes/qr-generate.dart';
-import '../routes/qr-scan.dart';
+import '../screens/generate_screen.dart';
+import '../screens/scan_screen.dart';
 
 class MainButtonBar extends StatelessWidget {
   @override

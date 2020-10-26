@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import '../routes/qr-result.dart';
+import '../screens/result_screen.dart';
 import '../widgets/header.dart';
 
 class QRScan extends StatefulWidget {

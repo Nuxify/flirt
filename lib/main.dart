@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/mainButtonBar.dart';
-import 'widgets/topBubble.dart';
-import 'widgets/bottomBubble.dart';
-
-//TESTING
-// import 'routes/qr-generate.dart';
+import 'widgets/main_button_bar.dart';
+import 'widgets/top_bubble.dart';
+import 'widgets/bottom_bubble.dart';
 
 void main() => runApp(App());
 
@@ -46,29 +43,6 @@ class _HomePageState extends StatelessWidget {
           TopBubble(),
           MainButtonBar(),
           BottomBubble(),
-          // FOR TESTING ONLY DON'T REMOVE
-          // Positioned(
-          //   bottom: 0,
-          //   child: FlatButton.icon(
-          //     icon: Icon(Icons.select_all),
-          //     label: Text(
-          //       'GENERATE',
-          //       style: Theme.of(context)
-          //           .textTheme
-          //           .bodyText1
-          //           .copyWith(fontSize: 20),
-          //     ),
-          //     onPressed: () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => QRGenerate()),
-          //       );
-          //     },
-          //     padding:
-          //         EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
-          //     color: Colors.transparent,
-          //   ),
-          // ),
         ],
       ),
     );
