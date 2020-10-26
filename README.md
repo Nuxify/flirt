@@ -1,16 +1,21 @@
 # Flirt
 
-A new Flutter project.
+Basic QR Scanner & Generator.
 
-## Getting Started
+## Build steps
 
-This project is a starting point for a Flutter application.
+All these steps are assuming you're using VS Code as your editor.
 
-A few resources to get you started if this is your first Flutter project:
+1. Make sure that the [Flutter SDK](https://flutter.dev/docs/get-started/install) is installed on your machine. 
+- The installation of the SDK requires plenty of other software such as **Android Studio** and **Xcode** (if you're developing in Mac). Ensure that you have these too.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+2. You can run the project in multiple ways:
+- Android Emulator (Open Android Studio -> Configure -> AVD Manager)
+- iOS Simulator (Run ```open -a Simulator``` in the Terminal)
+- Physical device (Connect phone to your development machine)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Run the command ``flutter run`` on the Terminal. This will automatically run a sequence of commands such as ```flutter pub get``` that are necessary for running the project.
+
+4. Voila! The project should now be running on your designated simulator/device.
+
+To use Flutter debug tools, go to Run -> Start Debugging in VS Code.
