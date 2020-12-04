@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'config/themes.dart';
 
+import 'screens/generate_screen.dart';
+import 'screens/result_screen.dart';
+import 'screens/scan_screen.dart';
+
 import 'widgets/main_button_bar.dart';
 import 'widgets/top_bubble.dart';
 import 'widgets/bottom_bubble.dart';
@@ -15,6 +19,11 @@ class App extends StatelessWidget {
       title: 'Flirt',
       home: _HomePageState(),
       theme: defaultTheme,
+      routes: {
+        QRGenerateScreen.routeName: (ctx) => QRGenerateScreen(),
+        QRScanScreen.routeName: (ctx) => QRScanScreen(),
+        QRResultScreen.routeName: (ctx) => QRResultScreen('', () {}),
+      },
     );
   }
 }

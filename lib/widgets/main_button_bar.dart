@@ -11,13 +11,6 @@ class MainButtonBar extends StatelessWidget {
     final theme = Theme.of(context);
     final lrPadding = 30.0;
 
-    void navigator(route) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => route),
-      );
-    }
-
     return Positioned(
       top: 0,
       child: Container(
@@ -67,7 +60,11 @@ class MainButtonBar extends StatelessWidget {
                           style:
                               theme.textTheme.bodyText1.copyWith(fontSize: 18),
                         ),
-                        onPressed: () => navigator(QRGenerate()),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            QRGenerateScreen.routeName,
+                          );
+                        },
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
                         color: Colors.transparent,
@@ -91,7 +88,11 @@ class MainButtonBar extends StatelessWidget {
                                 .copyWith(fontSize: 18),
                           ),
                         ),
-                        onPressed: () => navigator(QRScan()),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            QRScanScreen.routeName,
+                          );
+                        },
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
                         color: Colors.transparent,

@@ -3,12 +3,13 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 import '../widgets/header.dart';
 
-class QRGenerate extends StatefulWidget {
+class QRGenerateScreen extends StatefulWidget {
+  static const routeName = '/generate';
   @override
-  _QRGenerateState createState() => _QRGenerateState();
+  _QRGenerateScreenState createState() => _QRGenerateScreenState();
 }
 
-class _QRGenerateState extends State<QRGenerate> {
+class _QRGenerateScreenState extends State<QRGenerateScreen> {
   final _headerTitle = "Generate a QR code";
   var _idTextField = '';
   var _qrOpacity = 0.0;

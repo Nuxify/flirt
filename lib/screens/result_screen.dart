@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../widgets/header.dart';
 
-class QRResult extends StatelessWidget {
+class QRResultScreen extends StatelessWidget {
+  static const routeName = '/result';
+
   final qrData;
   final Function rescan;
 
-  QRResult(this.qrData, this.rescan);
+  QRResultScreen(this.qrData, this.rescan);
 
   final _headerTitle = "QR Data";
   @override
