@@ -1,5 +1,8 @@
+import 'dart:convert';
 import "package:flutter/material.dart";
 import 'package:qr_flutter/qr_flutter.dart';
+
+import '../blocs/record/record.dart';
 
 import '../widgets/header.dart';
 
@@ -10,11 +13,22 @@ class QRGenerateScreen extends StatefulWidget {
 }
 
 class _QRGenerateScreenState extends State<QRGenerateScreen> {
+  RecordBloc _recordBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _recordBloc = RecordBloc();
+  }
+
   final _headerTitle = "Generate a QR code";
   var _idTextField = '';
+  var _dataTextField = '';
   var _qrOpacity = 0.0;
 
   void _generateQR() {
+    final payload = json.encode({"id": _idTextField, "data": _dataTextField});
+    _recordBloc.createRecord(payload);
     setState(() {
       _qrOpacity = 1.0;
     });
@@ -43,17 +57,17 @@ class _QRGenerateScreenState extends State<QRGenerateScreen> {
                     border: OutlineInputBorder(),
                     labelText: 'ID (optional)',
                   ),
-                  onSubmitted: (String value) => _idTextField = value,
+                  onChanged: (String value) => _idTextField = value,
                 ),
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 20),
                 child: TextField(
-                  readOnly: true,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Data',
                   ),
+                  onChanged: (String value) => _dataTextField = value,
                 ),
               ),
               Container(

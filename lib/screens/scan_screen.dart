@@ -46,9 +46,10 @@ class _QRScanScreenState extends State<QRScanScreen> {
         });
         controller.pauseCamera();
         if (qrText != '') {
-          Navigator.of(context).pushNamed(
-            QRResultScreen.routeName,
-            arguments: {qrText: qrText, rescan: rescan},
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => QRResultScreen(qrText, rescan),
+            ),
           );
         }
       });

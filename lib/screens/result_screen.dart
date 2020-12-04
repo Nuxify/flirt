@@ -2,23 +2,28 @@ import 'package:flutter/material.dart';
 
 import '../widgets/header.dart';
 
-class QRResultScreen extends StatelessWidget {
+class QRResultScreen extends StatefulWidget {
   static const routeName = '/result';
 
-  final qrData;
+  final String qrData;
   final Function rescan;
 
   QRResultScreen(this.qrData, this.rescan);
 
+  @override
+  _QRResultScreenState createState() => _QRResultScreenState();
+}
+
+class _QRResultScreenState extends State<QRResultScreen> {
   final _headerTitle = "QR Data";
+
   @override
   Widget build(BuildContext context) {
     final _mediaQuery = MediaQuery.of(context);
     final _theme = Theme.of(context);
-
     return WillPopScope(
       onWillPop: () async {
-        rescan();
+        widget.rescan();
         return true;
       },
       child: Scaffold(
@@ -40,7 +45,7 @@ class QRResultScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.all(_mediaQuery.size.height * 0.02),
                         child: Text(
-                          qrData,
+                          '[unique_id]',
                           style: _theme.textTheme.bodyText1
                               .copyWith(color: Colors.black, fontSize: 22),
                         ),
@@ -48,7 +53,7 @@ class QRResultScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.all(_mediaQuery.size.height * 0.02),
                         child: Text(
-                          '[unique_id]',
+                          widget.qrData,
                           style: _theme.textTheme.headline4.copyWith(
                             fontSize: 18,
                           ),
@@ -72,7 +77,7 @@ class QRResultScreen extends StatelessWidget {
                     child: FlatButton.icon(
                       onPressed: () {
                         Navigator.pop(context);
-                        rescan();
+                        widget.rescan();
                       },
                       label: Text('Scan again',
                           style: TextStyle(color: Colors.white)),
