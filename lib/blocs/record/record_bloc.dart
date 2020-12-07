@@ -15,13 +15,12 @@ class RecordBloc {
   RecordBloc() {
     _recordController = StreamController<ApiResponse<Record>>();
     _recordRepository = RecordRepository();
-    fetchRecord();
   }
 
-  fetchRecord() async {
-    recordSink.add(ApiResponse.loading('Fetching Details'));
+  fetchRecord(String id) async {
+    recordSink.add(ApiResponse.loading('Fetching record'));
     try {
-      Record details = await _recordRepository.fetchRecord();
+      Record details = await _recordRepository.fetchRecord(id);
       recordSink.add(ApiResponse.completed(details));
     } catch (e) {
       recordSink.add(ApiResponse.error(e.toString()));

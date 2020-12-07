@@ -2,12 +2,10 @@ import '../networking/api_base_helper.dart';
 import '../models/record.dart';
 
 class RecordRepository {
-  final String _recordId = '1l5RjWjCfWhRPWxp7NcGQQeQSzO';
-
   ApiBaseHelper _helper = ApiBaseHelper();
 
-  Future<Record> fetchRecord() async {
-    final response = await _helper.get("$_recordId");
+  Future<Record> fetchRecord(String id) async {
+    final response = await _helper.get(id);
     return Record.fromJson(response);
   }
 

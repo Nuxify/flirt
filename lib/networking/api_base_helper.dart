@@ -11,7 +11,12 @@ class ApiBaseHelper {
     var responseJson;
     try {
       final response = await http.get(_baseUrl + url);
-      responseJson = _returnResponse(response);
+      if (response.statusCode == 404) {
+        responseJson = json.decode(response.body.toString());
+        return responseJson;
+      } else {
+        responseJson = _returnResponse(response);
+      }
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }

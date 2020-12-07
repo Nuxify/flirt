@@ -1,4 +1,8 @@
+import 'package:Flirt/models/record.dart';
+import 'package:Flirt/networking/api_response.dart';
 import 'package:flutter/material.dart';
+
+import '../blocs/record/record.dart';
 
 import '../widgets/header.dart';
 
@@ -15,7 +19,20 @@ class QRResultScreen extends StatefulWidget {
 }
 
 class _QRResultScreenState extends State<QRResultScreen> {
+  RecordBloc _recordBloc;
+
   final _headerTitle = "QR Data";
+
+  getData() async {
+    _recordBloc.fetchRecord(widget.qrData);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _recordBloc = RecordBloc();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,20 +61,44 @@ class _QRResultScreenState extends State<QRResultScreen> {
                     children: [
                       Padding(
                         padding: EdgeInsets.all(_mediaQuery.size.height * 0.02),
-                        child: Text(
-                          '[unique_id]',
-                          style: _theme.textTheme.bodyText1
-                              .copyWith(color: Colors.black, fontSize: 22),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(_mediaQuery.size.height * 0.02),
-                        child: Text(
-                          widget.qrData,
-                          style: _theme.textTheme.headline4.copyWith(
-                            fontSize: 18,
-                          ),
-                          softWrap: false,
+                        child: StreamBuilder<ApiResponse<Record>>(
+                          stream: _recordBloc.recordStream,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              switch (snapshot.data.status) {
+                                case Status.COMPLETED:
+                                  return Column(
+                                    children: [
+                                      Text(
+                                        snapshot.data.data.errorCode == null
+                                            ? snapshot.data.data.id
+                                            : snapshot.data.data.message,
+                                        style:
+                                            _theme.textTheme.headline4.copyWith(
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      Text(
+                                        snapshot.data.data.errorCode == null
+                                            ? snapshot.data.data.data
+                                            : '',
+                                        style:
+                                            _theme.textTheme.bodyText1.copyWith(
+                                          fontSize: 22,
+                                          color: Colors.black,
+                                        ),
+                                        softWrap: false,
+                                      )
+                                    ],
+                                  );
+                                  break;
+                                default:
+                                  Text('');
+                                  break;
+                              }
+                            }
+                            return Container();
+                          },
                         ),
                       ),
                     ],
