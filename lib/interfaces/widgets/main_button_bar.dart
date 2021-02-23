@@ -1,20 +1,23 @@
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-import '../screens/generate_screen.dart';
-import '../screens/scan_screen.dart';
+import 'package:flutter/material.dart';
+
+import 'package:Flirt/interfaces/screens/generate_screen.dart';
+import 'package:Flirt/interfaces/screens/scan_screen.dart';
 
 class MainButtonBar extends StatelessWidget {
+  const MainButtonBar({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final theme = Theme.of(context);
-    final lrPadding = 30.0;
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final ThemeData theme = Theme.of(context);
+    const double lrPadding = 30.0;
 
     return Positioned(
       top: 0,
       child: Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 50,
           left: lrPadding,
           right: lrPadding,
@@ -25,21 +28,21 @@ class MainButtonBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Flirt",
+                'Flirt',
                 style: TextStyle(
-                  fontFamily: "Nunito",
+                  fontFamily: 'Nunito',
                   fontSize: 70,
                   foreground: Paint()
                     ..shader = ui.Gradient.linear(
-                      Offset(0, 20),
-                      Offset(150, 20),
+                      const Offset(0, 20),
+                      const Offset(150, 20),
                       <Color>[Colors.white, Colors.white],
                     ),
                 ),
               ),
               Container(
                 width: mediaQuery.size.width,
-                padding: EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 50),
                 child: ButtonBar(
                   overflowButtonSpacing: 10,
                   alignment: MainAxisAlignment.spaceEvenly,
@@ -54,7 +57,7 @@ class MainButtonBar extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: FlatButton.icon(
-                        icon: Icon(Icons.select_all),
+                        icon: const Icon(Icons.select_all),
                         label: Text(
                           'GENERATE',
                           style:
@@ -65,7 +68,7 @@ class MainButtonBar extends StatelessWidget {
                             QRGenerateScreen.routeName,
                           );
                         },
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
                         color: Colors.transparent,
                       ),
@@ -80,7 +83,7 @@ class MainButtonBar extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: FlatButton.icon(
-                        icon: Icon(Icons.center_focus_weak),
+                        icon: const Icon(Icons.center_focus_weak),
                         label: Flexible(
                           child: Text(
                             'SCAN',
@@ -90,10 +93,10 @@ class MainButtonBar extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.of(context).pushNamed(
-                            QRScanScreen.routeName,
+                            ScanScreen.routeName,
                           );
                         },
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             top: 10, bottom: 10, left: 20, right: 20),
                         color: Colors.transparent,
                       ),

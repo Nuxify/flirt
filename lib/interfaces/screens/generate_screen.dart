@@ -1,18 +1,21 @@
 import 'dart:convert';
-import "package:flutter/material.dart";
+
+import 'package:Flirt/interfaces/widgets/header.dart';
+import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+/// TODO:: Fix bloc
 import '../blocs/record/record.dart';
 
-import '../widgets/header.dart';
+class GenerateScreen extends StatefulWidget {
+  const GenerateScreen({Key key}) : super(key: key);
 
-class QRGenerateScreen extends StatefulWidget {
-  static const routeName = '/generate';
+  static const String routeName = '/generate';
   @override
-  _QRGenerateScreenState createState() => _QRGenerateScreenState();
+  _GenerateScreenState createState() => _GenerateScreenState();
 }
 
-class _QRGenerateScreenState extends State<QRGenerateScreen> {
+class _GenerateScreenState extends State<GenerateScreen> {
   RecordBloc _recordBloc;
 
   @override
@@ -21,13 +24,14 @@ class _QRGenerateScreenState extends State<QRGenerateScreen> {
     _recordBloc = RecordBloc();
   }
 
-  final _headerTitle = "Generate a QR code";
-  var _idTextField = '';
-  var _dataTextField = '';
-  var _qrOpacity = 0.0;
+  final String _headerTitle = 'Generate a QR code';
+  String _idTextField = '';
+  String _dataTextField = '';
+  double _qrOpacity = 0.0;
 
   void _generateQR() {
-    final payload = json.encode({"id": _idTextField, "data": _dataTextField});
+    final String payload =
+        json.encode({'id': _idTextField, 'data': _dataTextField});
     _recordBloc.createRecord(payload);
     setState(() {
       _qrOpacity = 1.0;
@@ -36,8 +40,8 @@ class _QRGenerateScreenState extends State<QRGenerateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _mediaQuery = MediaQuery.of(context);
-    final _theme = Theme.of(context);
+    final MediaQueryData _mediaQuery = MediaQuery.of(context);
+    final ThemeData _theme = Theme.of(context);
 
     return Scaffold(
       appBar: Header(_headerTitle),
@@ -51,9 +55,9 @@ class _QRGenerateScreenState extends State<QRGenerateScreen> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 20),
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'ID (optional)',
                   ),
@@ -61,9 +65,9 @@ class _QRGenerateScreenState extends State<QRGenerateScreen> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 20),
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Data',
                   ),
@@ -76,22 +80,22 @@ class _QRGenerateScreenState extends State<QRGenerateScreen> {
                   borderRadius: BorderRadius.circular(5.0),
                 ),
                 child: FlatButton.icon(
-                  icon: Icon(Icons.select_all, color: Colors.white),
+                  icon: const Icon(Icons.select_all, color: Colors.white),
                   label: Text('GENERATE',
                       style: _theme.textTheme.bodyText1.copyWith(fontSize: 20)),
                   onPressed: () => {_generateQR()},
-                  padding:
-                      EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
+                  padding: const EdgeInsets.only(
+                      top: 10, bottom: 10, left: 20, right: 20),
                   color: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(5.0)),
+                      borderRadius: BorderRadius.circular(5.0)),
                 ),
               ),
               Container(
                 margin: EdgeInsets.only(top: _mediaQuery.size.height * 0.08),
                 child: AnimatedOpacity(
                   opacity: _qrOpacity,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                   child: QrImage(
                     data: _idTextField,
                     version: QrVersions.auto,

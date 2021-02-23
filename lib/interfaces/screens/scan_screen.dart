@@ -1,25 +1,27 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import '../screens/result_screen.dart';
-import '../widgets/header.dart';
+import 'package:Flirt/interfaces/screens/result_screen.dart';
+import 'package:Flirt/interfaces/widgets/header.dart';
 
 class ScanScreen extends StatefulWidget {
-  static const routeName = '/scan';
+  const ScanScreen({Key key}) : super(key: key);
+
+  static const String routeName = '/scan';
   @override
   _ScanScreenState createState() => _ScanScreenState();
 }
 
-const flashOn = 'FLASH ON';
-const flashOff = 'FLASH OFF';
-const frontCamera = 'FRONT CAMERA';
-const backCamera = 'BACK CAMERA';
+const String flashOn = 'FLASH ON';
+const String flashOff = 'FLASH OFF';
+const String frontCamera = 'FRONT CAMERA';
+const String backCamera = 'BACK CAMERA';
 
 class _ScanScreenState extends State<ScanScreen> {
-  final _headerTitle = "Scan a QR code";
-  var qrText = '';
-  var flashState = flashOn;
-  var cameraState = frontCamera;
+  final String _headerTitle = 'Scan a QR code';
+  String qrText = '';
+  String flashState = flashOn;
+  String cameraState = frontCamera;
   QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
@@ -40,7 +42,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
     void onQRViewCreated(QRViewController controller) {
       this.controller = controller;
-      controller.scannedDataStream.listen((scanData) {
+      controller.scannedDataStream.listen((String scanData) {
         setState(() {
           qrText = scanData;
         });
@@ -48,7 +50,7 @@ class _ScanScreenState extends State<ScanScreen> {
         if (qrText != '') {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => QRResultScreen(qrText, rescan),
+              builder: (BuildContext context) => ResultScreen(qrText, rescan),
             ),
           );
         }
