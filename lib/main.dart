@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 
-import 'config/themes.dart';
+import 'package:Flirt/configs/themes.dart';
+import 'package:Flirt/routes.dart';
 
-import 'screens/generate_screen.dart';
-import 'screens/result_screen.dart';
-import 'screens/scan_screen.dart';
+import 'package:Flirt/interfaces/widgets/bottom_bubble.dart';
+import 'package:Flirt/interfaces/widgets/main_button_bar.dart';
+import 'package:Flirt/interfaces/widgets/top_bubble.dart';
 
-import 'widgets/main_button_bar.dart';
-import 'widgets/top_bubble.dart';
-import 'widgets/bottom_bubble.dart';
-
-void main() => runApp(App());
+void main() => runApp(const App());
 
 class App extends StatelessWidget {
+  const App({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flirt',
       home: _HomePageState(),
       theme: defaultTheme,
-      routes: {
-        QRGenerateScreen.routeName: (ctx) => QRGenerateScreen(),
-        QRScanScreen.routeName: (ctx) => QRScanScreen(),
-        QRResultScreen.routeName: (ctx) => QRResultScreen('', () {}),
-      },
+      supportedLocales: const <Locale>[Locale('en')],
+      routes: routes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -6,19 +6,19 @@ import '../blocs/record/record.dart';
 
 import '../widgets/header.dart';
 
-class QRResultScreen extends StatefulWidget {
+class ResultScreen extends StatefulWidget {
   static const routeName = '/result';
 
   final String qrData;
   final Function rescan;
 
-  QRResultScreen(this.qrData, this.rescan);
+  ResultScreen(this.qrData, this.rescan);
 
   @override
-  _QRResultScreenState createState() => _QRResultScreenState();
+  _ResultScreenState createState() => _ResultScreenState();
 }
 
-class _QRResultScreenState extends State<QRResultScreen> {
+class _ResultScreenState extends State<ResultScreen> {
   RecordBloc _recordBloc;
 
   final _headerTitle = "QR Data";

@@ -4,10 +4,10 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../screens/result_screen.dart';
 import '../widgets/header.dart';
 
-class QRScanScreen extends StatefulWidget {
+class ScanScreen extends StatefulWidget {
   static const routeName = '/scan';
   @override
-  _QRScanScreenState createState() => _QRScanScreenState();
+  _ScanScreenState createState() => _ScanScreenState();
 }
 
 const flashOn = 'FLASH ON';
@@ -15,7 +15,7 @@ const flashOff = 'FLASH OFF';
 const frontCamera = 'FRONT CAMERA';
 const backCamera = 'BACK CAMERA';
 
-class _QRScanScreenState extends State<QRScanScreen> {
+class _ScanScreenState extends State<ScanScreen> {
   final _headerTitle = "Scan a QR code";
   var qrText = '';
   var flashState = flashOn;
