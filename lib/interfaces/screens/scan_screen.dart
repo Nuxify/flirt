@@ -5,9 +5,12 @@ import 'package:Flirt/interfaces/screens/result_screen.dart';
 import 'package:Flirt/interfaces/widgets/header.dart';
 
 class ScanScreen extends StatefulWidget {
-  const ScanScreen({Key key}) : super(key: key);
+  const ScanScreen({
+    Key key,
+  }) : super(key: key);
 
   static const String routeName = '/scan';
+
   @override
   _ScanScreenState createState() => _ScanScreenState();
 }
@@ -50,7 +53,10 @@ class _ScanScreenState extends State<ScanScreen> {
         if (qrText != '') {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => ResultScreen(qrText, rescan),
+              builder: (BuildContext context) => ResultScreen(
+                qrData: qrText,
+                rescan: rescan,
+              ),
             ),
           );
         }
@@ -64,15 +70,13 @@ class _ScanScreenState extends State<ScanScreen> {
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: Header(_headerTitle),
+        appBar: Header(title: _headerTitle),
         body: Row(children: [
           Expanded(
-            flex: 1,
             child: QRView(
               key: qrKey,
               onQRViewCreated: onQRViewCreated,
               overlay: QrScannerOverlayShape(
-                borderColor: Colors.red,
                 borderRadius: 30,
                 borderLength: 30,
                 borderWidth: 10,

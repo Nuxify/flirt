@@ -1,14 +1,16 @@
-import 'dart:convert';
-
-import 'package:Flirt/interfaces/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'package:Flirt/interfaces/widgets/header.dart';
+
 /// TODO:: Fix bloc
-import '../blocs/record/record.dart';
+import 'package:Flirt/module/record/service/cubit/record_dto.dart';
+import 'package:Flirt/module/record/service/cubit/record_cubit.dart';
 
 class GenerateScreen extends StatefulWidget {
-  const GenerateScreen({Key key}) : super(key: key);
+  const GenerateScreen({
+    Key key,
+  }) : super(key: key);
 
   static const String routeName = '/generate';
   @override
@@ -16,12 +18,12 @@ class GenerateScreen extends StatefulWidget {
 }
 
 class _GenerateScreenState extends State<GenerateScreen> {
-  RecordBloc _recordBloc;
+  RecordCubit _recordBloc;
 
   @override
   void initState() {
     super.initState();
-    _recordBloc = RecordBloc();
+    _recordBloc = RecordCubit();
   }
 
   final String _headerTitle = 'Generate a QR code';
@@ -30,9 +32,9 @@ class _GenerateScreenState extends State<GenerateScreen> {
   double _qrOpacity = 0.0;
 
   void _generateQR() {
-    final String payload =
-        json.encode({'id': _idTextField, 'data': _dataTextField});
-    _recordBloc.createRecord(payload);
+    final RecordRequestDTO payload =
+        RecordRequestDTO(id: _idTextField, data: _dataTextField);
+    _recordBloc.recordData(payload);
     setState(() {
       _qrOpacity = 1.0;
     });
@@ -44,7 +46,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
     final ThemeData _theme = Theme.of(context);
 
     return Scaffold(
-      appBar: Header(_headerTitle),
+      appBar: Header(title: _headerTitle),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(
@@ -83,7 +85,9 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   icon: const Icon(Icons.select_all, color: Colors.white),
                   label: Text('GENERATE',
                       style: _theme.textTheme.bodyText1.copyWith(fontSize: 20)),
-                  onPressed: () => {_generateQR()},
+                  onPressed: () => {
+                    _generateQR(),
+                  },
                   padding: const EdgeInsets.only(
                       top: 10, bottom: 10, left: 20, right: 20),
                   color: Theme.of(context).primaryColor,

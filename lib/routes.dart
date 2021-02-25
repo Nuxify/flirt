@@ -6,7 +6,7 @@ import 'package:Flirt/interfaces/screens/scan_screen.dart';
 
 Map<String, Widget Function(BuildContext)> routes =
     <String, Widget Function(BuildContext)>{
-  QRGenerateScreen.routeName: (BuildContext ctx) => QRGenerateScreen(),
-  ResultScreen.routeName: (BuildContext ctx) => ResultScreen('', () {}),
-  ScanScreen.routeName: (BuildContext ctx) => ScanScreen(),
+  GenerateScreen.routeName: (BuildContext ctx) => const GenerateScreen(),
+  ResultScreen.routeName: (BuildContext ctx) => const ResultScreen(),
+  ScanScreen.routeName: (BuildContext ctx) => const ScanScreen(),
 };

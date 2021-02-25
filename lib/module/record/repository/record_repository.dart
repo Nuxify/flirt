@@ -10,7 +10,8 @@ import 'package:Flirt/module/record/models/record_response.dart';
 class RecordRepository {
   final String _recordRepositoryURL = 'https://flirt.nuxify.tech/api/v1/record';
 
-  Future<APIResponse<RecordResponse>> recordData(RecordRequest payload) async {
+  Future<APIResponse<RecordResponse>> createRecordData(
+      RecordRequest payload) async {
     try {
       final http.Response response = await http.post('{$_recordRepositoryURL}',
           headers: <String, String>{
@@ -38,4 +39,6 @@ class RecordRepository {
       throw error;
     }
   }
+
+  /// TODO:: fetch recorded data
 }

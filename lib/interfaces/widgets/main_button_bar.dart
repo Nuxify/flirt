@@ -6,7 +6,9 @@ import 'package:Flirt/interfaces/screens/generate_screen.dart';
 import 'package:Flirt/interfaces/screens/scan_screen.dart';
 
 class MainButtonBar extends StatelessWidget {
-  const MainButtonBar({Key key}) : super(key: key);
+  const MainButtonBar({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,7 @@ class MainButtonBar extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.of(context).pushNamed(
-                            QRGenerateScreen.routeName,
+                            GenerateScreen.routeName,
                           );
                         },
                         padding: const EdgeInsets.only(

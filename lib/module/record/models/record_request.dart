@@ -5,7 +5,10 @@ part 'record_request.g.dart';
 
 @JsonSerializable()
 class RecordRequest {
-  RecordRequest({@required this.id, @required this.data});
+  RecordRequest({
+    @required this.id,
+    @required this.data,
+  });
 
   factory RecordRequest.fromJson(Map<String, dynamic> json) =>
       _$RecordRequestFromJson(json);

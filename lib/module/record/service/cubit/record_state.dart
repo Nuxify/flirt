@@ -1,22 +1,27 @@
 part of 'record_cubit.dart';
 
 @immutable
-abstract class LoginState {
-  const LoginState();
+abstract class RecordState {
+  const RecordState();
 }
 
-class LoginInitial extends LoginState {}
+class RecordInitial extends RecordState {}
 
-class LoginLoading extends LoginState {}
+class RecordLoading extends RecordState {}
 
-class LoginSuccess extends LoginState {
-  const LoginSuccess(this.loginResponse);
+class RecordSuccess extends RecordState {
+  const RecordSuccess({
+    @required this.recordResponse,
+  });
 
-  final RecordRepository loginResponse;
+  final APIResponse<RecordResponse> recordResponse;
 }
 
-class LoginFailed extends LoginState {
-  const LoginFailed(this.errorCode, this.message);
+class RecordFailed extends RecordState {
+  const RecordFailed({
+    @required this.errorCode,
+    @required this.message,
+  });
 
   final String errorCode;
   final String message;
