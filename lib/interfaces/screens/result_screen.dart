@@ -26,8 +26,8 @@ class _ResultScreenState extends State<ResultScreen> {
 
   final String _headerTitle = 'QR Data';
 
-  getData() async {
-    // _recordBloc.fetchRecord(widget.qrData);
+  void getData() {
+    _recordBloc.fetchRecord(widget.qrData);
   }
 
   @override

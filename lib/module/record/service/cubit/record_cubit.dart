@@ -15,6 +15,25 @@ class RecordCubit extends Cubit<RecordState> {
 
   final RecordRepository _recordRepository = RecordRepository();
 
+  /// Get Record
+  Future<void> fetchRecord(String id) async {
+    try {
+      emit(RecordLoading());
+
+      final APIResponse<RecordResponse> response =
+          await _recordRepository.fetchRecordData(id);
+
+      emit(RecordSuccess(recordResponse: response));
+    } catch (e) {
+      final APIResponse<RecordResponse> error =
+          e as APIResponse<RecordResponse>;
+      emit(RecordFailed(
+        errorCode: error.errorCode,
+        message: error.message,
+      ));
+    }
+  }
+
   /// Create Record
   Future<void> recordData(RecordRequestDTO payload) async {
     try {

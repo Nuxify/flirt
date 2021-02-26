@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:Flirt/interfaces/widgets/header.dart';
 
-/// TODO:: Fix bloc
 import 'package:Flirt/module/record/service/cubit/record_dto.dart';
 import 'package:Flirt/module/record/service/cubit/record_cubit.dart';
 
@@ -18,27 +18,15 @@ class GenerateScreen extends StatefulWidget {
 }
 
 class _GenerateScreenState extends State<GenerateScreen> {
-  RecordCubit _recordBloc;
-
   @override
   void initState() {
     super.initState();
-    _recordBloc = RecordCubit();
   }
 
   final String _headerTitle = 'Generate a QR code';
   String _idTextField = '';
   String _dataTextField = '';
   double _qrOpacity = 0.0;
-
-  void _generateQR() {
-    final RecordRequestDTO payload =
-        RecordRequestDTO(id: _idTextField, data: _dataTextField);
-    _recordBloc.recordData(payload);
-    setState(() {
-      _qrOpacity = 1.0;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,18 +69,37 @@ class _GenerateScreenState extends State<GenerateScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-                child: FlatButton.icon(
-                  icon: const Icon(Icons.select_all, color: Colors.white),
-                  label: Text('GENERATE',
-                      style: _theme.textTheme.bodyText1.copyWith(fontSize: 20)),
-                  onPressed: () => {
-                    _generateQR(),
+                child: BlocConsumer<RecordCubit, RecordState>(
+                  listener: (BuildContext context, RecordState state) {
+                    // TODO: implement listener
+                    if (state is RecordFailed) {
+                      print('may mali');
+                    }
+                    if (state is RecordSuccess) {
+                      print('success ${state.recordResponse}');
+                    }
                   },
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 10, left: 20, right: 20),
-                  color: Theme.of(context).primaryColor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0)),
+                  builder: (BuildContext context, RecordState state) {
+                    return FlatButton.icon(
+                      icon: const Icon(Icons.select_all, color: Colors.white),
+                      label: Text('GENERATE',
+                          style: _theme.textTheme.bodyText1
+                              .copyWith(fontSize: 20)),
+                      onPressed: () {
+                        final RecordRequestDTO payload = RecordRequestDTO(
+                            id: _idTextField, data: _dataTextField);
+                        context.read<RecordCubit>().recordData(payload);
+                        setState(() {
+                          _qrOpacity = 1.0;
+                        });
+                      },
+                      padding: const EdgeInsets.only(
+                          top: 10, bottom: 10, left: 20, right: 20),
+                      color: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                    );
+                  },
                 ),
               ),
               Container(
