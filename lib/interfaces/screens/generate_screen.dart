@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:Flirt/interfaces/widgets/header.dart';
-
 import 'package:Flirt/module/record/service/cubit/record_dto.dart';
 import 'package:Flirt/module/record/service/cubit/record_cubit.dart';
 
@@ -27,6 +27,14 @@ class _GenerateScreenState extends State<GenerateScreen> {
   String _idTextField = '';
   String _dataTextField = '';
   double _qrOpacity = 0.0;
+
+  void _resetFields() {
+    setState(() {
+      _idTextField = '';
+      _dataTextField = '';
+      _qrOpacity = 0.0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +79,34 @@ class _GenerateScreenState extends State<GenerateScreen> {
                 ),
                 child: BlocConsumer<RecordCubit, RecordState>(
                   listener: (BuildContext context, RecordState state) {
-                    // TODO: implement listener
+                    if (state is RecordLoading) {
+                      // disable button
+                    }
                     if (state is RecordFailed) {
-                      print('may mali');
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('Error: ${state.message}'),
+                      ));
+                      setState(() {
+                        _qrOpacity = 0.0;
+                      });
                     }
                     if (state is RecordSuccess) {
-                      print('success ${state.recordResponse}');
+                      setState(() {
+                        _qrOpacity = 1.0;
+                      });
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        duration: const Duration(seconds: 120),
+                        backgroundColor: Colors.green,
+                        content: const Text('QR code is ready.'),
+                        action: SnackBarAction(
+                          label: 'CREATE NEW',
+                          textColor: Colors.black,
+                          onPressed: () {
+                            _resetFields();
+                          },
+                        ),
+                      ));
                     }
                   },
                   builder: (BuildContext context, RecordState state) {
@@ -89,9 +119,6 @@ class _GenerateScreenState extends State<GenerateScreen> {
                         final RecordRequestDTO payload = RecordRequestDTO(
                             id: _idTextField, data: _dataTextField);
                         context.read<RecordCubit>().recordData(payload);
-                        setState(() {
-                          _qrOpacity = 1.0;
-                        });
                       },
                       padding: const EdgeInsets.only(
                           top: 10, bottom: 10, left: 20, right: 20),

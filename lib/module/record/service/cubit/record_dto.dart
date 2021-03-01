@@ -9,3 +9,15 @@ class RecordRequestDTO {
   final String id;
   final String data;
 }
+
+class RecordResponseDTO {
+  RecordResponseDTO({
+    this.id,
+    this.data,
+    this.createdAt,
+  });
+
+  final String id;
+  final String data;
+  final int createdAt;
+}

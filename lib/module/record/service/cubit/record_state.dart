@@ -11,10 +11,10 @@ class RecordLoading extends RecordState {}
 
 class RecordSuccess extends RecordState {
   const RecordSuccess({
-    @required this.recordResponse,
+    this.recordResponse,
   });
 
-  final APIResponse<RecordResponse> recordResponse;
+  final RecordResponseDTO recordResponse;
 }
 
 class RecordFailed extends RecordState {

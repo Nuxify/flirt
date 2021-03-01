@@ -10,14 +10,14 @@ import 'package:Flirt/module/record/models/record_response.dart';
 class RecordRepository {
   final String _recordRepositoryURL = 'https://flirt.nuxify.tech/api/v1/record';
 
-  Future<APIResponse<RecordResponse>> fetchRecordData(String id) async {
+  Future<APIResponse<RecordResponse>> createRecordData(
+      RecordRequest payload) async {
     try {
-      final http.Response response = await http.get(
-        '{$_recordRepositoryURL}?id=$id',
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-      );
+      final http.Response response = await http.post(_recordRepositoryURL,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(payload));
 
       final APIResponse<RecordResponse> result =
           APIResponse<RecordResponse>.fromJson(
@@ -40,14 +40,14 @@ class RecordRepository {
     }
   }
 
-  Future<APIResponse<RecordResponse>> createRecordData(
-      RecordRequest payload) async {
+  Future<APIResponse<RecordResponse>> fetchRecordData(String id) async {
     try {
-      final http.Response response = await http.post('{$_recordRepositoryURL}',
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonEncode(payload));
+      final http.Response response = await http.get(
+        '{$_recordRepositoryURL}/$id',
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
 
       final APIResponse<RecordResponse> result =
           APIResponse<RecordResponse>.fromJson(

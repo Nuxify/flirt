@@ -1,5 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:bloc/bloc.dart';
 
 import 'package:Flirt/module/record/service/cubit/record_dto.dart';
 import 'package:Flirt/module/record/repository/record_repository.dart';
@@ -23,7 +24,12 @@ class RecordCubit extends Cubit<RecordState> {
       final APIResponse<RecordResponse> response =
           await _recordRepository.fetchRecordData(id);
 
-      emit(RecordSuccess(recordResponse: response));
+      emit(RecordSuccess(
+          recordResponse: RecordResponseDTO(
+        id: response.data.id,
+        data: response.data.data,
+        createdAt: response.data.createdAt,
+      )));
     } catch (e) {
       final APIResponse<RecordResponse> error =
           e as APIResponse<RecordResponse>;
@@ -35,18 +41,24 @@ class RecordCubit extends Cubit<RecordState> {
   }
 
   /// Create Record
-  Future<void> recordData(RecordRequestDTO payload) async {
+  Future<void> recordData(RecordRequestDTO data) async {
     try {
       emit(RecordLoading());
 
-      final RecordRequest postData = RecordRequest(
-        id: payload.id,
-        data: payload.data,
+      final RecordRequest payload = RecordRequest(
+        id: data.id,
+        data: data.data,
       );
-      final APIResponse<RecordResponse> response =
-          await _recordRepository.createRecordData(postData);
 
-      emit(RecordSuccess(recordResponse: response));
+      final APIResponse<RecordResponse> response =
+          await _recordRepository.createRecordData(payload);
+
+      emit(RecordSuccess(
+          recordResponse: RecordResponseDTO(
+        id: response.data.id,
+        data: response.data.data,
+        createdAt: response.data.createdAt,
+      )));
     } catch (e) {
       final APIResponse<RecordResponse> error =
           e as APIResponse<RecordResponse>;
