@@ -39,12 +39,20 @@ class _HomePageState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          const TopBubble(),
-          const MainButtonBar(),
-          const BottomBubble(),
-        ],
+      body: Container(
+        color: Theme.of(context).primaryColor,
+        child: SafeArea(
+          child: Container(
+            color: Colors.white,
+            child: Stack(
+              children: [
+                const TopBubble(),
+                const MainButtonBar(),
+                const BottomBubble(),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
