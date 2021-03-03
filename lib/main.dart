@@ -6,9 +6,7 @@ import 'package:Flirt/routes.dart';
 
 import 'package:Flirt/module/record/service/cubit/record_cubit.dart';
 
-import 'package:Flirt/interfaces/widgets/bottom_bubble.dart';
-import 'package:Flirt/interfaces/widgets/main_button_bar.dart';
-import 'package:Flirt/interfaces/widgets/top_bubble.dart';
+import 'package:Flirt/interfaces/screens/home_screen.dart';
 
 void main() => runApp(const App());
 
@@ -18,7 +16,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider<dynamic>>[
         BlocProvider<RecordCubit>(
           create: (BuildContext context) => RecordCubit(),
         ),
@@ -27,7 +25,9 @@ class App extends StatelessWidget {
         title: 'Flirt',
         home: _HomePageState(),
         theme: defaultTheme,
-        supportedLocales: const <Locale>[Locale('en')],
+        supportedLocales: const <Locale>[
+          Locale('en'),
+        ],
         routes: routes,
         debugShowCheckedModeBanner: false,
       ),
@@ -38,22 +38,6 @@ class App extends StatelessWidget {
 class _HomePageState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Theme.of(context).primaryColor,
-        child: SafeArea(
-          child: Container(
-            color: Colors.white,
-            child: Stack(
-              children: [
-                const TopBubble(),
-                const MainButtonBar(),
-                const BottomBubble(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+    return const HomeScreen();
   }
 }

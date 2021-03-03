@@ -109,7 +109,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                         action: SnackBarAction(
                           label: 'CREATE NEW',
                           textColor: Colors.black,
-                          onPressed: () => _resetFields(context),
+                          onPressed: () => _resetFields(),
                         ),
                       ),
                     );

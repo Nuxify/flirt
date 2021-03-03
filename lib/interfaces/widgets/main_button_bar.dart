@@ -2,8 +2,8 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
-import 'package:Flirt/interfaces/screens/generate_screen.dart';
-import 'package:Flirt/interfaces/screens/scan_screen.dart';
+import 'package:Flirt/module/record/interfaces/screens/generate/generate_screen.dart';
+import 'package:Flirt/module/record/interfaces/screens/scan/scan_screen.dart';
 
 class MainButtonBar extends StatelessWidget {
   const MainButtonBar({

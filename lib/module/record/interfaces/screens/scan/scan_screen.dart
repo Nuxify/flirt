@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import 'package:Flirt/interfaces/screens/result_screen.dart';
+import 'package:Flirt/module/record/interfaces/screens//result_screen.dart';
 import 'package:Flirt/interfaces/widgets/header.dart';
 
 class ScanScreen extends StatefulWidget {
@@ -21,7 +21,6 @@ const String frontCamera = 'FRONT CAMERA';
 const String backCamera = 'BACK CAMERA';
 
 class _ScanScreenState extends State<ScanScreen> {
-  final String _headerTitle = 'Scan a QR code';
   String qrText = '';
   String flashState = flashOn;
   String cameraState = frontCamera;
@@ -70,7 +69,7 @@ class _ScanScreenState extends State<ScanScreen> {
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: Header(title: _headerTitle),
+        appBar: const Header(title: 'Scan a QR code'),
         body: Row(children: <Widget>[
           Expanded(
             child: QRView(
