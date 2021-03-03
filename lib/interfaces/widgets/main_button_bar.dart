@@ -19,8 +19,9 @@ class MainButtonBar extends StatelessWidget {
     return Positioned(
       top: 0,
       child: Container(
+        height: 230.0,
         margin: const EdgeInsets.only(
-          top: 50,
+          top: 25,
           left: lrPadding,
           right: lrPadding,
         ),

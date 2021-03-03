@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:Flirt/interfaces/widgets/header.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
+import 'package:Flirt/interfaces/widgets/header.dart';
 import 'package:Flirt/module/record/service/cubit/record_cubit.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _ResultScreenState extends State<ResultScreen> {
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: const Header(title: 'QR Data'),
+        appBar: const Header(title: 'QR Data Result'),
         body: Container(
           margin: EdgeInsets.only(
             left: _mediaQuery.size.width * 0.15,
@@ -50,20 +51,36 @@ class _ResultScreenState extends State<ResultScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Column(
-                  children: [
+                  children: <Widget>[
                     Padding(
                       padding: EdgeInsets.all(_mediaQuery.size.height * 0.02),
                       child: BlocBuilder<RecordCubit, RecordState>(
                         builder: (BuildContext context, RecordState state) {
-                          if (state is RecordFailed) {
+                          if (state is RecordLoading) {
                             return Column(
                               children: <Widget>[
-                                Text(
-                                  state.errorCode.toString(),
-                                  style: _theme.textTheme.headline4.copyWith(
-                                    fontSize: 18,
-                                  ),
-                                )
+                                const CircularProgressIndicator(
+                                  backgroundColor: Colors.black26,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.blueAccent),
+                                ),
+                                SizedBox(
+                                  height: _mediaQuery.size.height * 0.1,
+                                ),
+                              ],
+                            );
+                          } else if (state is RecordFailed) {
+                            return Column(
+                              children: <Widget>[
+                                Text(state.errorCode.toString(),
+                                    style: TextStyle(
+                                      color: _theme.errorColor,
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                SizedBox(
+                                  height: _mediaQuery.size.height * 0.1,
+                                ),
                               ],
                             );
                           } else if (state is RecordSuccess) {
@@ -72,17 +89,27 @@ class _ResultScreenState extends State<ResultScreen> {
                                 Text(
                                   state.recordResponse.id,
                                   style: _theme.textTheme.headline4.copyWith(
-                                    fontSize: 18,
+                                    fontSize: 24,
                                   ),
                                 ),
                                 Text(
                                   state.recordResponse.data,
                                   style: _theme.textTheme.bodyText1.copyWith(
-                                    fontSize: 22,
+                                    fontSize: 18,
                                     color: Colors.black,
                                   ),
                                   softWrap: false,
-                                )
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                QrImage(
+                                  data: state.recordResponse.data,
+                                  size: 200.0,
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
                               ],
                             );
                           } else {

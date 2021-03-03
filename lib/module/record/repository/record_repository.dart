@@ -43,7 +43,7 @@ class RecordRepository {
   Future<APIResponse<RecordResponse>> fetchRecordData(String id) async {
     try {
       final http.Response response = await http.get(
-        '{$_recordRepositoryURL}/$id',
+        '$_recordRepositoryURL/$id',
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
