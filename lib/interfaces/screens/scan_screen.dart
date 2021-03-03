@@ -29,13 +29,13 @@ class _ScanScreenState extends State<ScanScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   @override
-  Widget build(BuildContext context) {
-    @override
-    void dispose() {
-      controller.dispose();
-      super.dispose();
-    }
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     void rescan() {
       setState(() {
         qrText = '';
@@ -71,7 +71,7 @@ class _ScanScreenState extends State<ScanScreen> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: Header(title: _headerTitle),
-        body: Row(children: [
+        body: Row(children: <Widget>[
           Expanded(
             child: QRView(
               key: qrKey,

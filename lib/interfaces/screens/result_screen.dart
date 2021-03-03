@@ -22,18 +22,10 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
-  RecordCubit _recordBloc;
-
-  final String _headerTitle = 'QR Data';
-
-  void getData() {
-    _recordBloc.fetchRecord(widget.qrData);
-  }
-
   @override
   void initState() {
+    context.read<RecordCubit>().fetchRecord(widget.qrData);
     super.initState();
-    getData();
   }
 
   @override
@@ -47,7 +39,7 @@ class _ResultScreenState extends State<ResultScreen> {
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: Header(title: _headerTitle),
+        appBar: const Header(title: 'QR Data'),
         body: Container(
           margin: EdgeInsets.only(
             left: _mediaQuery.size.width * 0.15,
@@ -56,47 +48,46 @@ class _ResultScreenState extends State<ResultScreen> {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 Column(
                   children: [
                     Padding(
                       padding: EdgeInsets.all(_mediaQuery.size.height * 0.02),
                       child: BlocBuilder<RecordCubit, RecordState>(
                         builder: (BuildContext context, RecordState state) {
-                          // if (snapshot.hasData) {
-                          //   switch (snapshot.data.status) {
-                          //     case Status.COMPLETED:
-                          //       return Column(
-                          //         children: [
-                          //           Text(
-                          //             snapshot.data.data.errorCode == null
-                          //                 ? snapshot.data.data.id
-                          //                 : snapshot.data.data.message,
-                          //             style:
-                          //                 _theme.textTheme.headline4.copyWith(
-                          //               fontSize: 18,
-                          //             ),
-                          //           ),
-                          //           Text(
-                          //             snapshot.data.data.errorCode == null
-                          //                 ? snapshot.data.data.data
-                          //                 : '',
-                          //             style:
-                          //                 _theme.textTheme.bodyText1.copyWith(
-                          //               fontSize: 22,
-                          //               color: Colors.black,
-                          //             ),
-                          //             softWrap: false,
-                          //           )
-                          //         ],
-                          //       );
-                          //       break;
-                          //     default:
-                          //       const Text('');
-                          //       break;
-                          //   }
-                          // }
-                          return Container();
+                          if (state is RecordFailed) {
+                            return Column(
+                              children: <Widget>[
+                                Text(
+                                  state.errorCode.toString(),
+                                  style: _theme.textTheme.headline4.copyWith(
+                                    fontSize: 18,
+                                  ),
+                                )
+                              ],
+                            );
+                          } else if (state is RecordSuccess) {
+                            return Column(
+                              children: <Widget>[
+                                Text(
+                                  state.recordResponse.id,
+                                  style: _theme.textTheme.headline4.copyWith(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Text(
+                                  state.recordResponse.data,
+                                  style: _theme.textTheme.bodyText1.copyWith(
+                                    fontSize: 22,
+                                    color: Colors.black,
+                                  ),
+                                  softWrap: false,
+                                )
+                              ],
+                            );
+                          } else {
+                            return const Text('');
+                          }
                         },
                       ),
                     ),
