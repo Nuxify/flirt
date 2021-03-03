@@ -22,7 +22,7 @@ class BottomBubble extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [
+              colors: <Color>[
                 theme.primaryColor,
                 theme.accentColor,
               ],

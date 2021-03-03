@@ -109,7 +109,10 @@ class _ResultScreenState extends State<ResultScreen> {
                       gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
-                        colors: [_theme.primaryColor, _theme.accentColor],
+                        colors: <Color>[
+                          _theme.primaryColor,
+                          _theme.accentColor
+                        ],
                       ),
                       borderRadius: BorderRadius.circular(5.0),
                     ),

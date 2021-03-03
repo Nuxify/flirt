@@ -25,7 +25,14 @@ class _GenerateScreenState extends State<GenerateScreen> {
   final TextEditingController _idTextController = TextEditingController();
   final TextEditingController _dataTextController = TextEditingController();
 
+  @override
+  void initState() {
+    _resetFields();
+    super.initState();
+  }
+
   void _resetFields() {
+    context.read<RecordCubit>().resetState();
     setState(() {
       _idTextController.clear();
       _dataTextController.clear();
@@ -77,58 +84,70 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   ),
                 ),
               ),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                child: BlocConsumer<RecordCubit, RecordState>(
-                    listener: (BuildContext context, RecordState state) {
-                  if (state is RecordLoading) {
-                    // disable button
-                  }
+              BlocListener<RecordCubit, RecordState>(
+                listener: (
+                  BuildContext context,
+                  RecordState state,
+                ) {
                   if (state is RecordFailed) {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      backgroundColor: _theme.errorColor,
-                      content: Text('Error: ${state.message}'),
-                    ));
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: _theme.errorColor,
+                        content: Text('Error: ${state.message}'),
+                      ),
+                    );
                   }
                   if (state is RecordSuccess) {
                     setState(() {
                       _generatedData = state.recordResponse.data;
                     });
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      duration: const Duration(seconds: 120),
-                      backgroundColor: Colors.green,
-                      content: const Text('QR code is ready.'),
-                      action: SnackBarAction(
-                        label: 'CREATE NEW',
-                        textColor: Colors.black,
-                        onPressed: () => _resetFields(),
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        duration: const Duration(seconds: 120),
+                        backgroundColor: Colors.green,
+                        content: const Text('QR code is ready.'),
+                        action: SnackBarAction(
+                          label: 'CREATE NEW',
+                          textColor: Colors.black,
+                          onPressed: () => _resetFields(),
+                        ),
                       ),
-                    ));
+                    );
                   }
-                }, builder: (BuildContext context, RecordState state) {
-                  return FlatButton.icon(
-                    textColor: Colors.white,
-                    icon: const Icon(
-                      Icons.select_all,
-                    ),
-                    label: const Text('GENERATE',
-                        style: TextStyle(fontSize: 20.0)),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 20,
-                    ),
-                    onPressed: (state is RecordLoading)
-                        ? null
-                        : () => _generateQRCode(context),
-                    color: _theme.primaryColor,
-                  );
-                }),
+                },
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: BlocBuilder<RecordCubit, RecordState>(
+                    builder: (BuildContext context, RecordState state) {
+                      final String buttonText = (state is RecordLoading)
+                          ? 'GENERATING...'
+                          : 'GENERATE';
+                      return FlatButton.icon(
+                        textColor: Colors.white,
+                        icon: const Icon(
+                          Icons.select_all,
+                        ),
+                        label: Text(buttonText,
+                            style: const TextStyle(fontSize: 20.0)),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20,
+                        ),
+                        onPressed:
+                            (state is RecordLoading || state is RecordSuccess)
+                                ? null
+                                : () => _generateQRCode(context),
+                        color: _theme.primaryColor,
+                      );
+                    },
+                  ),
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(
-                  top: _mediaQuery.size.height * 0.07,
+                  top: _mediaQuery.size.height * 0.06,
                 ),
                 child: BlocBuilder<RecordCubit, RecordState>(
                   builder: (BuildContext context, RecordState state) {

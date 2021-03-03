@@ -68,4 +68,9 @@ class RecordCubit extends Cubit<RecordState> {
       ));
     }
   }
+
+  /// Reset State
+  void resetState() {
+    emit(RecordInitial());
+  }
 }

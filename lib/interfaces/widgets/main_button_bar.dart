@@ -28,7 +28,7 @@ class MainButtonBar extends StatelessWidget {
           width: mediaQuery.size.width - (lrPadding * 2),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Text(
                 'Flirt',
                 style: TextStyle(
@@ -48,13 +48,16 @@ class MainButtonBar extends StatelessWidget {
                 child: ButtonBar(
                   overflowButtonSpacing: 10,
                   alignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                  children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
-                          colors: [theme.primaryColor, theme.accentColor],
+                          colors: <Color>[
+                            theme.primaryColor,
+                            theme.accentColor
+                          ],
                         ),
                         borderRadius: BorderRadius.circular(5.0),
                       ),
@@ -80,7 +83,10 @@ class MainButtonBar extends StatelessWidget {
                         gradient: LinearGradient(
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
-                          colors: [theme.primaryColor, theme.accentColor],
+                          colors: <Color>[
+                            theme.primaryColor,
+                            theme.accentColor
+                          ],
                         ),
                         borderRadius: BorderRadius.circular(5.0),
                       ),
