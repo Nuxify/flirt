@@ -19,7 +19,6 @@ class GenerateScreen extends StatefulWidget {
 }
 
 class _GenerateScreenState extends State<GenerateScreen> {
-  double _qrOpacity = 0.0;
   String _generatedData = '';
 
   /// Textbox controller
@@ -31,7 +30,6 @@ class _GenerateScreenState extends State<GenerateScreen> {
       _idTextController.clear();
       _dataTextController.clear();
       _generatedData = '';
-      _qrOpacity = 0.0;
     });
   }
 
@@ -59,7 +57,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
             right: _mediaQuery.size.width * 0.12,
           ),
           child: Column(
-            children: [
+            children: <Widget>[
               Container(
                 margin: const EdgeInsets.only(bottom: 20),
                 child: TextField(
@@ -94,13 +92,9 @@ class _GenerateScreenState extends State<GenerateScreen> {
                       backgroundColor: _theme.errorColor,
                       content: Text('Error: ${state.message}'),
                     ));
-                    setState(() {
-                      _qrOpacity = 0.0;
-                    });
                   }
                   if (state is RecordSuccess) {
                     setState(() {
-                      _qrOpacity = 1.0;
                       _generatedData = state.recordResponse.data;
                     });
                     Scaffold.of(context).showSnackBar(SnackBar(
@@ -116,41 +110,50 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   }
                 }, builder: (BuildContext context, RecordState state) {
                   return FlatButton.icon(
+                    textColor: Colors.white,
                     icon: const Icon(
                       Icons.select_all,
-                      color: Colors.white,
                     ),
-                    label: Text('GENERATE',
-                        style: _theme.textTheme.bodyText1.copyWith(
-                          fontSize: 20,
-                        )),
-                    onPressed: () => _generateQRCode(context),
-                    color: Theme.of(context).primaryColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                    padding: const EdgeInsets.only(
-                      top: 10,
-                      bottom: 10,
-                      left: 20,
-                      right: 20,
+                    label: const Text('GENERATE',
+                        style: TextStyle(fontSize: 20.0)),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
                     ),
+                    onPressed: (state is RecordLoading)
+                        ? null
+                        : () => _generateQRCode(context),
+                    color: _theme.primaryColor,
                   );
                 }),
               ),
               Container(
                 margin: EdgeInsets.only(
-                  top: _mediaQuery.size.height * 0.08,
+                  top: _mediaQuery.size.height * 0.07,
                 ),
-                child: AnimatedOpacity(
-                  opacity: _qrOpacity,
-                  duration: const Duration(
-                    seconds: 1,
-                  ),
-                  child: QrImage(
-                    data: _generatedData,
-                    version: QrVersions.auto,
-                    size: 200.0,
-                  ),
+                child: BlocBuilder<RecordCubit, RecordState>(
+                  builder: (BuildContext context, RecordState state) {
+                    if (state is RecordLoading) {
+                      return Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: _mediaQuery.size.height * 0.12,
+                          ),
+                          const CircularProgressIndicator(
+                            backgroundColor: Colors.black26,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.blueAccent),
+                          )
+                        ],
+                      );
+                    } else if (state is RecordSuccess) {
+                      return QrImage(
+                        data: _generatedData,
+                        size: 200.0,
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 ),
               )
             ],
