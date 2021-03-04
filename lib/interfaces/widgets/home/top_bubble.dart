@@ -7,13 +7,13 @@ class TopBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final MediaQueryData _mediaQuery = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
     return Positioned(
       top: 0,
       child: SizedBox(
-        height: mediaQuery.size.height * 0.20,
-        width: mediaQuery.size.width * 0.50,
+        height: 120.0,
+        width: _mediaQuery.size.width * 0.65,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
@@ -28,6 +28,19 @@ class TopBubble extends StatelessWidget {
               ],
             ),
           ),
+          child: Container(
+              margin: const EdgeInsets.only(
+                left: 50.0,
+                top: 10.0,
+              ),
+              child: const Text(
+                'Flirt',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 70,
+                  color: Colors.white,
+                ),
+              )),
         ),
       ),
     );

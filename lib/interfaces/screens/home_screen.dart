@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:Flirt/interfaces/widgets/bottom_bubble.dart';
-import 'package:Flirt/interfaces/widgets/main_button_bar.dart';
-import 'package:Flirt/interfaces/widgets/top_bubble.dart';
+import 'package:Flirt/interfaces/widgets/home/bottom_bubble.dart';
+import 'package:Flirt/interfaces/widgets/home/main_button_bar.dart';
+import 'package:Flirt/interfaces/widgets/home/top_bubble.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
