@@ -7,8 +7,10 @@ import 'package:Flirt/module/record/interfaces/screens/scan/scan_screen.dart';
 
 Map<String, Widget Function(BuildContext)> routes =
     <String, Widget Function(BuildContext)>{
-  GenerateScreen.routeName: (BuildContext ctx) => const GenerateScreen(),
   HomeScreen.routeName: (BuildContext ctx) => const HomeScreen(),
+
+  // ================ record module ================
+  GenerateScreen.routeName: (BuildContext ctx) => const GenerateScreen(),
   ResultScreen.routeName: (BuildContext ctx) => const ResultScreen(),
   ScanScreen.routeName: (BuildContext ctx) => const ScanScreen(),
 };

@@ -17,6 +17,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: <BlocProvider<dynamic>>[
+        // ================ record module ================
         BlocProvider<RecordCubit>(
           create: (BuildContext context) => RecordCubit(),
         ),
