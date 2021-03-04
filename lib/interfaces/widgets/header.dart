@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
+  const Header({
+    Key key,
+    this.title,
+  }) : super(key: key);
+
   final String title;
 
-  Header(this.title);
-
   @override
-  Size get preferredSize => Size.fromHeight(55);
+  Size get preferredSize => const Size.fromHeight(55);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title),
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(15),
           bottomRight: Radius.circular(15),

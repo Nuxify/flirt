@@ -1,5 +1,5 @@
 name: Flirt
-description: A new Flutter project.
+description: Flutter Template for Building Amazing Mobile Apps
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -23,11 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^6.0.0
-  equatable: ^1.0.2
+  flutter_bloc: ^6.1.0
+  equatable: ^1.2.5
   http: ^0.12.2
   qr_flutter: ^3.1.0
   qr_code_scanner: ^0.0.13
+  json_annotation: ^3.1.1
   camera:
   path_provider:
   path:
@@ -39,6 +40,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^1.11.1
+  json_serializable: ^3.5.1
+  lint: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
