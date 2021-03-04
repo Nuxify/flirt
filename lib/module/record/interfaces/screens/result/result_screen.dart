@@ -5,6 +5,8 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:Flirt/interfaces/widgets/header.dart';
 import 'package:Flirt/module/record/service/cubit/record_cubit.dart';
+import 'package:Flirt/interfaces/widgets/rounded_button.dart';
+import 'package:Flirt/module/record/interfaces/screens/scan/scan_screen.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({
@@ -72,12 +74,14 @@ class _ResultScreenState extends State<ResultScreen> {
                           } else if (state is RecordFailed) {
                             return Column(
                               children: <Widget>[
-                                Text(state.errorCode.toString(),
-                                    style: TextStyle(
-                                      color: _theme.errorColor,
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                    )),
+                                Text(
+                                  state.errorCode.toString(),
+                                  style: TextStyle(
+                                    color: _theme.errorColor,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                                 SizedBox(
                                   height: _mediaQuery.size.height * 0.1,
                                 ),
@@ -87,21 +91,26 @@ class _ResultScreenState extends State<ResultScreen> {
                             return Column(
                               children: <Widget>[
                                 Text(
-                                  state.recordResponse.id,
-                                  style: _theme.textTheme.headline4.copyWith(
-                                    fontSize: 24,
+                                  state.recordResponse.data,
+                                  style: TextStyle(
+                                    color: _theme.primaryColor,
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
+                                const SizedBox(
+                                  height: 15.0,
+                                ),
                                 Text(
-                                  state.recordResponse.data,
-                                  style: _theme.textTheme.bodyText1.copyWith(
-                                    fontSize: 18,
-                                    color: Colors.black,
+                                  state.recordResponse.id,
+                                  style: const TextStyle(
+                                    color: Colors.black38,
+                                    fontSize: 12.0,
                                   ),
                                   softWrap: false,
                                 ),
                                 const SizedBox(
-                                  height: 10.0,
+                                  height: 5.0,
                                 ),
                                 QrImage(
                                   data: state.recordResponse.data,
@@ -120,39 +129,16 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: <Color>[
-                          _theme.primaryColor,
-                          _theme.accentColor
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    child: FlatButton.icon(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        widget.rescan();
-                      },
-                      label: const Text('Scan again',
-                          style: TextStyle(color: Colors.white)),
-                      icon: const Icon(
-                        Icons.center_focus_weak,
-                        color: Colors.white,
-                      ),
-                      padding: const EdgeInsets.only(
-                          top: 10, bottom: 10, left: 20, right: 20),
-                      color: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                    ),
-                  ),
+                RoundedButton(
+                  buttonLabel: 'SCAN AGAIN',
+                  buttonIcon: Icons.center_focus_weak,
+                  onPressedFunc: () {
+                    Navigator.pushNamed(
+                      context,
+                      ScanScreen.routeName,
+                    );
+                    widget.rescan();
+                  },
                 )
               ],
             ),

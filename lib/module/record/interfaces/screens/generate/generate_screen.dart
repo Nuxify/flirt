@@ -19,7 +19,7 @@ class GenerateScreen extends StatefulWidget {
 }
 
 class _GenerateScreenState extends State<GenerateScreen> {
-  String _generatedData = '';
+  String _generatedQRCode = '';
 
   /// Textbox controller
   final TextEditingController _idTextController = TextEditingController();
@@ -36,7 +36,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
     setState(() {
       _idTextController.clear();
       _dataTextController.clear();
-      _generatedData = '';
+      _generatedQRCode = '';
     });
   }
 
@@ -99,7 +99,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   }
                   if (state is RecordSuccess) {
                     setState(() {
-                      _generatedData = state.recordResponse.data;
+                      _generatedQRCode = state.recordResponse.id;
                     });
                     Scaffold.of(context).showSnackBar(
                       SnackBar(
@@ -166,7 +166,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                       );
                     } else if (state is RecordSuccess) {
                       return QrImage(
-                        data: _generatedData,
+                        data: _generatedQRCode,
                         size: 200.0,
                       );
                     } else {
