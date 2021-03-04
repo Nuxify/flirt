@@ -9,7 +9,7 @@ install:
 
 .PHONY:	lint
 lint:
-	echo "TODO: linter"
+	flutter analyze
 
 .PHONY:	test
 test:

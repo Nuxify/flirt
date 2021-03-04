@@ -51,7 +51,7 @@ class _ScanScreenState extends State<ScanScreen> {
         controller.pauseCamera();
         if (qrText != '') {
           Navigator.of(context).push(
-            MaterialPageRoute(
+            MaterialPageRoute<dynamic>(
               builder: (BuildContext context) => ResultScreen(
                 qrData: qrText,
                 rescan: rescan,

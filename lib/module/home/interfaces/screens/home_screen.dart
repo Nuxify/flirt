@@ -20,10 +20,10 @@ class HomeScreen extends StatelessWidget {
           child: Container(
             color: Colors.white,
             child: Stack(
-              children: [
-                const TopBubble(),
-                const MainButtonBar(),
-                const BottomBubble(),
+              children: const <Widget>[
+                TopBubble(),
+                MainButtonBar(),
+                BottomBubble(),
               ],
             ),
           ),
