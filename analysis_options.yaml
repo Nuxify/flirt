@@ -48,8 +48,7 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
   exclude:
-    - lib/models/**
-    - lib/generated/**
+    - lib/**/**/**.g.dart
     - test/**
   errors:
     parameter_assignments: error

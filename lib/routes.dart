@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:Flirt/interfaces/screens/home_screen.dart';
+import 'package:Flirt/module/home/interfaces/screens/home_screen.dart';
 import 'package:Flirt/module/record/interfaces/screens/generate/generate_screen.dart';
 import 'package:Flirt/module/record/interfaces/screens/result/result_screen.dart';
 import 'package:Flirt/module/record/interfaces/screens/scan/scan_screen.dart';
