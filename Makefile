@@ -25,4 +25,4 @@ run:
 
 .PHONY:	build-json
 build-json:
-	fvm flutter pub run build_runner build
+	fvm flutter pub run build_runner build --delete-conflicting-outputs
