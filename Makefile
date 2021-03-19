@@ -5,11 +5,11 @@ default: run
 
 .PHONY:	install
 install:
-	flutter pub get
+	fvm flutter pub get
 
 .PHONY:	lint
 lint:
-	flutter analyze
+	fvm flutter analyze
 
 .PHONY:	test
 test:
@@ -17,12 +17,12 @@ test:
 
 .PHONY:	clean
 clean:
-	flutter clean
+	fvm flutter clean
 
 .PHONY:	run
 run:
-	flutter run
+	fvm flutter run
 
 .PHONY:	build-json
 build-json:
-	flutter pub run build_runner build
+	fvm flutter pub run build_runner build
