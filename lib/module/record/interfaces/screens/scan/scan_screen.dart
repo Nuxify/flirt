@@ -24,7 +24,7 @@ class _ScanScreenState extends State<ScanScreen> {
   String qrText = '';
   String flashState = flashOn;
   String cameraState = frontCamera;
-  QRViewController controller;
+  late QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   @override
@@ -44,9 +44,9 @@ class _ScanScreenState extends State<ScanScreen> {
 
     void onQRViewCreated(QRViewController controller) {
       this.controller = controller;
-      controller.scannedDataStream.listen((String scanData) {
+      controller.scannedDataStream.listen((Barcode scanData) {
         setState(() {
-          qrText = scanData;
+          qrText = scanData.code;
         });
         controller.pauseCamera();
         if (qrText != '') {
