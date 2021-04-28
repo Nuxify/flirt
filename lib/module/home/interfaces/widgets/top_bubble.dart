@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TopBubble extends StatelessWidget {
-  const TopBubble({
-    Key key,
-  }) : super(key: key);
+  const TopBubble({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:Flirt/interfaces/widgets/header.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   static const String routeName = '/scan';

@@ -5,9 +5,7 @@ import 'package:Flirt/module/record/interfaces/screens/scan/scan_screen.dart';
 import 'package:Flirt/interfaces/widgets/rounded_button.dart';
 
 class MainButtonBar extends StatelessWidget {
-  const MainButtonBar({
-    Key key,
-  }) : super(key: key);
+  const MainButtonBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

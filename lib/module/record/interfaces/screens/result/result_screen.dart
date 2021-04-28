@@ -9,7 +9,7 @@ import 'package:Flirt/module/record/interfaces/screens/scan/scan_screen.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({
-    Key key,
+    Key? key,
     this.qrData,
     this.rescan,
   }) : super(key: key);

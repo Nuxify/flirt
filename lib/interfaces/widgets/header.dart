@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
-  const Header({
-    Key key,
-    this.title,
-  }) : super(key: key);
+  const Header({required this.title, Key? key}) : super(key: key);
 
   final String title;
 

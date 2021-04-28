@@ -8,7 +8,7 @@ import 'package:Flirt/module/record/service/cubit/record_cubit.dart';
 
 class GenerateScreen extends StatefulWidget {
   const GenerateScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   static const String routeName = '/generate';
