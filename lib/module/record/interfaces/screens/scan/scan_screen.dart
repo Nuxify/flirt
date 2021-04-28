@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import 'package:Flirt/module/record/interfaces/screens/result/result_screen.dart';
-import 'package:Flirt/interfaces/widgets/header.dart';
+import 'package:flirt/module/record/interfaces/screens/result/result_screen.dart';
+import 'package:flirt/interfaces/widgets/header.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({

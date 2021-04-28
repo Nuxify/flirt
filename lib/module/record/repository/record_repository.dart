@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
-import 'package:Flirt/infrastructures/api/api_response.dart';
-import 'package:Flirt/module/record/models/record_request.dart';
-import 'package:Flirt/module/record/models/record_response.dart';
+import 'package:flirt/infrastructures/api/api_response.dart';
+import 'package:flirt/module/record/models/record_request.dart';
+import 'package:flirt/module/record/models/record_response.dart';
 
 class RecordRepository {
   final String _recordRepositoryURL = 'https://flirt.nuxify.tech/api/v1/record';
