@@ -11,7 +11,7 @@ class RecordLoading extends RecordState {}
 
 class RecordSuccess extends RecordState {
   const RecordSuccess({
-    this.recordResponse,
+    required this.recordResponse,
   });
 
   final RecordResponseDTO recordResponse;
@@ -19,8 +19,8 @@ class RecordSuccess extends RecordState {
 
 class RecordFailed extends RecordState {
   const RecordFailed({
-    @required this.errorCode,
-    @required this.message,
+    required this.errorCode,
+    required this.message,
   });
 
   final String errorCode;

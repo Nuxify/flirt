@@ -33,7 +33,7 @@ class RecordCubit extends Cubit<RecordState> {
       final APIResponse<RecordResponse> error =
           e as APIResponse<RecordResponse>;
       emit(RecordFailed(
-        errorCode: error.errorCode,
+        errorCode: error.errorCode!,
         message: error.message,
       ));
     }
@@ -62,7 +62,7 @@ class RecordCubit extends Cubit<RecordState> {
       final APIResponse<RecordResponse> error =
           e as APIResponse<RecordResponse>;
       emit(RecordFailed(
-        errorCode: error.errorCode,
+        errorCode: error.errorCode!,
         message: error.message,
       ));
     }

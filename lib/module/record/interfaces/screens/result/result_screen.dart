@@ -16,8 +16,8 @@ class ResultScreen extends StatefulWidget {
 
   static const String routeName = '/result';
 
-  final String qrData;
-  final Function rescan;
+  final String? qrData;
+  final Function? rescan;
 
   @override
   _ResultScreenState createState() => _ResultScreenState();
@@ -26,7 +26,7 @@ class ResultScreen extends StatefulWidget {
 class _ResultScreenState extends State<ResultScreen> {
   @override
   void initState() {
-    context.read<RecordCubit>().fetchRecord(widget.qrData);
+    context.read<RecordCubit>().fetchRecord(widget.qrData!);
     super.initState();
   }
 
@@ -36,7 +36,7 @@ class _ResultScreenState extends State<ResultScreen> {
     final ThemeData _theme = Theme.of(context);
     return WillPopScope(
       onWillPop: () async {
-        widget.rescan();
+        widget.rescan!();
         return true;
       },
       child: Scaffold(
@@ -136,7 +136,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       context,
                       ScanScreen.routeName,
                     );
-                    widget.rescan();
+                    widget.rescan!();
                   },
                 )
               ],

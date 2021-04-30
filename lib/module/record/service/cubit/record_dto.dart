@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
-
 class RecordRequestDTO {
   RecordRequestDTO({
-    @required this.id,
-    @required this.data,
+    required this.id,
+    required this.data,
   });
 
   final String id;
@@ -12,9 +10,9 @@ class RecordRequestDTO {
 
 class RecordResponseDTO {
   RecordResponseDTO({
-    this.id,
-    this.data,
-    this.createdAt,
+    required this.id,
+    required this.data,
+    required this.createdAt,
   });
 
   final String id;

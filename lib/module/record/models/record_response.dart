@@ -5,9 +5,9 @@ part 'record_response.g.dart';
 @JsonSerializable()
 class RecordResponse {
   RecordResponse({
-    this.id,
-    this.data,
-    this.createdAt,
+    required this.id,
+    required this.data,
+    required this.createdAt,
   });
 
   factory RecordResponse.fromJson(Map<String, dynamic> json) =>
