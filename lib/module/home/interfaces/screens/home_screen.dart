@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:Flirt/module/home/interfaces/widgets/bottom_bubble.dart';
-import 'package:Flirt/module/home/interfaces/widgets/main_button_bar.dart';
-import 'package:Flirt/module/home/interfaces/widgets/top_bubble.dart';
+import 'package:flirt/module/home/interfaces/widgets/bottom_bubble.dart';
+import 'package:flirt/module/home/interfaces/widgets/main_button_bar.dart';
+import 'package:flirt/module/home/interfaces/widgets/top_bubble.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    Key key,
-  }) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   static const String routeName = '/home';
 

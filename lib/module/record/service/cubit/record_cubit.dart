@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:bloc/bloc.dart';
 
-import 'package:Flirt/module/record/service/cubit/record_dto.dart';
-import 'package:Flirt/module/record/repository/record_repository.dart';
-import 'package:Flirt/infrastructures/api/api_response.dart';
-import 'package:Flirt/module/record/models/record_request.dart';
-import 'package:Flirt/module/record/models/record_response.dart';
+import 'package:flirt/module/record/service/cubit/record_dto.dart';
+import 'package:flirt/module/record/repository/record_repository.dart';
+import 'package:flirt/infrastructures/api/api_response.dart';
+import 'package:flirt/module/record/models/record_request.dart';
+import 'package:flirt/module/record/models/record_response.dart';
 
 part 'record_state.dart';
 
@@ -33,7 +33,7 @@ class RecordCubit extends Cubit<RecordState> {
       final APIResponse<RecordResponse> error =
           e as APIResponse<RecordResponse>;
       emit(RecordFailed(
-        errorCode: error.errorCode,
+        errorCode: error.errorCode!,
         message: error.message,
       ));
     }
@@ -62,7 +62,7 @@ class RecordCubit extends Cubit<RecordState> {
       final APIResponse<RecordResponse> error =
           e as APIResponse<RecordResponse>;
       emit(RecordFailed(
-        errorCode: error.errorCode,
+        errorCode: error.errorCode!,
         message: error.message,
       ));
     }

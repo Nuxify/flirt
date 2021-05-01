@@ -6,11 +6,16 @@ part 'api_response.g.dart';
   genericArgumentFactories: true,
 )
 class APIResponse<T> {
-  APIResponse({this.success, this.message, this.errorCode, this.data});
+  APIResponse({
+    required this.success,
+    required this.message,
+    required this.errorCode,
+    required this.data,
+  });
 
   factory APIResponse.fromJson(
     Map<String, dynamic> json,
-    T Function(Object json) fromJsonT,
+    T Function(Object? json) fromJsonT,
   ) =>
       _$APIResponseFromJson(json, fromJsonT);
   Map<String, dynamic> toJson(Object Function(T value) toJsonT) =>
@@ -27,9 +32,7 @@ class APIResponse<T> {
   /// base API response
   final bool success;
   final String message;
-  @JsonKey(nullable: true)
-  final String errorCode;
-  @JsonKey(nullable: true)
+  final String? errorCode;
   final T data;
 }
 
@@ -37,11 +40,16 @@ class APIResponse<T> {
   genericArgumentFactories: true,
 )
 class APIListResponse<T> {
-  APIListResponse({this.success, this.message, this.errorCode, this.data});
+  APIListResponse({
+    required this.success,
+    required this.message,
+    required this.errorCode,
+    required this.data,
+  });
 
   factory APIListResponse.fromJson(
     Map<String, dynamic> json,
-    T Function(Object json) fromJsonT,
+    T Function(Object? json) fromJsonT,
   ) =>
       _$APIListResponseFromJson(json, fromJsonT);
   Map<String, dynamic> toJson(Object Function(T value) toJsonT) =>
@@ -50,8 +58,6 @@ class APIListResponse<T> {
   /// base API response
   final bool success;
   final String message;
-  @JsonKey(nullable: true)
-  final String errorCode;
-  @JsonKey(nullable: true)
+  final String? errorCode;
   final List<T> data;
 }

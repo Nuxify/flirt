@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import 'package:Flirt/module/record/interfaces/screens/result/result_screen.dart';
-import 'package:Flirt/interfaces/widgets/header.dart';
+import 'package:flirt/module/record/interfaces/screens/result/result_screen.dart';
+import 'package:flirt/interfaces/widgets/header.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   static const String routeName = '/scan';
@@ -24,7 +24,7 @@ class _ScanScreenState extends State<ScanScreen> {
   String qrText = '';
   String flashState = flashOn;
   String cameraState = frontCamera;
-  QRViewController controller;
+  late QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   @override
@@ -44,9 +44,9 @@ class _ScanScreenState extends State<ScanScreen> {
 
     void onQRViewCreated(QRViewController controller) {
       this.controller = controller;
-      controller.scannedDataStream.listen((String scanData) {
+      controller.scannedDataStream.listen((Barcode scanData) {
         setState(() {
-          qrText = scanData;
+          qrText = scanData.code;
         });
         controller.pauseCamera();
         if (qrText != '') {

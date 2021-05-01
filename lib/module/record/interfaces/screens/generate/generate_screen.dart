@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import 'package:Flirt/interfaces/widgets/header.dart';
-import 'package:Flirt/module/record/service/cubit/record_dto.dart';
-import 'package:Flirt/module/record/service/cubit/record_cubit.dart';
+import 'package:flirt/interfaces/widgets/header.dart';
+import 'package:flirt/module/record/service/cubit/record_dto.dart';
+import 'package:flirt/module/record/service/cubit/record_cubit.dart';
 
 class GenerateScreen extends StatefulWidget {
   const GenerateScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   static const String routeName = '/generate';
@@ -45,7 +45,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
       data: _dataTextController.text,
     );
     context.read<RecordCubit>().recordData(payload);
-    Scaffold.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
   }
 
   @override
@@ -89,7 +89,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   RecordState state,
                 ) {
                   if (state is RecordFailed) {
-                    Scaffold.of(context).showSnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: _theme.errorColor,
                         content: Text('Error: ${state.message}'),
@@ -100,7 +100,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                     setState(() {
                       _generatedQRCode = state.recordResponse.id;
                     });
-                    Scaffold.of(context).showSnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         duration: const Duration(seconds: 120),
                         backgroundColor: Colors.green,
@@ -124,21 +124,27 @@ class _GenerateScreenState extends State<GenerateScreen> {
                       final String buttonText = (state is RecordLoading)
                           ? 'GENERATING...'
                           : 'GENERATE';
-                      return FlatButton.icon(
-                        textColor: Colors.white,
+                      return TextButton.icon(
+                        style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                            const EdgeInsets.symmetric(
+                              vertical: 20,
+                            ),
+                          ),
+                          backgroundColor:
+                              MaterialStateProperty.all(_theme.primaryColor),
+                        ),
                         icon: const Icon(
                           Icons.select_all,
                         ),
-                        label: Text(buttonText,
-                            style: const TextStyle(fontSize: 20.0)),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 20,
+                        label: Text(
+                          buttonText,
+                          style: const TextStyle(fontSize: 20.0),
                         ),
                         onPressed:
                             (state is RecordLoading || state is RecordSuccess)
                                 ? null
                                 : () => _generateQRCode(context),
-                        color: _theme.primaryColor,
                       );
                     },
                   ),

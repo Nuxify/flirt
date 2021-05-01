@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import 'package:Flirt/interfaces/widgets/header.dart';
-import 'package:Flirt/module/record/service/cubit/record_cubit.dart';
-import 'package:Flirt/interfaces/widgets/rounded_button.dart';
-import 'package:Flirt/module/record/interfaces/screens/scan/scan_screen.dart';
+import 'package:flirt/interfaces/widgets/header.dart';
+import 'package:flirt/module/record/service/cubit/record_cubit.dart';
+import 'package:flirt/interfaces/widgets/rounded_button.dart';
+import 'package:flirt/module/record/interfaces/screens/scan/scan_screen.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({
-    Key key,
+    Key? key,
     this.qrData,
     this.rescan,
   }) : super(key: key);
 
   static const String routeName = '/result';
 
-  final String qrData;
-  final Function rescan;
+  final String? qrData;
+  final Function? rescan;
 
   @override
   _ResultScreenState createState() => _ResultScreenState();
@@ -26,7 +26,7 @@ class ResultScreen extends StatefulWidget {
 class _ResultScreenState extends State<ResultScreen> {
   @override
   void initState() {
-    context.read<RecordCubit>().fetchRecord(widget.qrData);
+    context.read<RecordCubit>().fetchRecord(widget.qrData!);
     super.initState();
   }
 
@@ -36,7 +36,7 @@ class _ResultScreenState extends State<ResultScreen> {
     final ThemeData _theme = Theme.of(context);
     return WillPopScope(
       onWillPop: () async {
-        widget.rescan();
+        widget.rescan!();
         return true;
       },
       child: Scaffold(
@@ -136,7 +136,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       context,
                       ScanScreen.routeName,
                     );
-                    widget.rescan();
+                    widget.rescan!();
                   },
                 )
               ],
