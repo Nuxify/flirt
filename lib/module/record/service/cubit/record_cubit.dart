@@ -25,9 +25,9 @@ class RecordCubit extends Cubit<RecordState> {
 
       emit(RecordSuccess(
           recordResponse: RecordResponseDTO(
-        id: response.data.id,
-        data: response.data.data,
-        createdAt: response.data.createdAt,
+        id: response.data.id!,
+        data: response.data.data!,
+        createdAt: response.data.createdAt!,
       )));
     } catch (e) {
       final APIResponse<RecordResponse> error =
@@ -54,9 +54,9 @@ class RecordCubit extends Cubit<RecordState> {
 
       emit(RecordSuccess(
           recordResponse: RecordResponseDTO(
-        id: response.data.id,
-        data: response.data.data,
-        createdAt: response.data.createdAt,
+        id: response.data.id!,
+        data: response.data.data!,
+        createdAt: response.data.createdAt!,
       )));
     } catch (e) {
       final APIResponse<RecordResponse> error =

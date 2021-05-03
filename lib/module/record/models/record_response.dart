@@ -14,7 +14,7 @@ class RecordResponse {
       _$RecordResponseFromJson(json);
   Map<String, dynamic> toJson() => _$RecordResponseToJson(this);
 
-  final String id;
-  final String data;
-  final int createdAt;
+  final String? id;
+  final String? data;
+  final int? createdAt;
 }
