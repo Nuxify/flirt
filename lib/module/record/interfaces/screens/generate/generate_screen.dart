@@ -102,7 +102,6 @@ class _GenerateScreenState extends State<GenerateScreen> {
                     });
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        duration: const Duration(seconds: 120),
                         backgroundColor: Colors.green,
                         content: const Text('QR code is ready.'),
                         action: SnackBarAction(
