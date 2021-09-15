@@ -7,7 +7,9 @@ ThemeData _buildDefaultTheme() {
   return base.copyWith(
     textTheme: _buildDefaultTextTheme(base.textTheme),
     primaryColor: const Color(0xFF347be0),
-    accentColor: const Color(0xFF004e92),
+    colorScheme: base.colorScheme.copyWith(
+      secondary: const Color(0xFF004e92),
+    ),
   );
 }
 

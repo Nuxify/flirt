@@ -6,7 +6,7 @@ class BottomBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
-    final ThemeData theme = Theme.of(context);
+    final ThemeData _theme = Theme.of(context);
     return Positioned(
       bottom: 0,
       child: SizedBox(
@@ -21,8 +21,8 @@ class BottomBubble extends StatelessWidget {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: <Color>[
-                theme.primaryColor,
-                theme.accentColor,
+                _theme.primaryColor,
+                _theme.colorScheme.secondary,
               ],
             ),
           ),
