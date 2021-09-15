@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flirt/interfaces/widgets/rounded_button.dart';
 
 import 'package:flirt/module/record/interfaces/screens/generate/generate_screen.dart';
 import 'package:flirt/module/record/interfaces/screens/scan/scan_screen.dart';
-import 'package:flirt/interfaces/widgets/rounded_button.dart';
+
+import 'package:flutter/material.dart';
 
 class MainButtonBar extends StatelessWidget {
   const MainButtonBar({Key? key}) : super(key: key);

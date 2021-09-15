@@ -1,10 +1,11 @@
+import 'package:flirt/interfaces/widgets/header.dart';
+
+import 'package:flirt/module/record/service/cubit/record_cubit.dart';
+import 'package:flirt/module/record/service/cubit/record_dto.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
-import 'package:flirt/interfaces/widgets/header.dart';
-import 'package:flirt/module/record/service/cubit/record_dto.dart';
-import 'package:flirt/module/record/service/cubit/record_cubit.dart';
 
 class GenerateScreen extends StatefulWidget {
   const GenerateScreen({

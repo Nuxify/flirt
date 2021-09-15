@@ -24,7 +24,7 @@ class RoundedButton extends StatelessWidget {
             end: Alignment.bottomLeft,
             colors: <Color>[
               _theme.primaryColor,
-              _theme.accentColor,
+              _theme.colorScheme.secondary,
             ],
           ),
           borderRadius: BorderRadius.circular(5.0),
