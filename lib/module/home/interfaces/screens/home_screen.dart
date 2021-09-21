@@ -1,7 +1,6 @@
 import 'package:flirt/module/home/interfaces/widgets/bottom_bubble.dart';
 import 'package:flirt/module/home/interfaces/widgets/main_button_bar.dart';
 import 'package:flirt/module/home/interfaces/widgets/top_bubble.dart';
-
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {

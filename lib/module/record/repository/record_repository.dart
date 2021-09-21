@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flirt/infrastructures/api/api_response.dart';
 import 'package:flirt/module/record/models/record_request.dart';
 import 'package:flirt/module/record/models/record_response.dart';
-
 import 'package:http/http.dart' as http;
 
 class RecordRepository {

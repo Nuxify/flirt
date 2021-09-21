@@ -1,9 +1,7 @@
 import 'package:flirt/interfaces/widgets/header.dart';
 import 'package:flirt/interfaces/widgets/rounded_button.dart';
-
 import 'package:flirt/module/record/interfaces/screens/scan/scan_screen.dart';
 import 'package:flirt/module/record/service/cubit/record_cubit.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
