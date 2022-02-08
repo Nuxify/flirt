@@ -2,7 +2,6 @@
     package="com.example.flirt">
     <!-- See more here: https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects -->
     <application
-        android:name="${applicationName}"
         android:label="flirt"
         android:icon="@mipmap/ic_launcher">
         <activity
