@@ -88,6 +88,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   RecordState state,
                 ) {
                   if (state is RecordFailed) {
+                    print('record failed!!!');
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: _theme.errorColor,
