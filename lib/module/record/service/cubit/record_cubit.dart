@@ -1,10 +1,10 @@
-import 'package:bloc/bloc.dart';
 import 'package:flirt/infrastructures/api/api_response.dart';
 import 'package:flirt/module/record/models/record_request.dart';
 import 'package:flirt/module/record/models/record_response.dart';
 import 'package:flirt/module/record/repository/record_repository.dart';
 import 'package:flirt/module/record/service/cubit/record_dto.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'record_state.dart';
 
@@ -22,19 +22,24 @@ class RecordCubit extends Cubit<RecordState> {
       final APIResponse<RecordResponse> response =
           await _recordRepository.fetchRecordData(id);
 
-      emit(RecordSuccess(
+      emit(
+        RecordSuccess(
           recordResponse: RecordResponseDTO(
-        id: response.data.id!,
-        data: response.data.data!,
-        createdAt: response.data.createdAt!,
-      )));
+            id: response.data.id!,
+            data: response.data.data!,
+            createdAt: response.data.createdAt!,
+          ),
+        ),
+      );
     } catch (e) {
       final APIResponse<RecordResponse> error =
           e as APIResponse<RecordResponse>;
-      emit(RecordFailed(
-        errorCode: error.errorCode!,
-        message: error.message,
-      ));
+      emit(
+        RecordFailed(
+          errorCode: error.errorCode!,
+          message: error.message,
+        ),
+      );
     }
   }
 
@@ -51,19 +56,24 @@ class RecordCubit extends Cubit<RecordState> {
       final APIResponse<RecordResponse> response =
           await _recordRepository.createRecordData(payload);
 
-      emit(RecordSuccess(
+      emit(
+        RecordSuccess(
           recordResponse: RecordResponseDTO(
-        id: response.data.id!,
-        data: response.data.data!,
-        createdAt: response.data.createdAt!,
-      )));
+            id: response.data.id!,
+            data: response.data.data!,
+            createdAt: response.data.createdAt!,
+          ),
+        ),
+      );
     } catch (e) {
       final APIResponse<RecordResponse> error =
           e as APIResponse<RecordResponse>;
-      emit(RecordFailed(
-        errorCode: error.errorCode!,
-        message: error.message,
-      ));
+      emit(
+        RecordFailed(
+          errorCode: error.errorCode!,
+          message: error.message,
+        ),
+      );
     }
   }
 

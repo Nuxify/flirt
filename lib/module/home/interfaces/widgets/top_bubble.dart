@@ -27,18 +27,19 @@ class TopBubble extends StatelessWidget {
             ),
           ),
           child: Container(
-              margin: const EdgeInsets.only(
-                left: 50.0,
-                top: 10.0,
+            margin: const EdgeInsets.only(
+              left: 50.0,
+              top: 10.0,
+            ),
+            child: const Text(
+              'Flirt',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 70,
+                color: Colors.white,
               ),
-              child: const Text(
-                'Flirt',
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 70,
-                  color: Colors.white,
-                ),
-              )),
+            ),
+          ),
         ),
       ),
     );

@@ -10,20 +10,23 @@ class RecordRepository {
   final String _recordRepositoryURL = '/api/v1/record';
 
   Future<APIResponse<RecordResponse>> createRecordData(
-      RecordRequest payload) async {
+    RecordRequest payload,
+  ) async {
     try {
-      final http.Response response =
-          await http.post(Uri.https(_baseURL, _recordRepositoryURL),
-              headers: <String, String>{
-                'Content-Type': 'application/json; charset=UTF-8',
-              },
-              body: jsonEncode(payload));
+      final http.Response response = await http.post(
+        Uri.https(_baseURL, _recordRepositoryURL),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(payload),
+      );
 
       final APIResponse<RecordResponse> result =
           APIResponse<RecordResponse>.fromJson(
-              jsonDecode(response.body) as Map<String, dynamic>,
-              (Object? data) =>
-                  RecordResponse.fromJson(data! as Map<String, dynamic>));
+        jsonDecode(response.body) as Map<String, dynamic>,
+        (Object? data) =>
+            RecordResponse.fromJson(data! as Map<String, dynamic>),
+      );
 
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         return result;
@@ -33,8 +36,9 @@ class RecordRepository {
     } on SocketException {
       final APIResponse<RecordResponse> error =
           APIResponse<RecordResponse>.fromJson(
-              APIResponse.socketErrorResponse(),
-              (Object? data) => RecordResponse.fromJson(<String, dynamic>{}));
+        APIResponse.socketErrorResponse(),
+        (Object? data) => RecordResponse.fromJson(<String, dynamic>{}),
+      );
 
       throw error;
     }
@@ -51,9 +55,10 @@ class RecordRepository {
 
       final APIResponse<RecordResponse> result =
           APIResponse<RecordResponse>.fromJson(
-              jsonDecode(response.body) as Map<String, dynamic>,
-              (Object? data) =>
-                  RecordResponse.fromJson(data! as Map<String, dynamic>));
+        jsonDecode(response.body) as Map<String, dynamic>,
+        (Object? data) =>
+            RecordResponse.fromJson(data! as Map<String, dynamic>),
+      );
 
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         return result;
@@ -63,8 +68,9 @@ class RecordRepository {
     } on SocketException {
       final APIResponse<RecordResponse> error =
           APIResponse<RecordResponse>.fromJson(
-              APIResponse.socketErrorResponse(),
-              (Object? data) => RecordResponse.fromJson(<String, dynamic>{}));
+        APIResponse.socketErrorResponse(),
+        (Object? data) => RecordResponse.fromJson(<String, dynamic>{}),
+      );
 
       throw error;
     }
