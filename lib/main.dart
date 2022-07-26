@@ -1,6 +1,6 @@
 import 'package:flirt/configs/themes.dart';
 import 'package:flirt/module/home/interfaces/screens/home_screen.dart';
-import 'package:flirt/module/record/service/cubit/record_cubit.dart';
+import 'package:flirt/module/quote/service/cubit/quote_cubit.dart';
 import 'package:flirt/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,9 +14,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: <BlocProvider<dynamic>>[
-        // ================ record module ================
-        BlocProvider<RecordCubit>(
-          create: (BuildContext context) => RecordCubit(),
+        // ================ quote module ================
+        BlocProvider<QuoteCubit>(
+          create: (BuildContext context) => QuoteCubit(),
         ),
       ],
       child: MaterialApp(

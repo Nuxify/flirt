@@ -32,6 +32,9 @@ TextTheme _buildDefaultTextTheme(TextTheme base) {
   );
 }
 
+const Color shimmerBase = Colors.white38;
+const Color shimmerGlow = Colors.white60;
+
 const List<Color> flirtGradient = <Color>[
   Color(0xFFFB6BA3),
   Color(0xFFFF38A6),
