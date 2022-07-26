@@ -45,5 +45,7 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera access is needed to scan QR codes.</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 </dict>
 </plist>

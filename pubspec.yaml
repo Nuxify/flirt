@@ -27,10 +27,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  flutter_fadein: ^2.0.0
   http: ^0.13.1
   json_annotation: ^4.0.1
   path: ^1.8.0
   path_provider: ^2.0.1
+  url_launcher: ^6.1.5
 
 
 
