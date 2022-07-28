@@ -3,6 +3,8 @@ Flutter Template for Building Amazing Mobile Apps
 
 ## Example
 
+You can check the `qr-example-flutter-2` branch.
+
 This app is a basic QR generator and scanner where the user:
 - can generate QR code with optional ID and custom data
 - scan the genereted QR code and display the decoded message to user
@@ -27,7 +29,6 @@ To use Flutter debug tools, go to Run -> Start Debugging in VS Code.
 See Makefile for other commands.
 ## Roadmap
 
-- Using Dio as HTTP client (for study)
 - Test Driven Development (TDD) approach
 
 Made with ❤️ at [Nuxify](https://nuxify.tech)
