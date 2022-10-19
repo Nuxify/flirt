@@ -37,12 +37,11 @@ class _QuotesCardState extends State<QuotesCard> {
   Widget build(BuildContext context) {
     final ThemeData _theme = Theme.of(context);
     final double _width = MediaQuery.of(context).size.width;
-    // final double _height = MediaQuery.of(context).size.height;
 
-    return BlocBuilder<QuoteCubit, QuoteState>(
-      buildWhen: (QuoteState previous, QuoteState current) =>
+    return BlocBuilder<QuoteCubit, QuoteState<dynamic>>(
+      buildWhen: (QuoteState<dynamic> previous, QuoteState<dynamic> current) =>
           current is FetchQuoteSuccess || current is FetchQuoteLoading,
-      builder: (BuildContext context, QuoteState state) {
+      builder: (BuildContext context, QuoteState<dynamic> state) {
         if (state is FetchQuoteSuccess) {
           return FadeIn(
             duration: const Duration(milliseconds: 800),
