@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flirt/configs/themes.dart';
+import 'package:flirt/module/home/interfaces/screens/list_quotes.dart';
 import 'package:flirt/module/home/interfaces/widgets/quotes_card.dart';
 import 'package:flirt/module/quote/service/cubit/quote_cubit.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                )
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) => const ListQuotes(),
+                        ),
+                      );
+                    },
+                    child: const Text('New Page'),
+                  ),
+                ),
               ],
             ),
           ),
