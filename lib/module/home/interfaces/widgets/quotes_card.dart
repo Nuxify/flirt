@@ -38,17 +38,17 @@ class _QuotesCardState extends State<QuotesCard> {
     final ThemeData _theme = Theme.of(context);
     final double _width = MediaQuery.of(context).size.width;
 
-    return BlocBuilder<QuoteCubit, QuoteState<dynamic>>(
-      buildWhen: (QuoteState<dynamic> previous, QuoteState<dynamic> current) =>
+    return BlocBuilder<QuoteCubit, QuoteState>(
+      buildWhen: (QuoteState previous, QuoteState current) =>
           current is FetchQuoteSuccess || current is FetchQuoteLoading,
-      builder: (BuildContext context, QuoteState<dynamic> state) {
+      builder: (BuildContext context, QuoteState state) {
         if (state is FetchQuoteSuccess) {
           return FadeIn(
             duration: const Duration(milliseconds: 800),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: _width * 0.1),
               child: Text(
-                '"${state.quoteResponse.en}"',
+                '"${state.quoteResponse[0].en}"', // FIXME: didn't understand
                 textAlign: TextAlign.center,
                 style: _theme.textTheme.bodyMedium?.copyWith(
                   fontStyle: FontStyle.italic,

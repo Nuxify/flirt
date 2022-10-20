@@ -1,30 +1,24 @@
 part of 'quote_cubit.dart';
 
-@immutable
-abstract class QuoteState<T> {
-  const QuoteState(this.state);
-  final T? state;
+class QuoteState {
+  const QuoteState({this.quotes});
+
+  final List<QuoteResponseDTO>? quotes;
 }
 
-class QuoteInitial<T> extends QuoteState<T> {
-  const QuoteInitial({T? state}) : super(state);
+class FetchQuoteLoading extends QuoteState {}
+
+class FetchQuoteSuccess extends QuoteState {
+  const FetchQuoteSuccess(this.quoteResponse) : super(quotes: quoteResponse);
+
+  final List<QuoteResponseDTO> quoteResponse;
 }
 
-class FetchQuoteLoading<T> extends QuoteState<T> {
-  const FetchQuoteLoading({T? state}) : super(state);
-}
-
-class FetchQuoteSuccess<T> extends QuoteState<T> {
-  const FetchQuoteSuccess(this.quoteResponse, {T? state}) : super(state);
-  final QuoteResponseDTO quoteResponse;
-}
-
-class FetchQuoteFailed<T> extends QuoteState<T> {
+class FetchQuoteFailed extends QuoteState {
   const FetchQuoteFailed({
     required this.errorCode,
     required this.message,
-    T? state,
-  }) : super(state);
+  });
 
   final String errorCode;
   final String message;

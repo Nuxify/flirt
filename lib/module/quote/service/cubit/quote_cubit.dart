@@ -8,42 +8,38 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'quote_state.dart';
 
 /// Cubit for general Quote
-class QuoteCubit extends Cubit<QuoteState<dynamic>> {
-  QuoteCubit() : super(const QuoteInitial<QuoteState<dynamic>>());
+class QuoteCubit extends Cubit<QuoteState> {
+  QuoteCubit(QuoteState initialState) : super(initialState);
 
   final QuoteRepository _quoteRepository = QuoteRepository();
 
   /// Get Quote
   Future<void> fetchQuote() async {
-    /// If the initial state value of state is null, we want to save List of QuoteResponseDTO withen this function.
-    /// Initialize an empty List of QuoteResponseDTO, if not null then reuse the list and just append new object.
-    final List<QuoteResponseDTO> prevState = state.state != null
-        ? state.state as List<QuoteResponseDTO>
-        : <QuoteResponseDTO>[];
     try {
-      emit(FetchQuoteLoading<List<QuoteResponseDTO>>(state: prevState));
+      emit(FetchQuoteLoading());
+
+      // get latest quotes
+      final List<QuoteResponseDTO> quotes =
+          state.quotes ?? <QuoteResponseDTO>[];
 
       final QuoteResponse response = await _quoteRepository.fetchQuote();
-      final QuoteResponseDTO data = QuoteResponseDTO(
+      final QuoteResponseDTO quote = QuoteResponseDTO(
         id: response.id,
         author: response.author,
         en: response.en,
       );
-      prevState.add(data);
+
+      quotes.add(quote);
 
       emit(
-        FetchQuoteSuccess<List<QuoteResponseDTO>>(
-          data,
-          state: prevState,
-        ),
+        FetchQuoteSuccess(quotes),
       );
     } catch (e) {
       final APIResponse<QuoteResponse> error = e as APIResponse<QuoteResponse>;
       emit(
-        FetchQuoteFailed<List<QuoteResponseDTO>>(
+        FetchQuoteFailed(
           errorCode: error.errorCode!,
           message: error.message,
-          state: prevState,
         ),
       );
     }
