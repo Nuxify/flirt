@@ -1,9 +1,13 @@
 part of 'quote_cubit.dart';
 
 class QuoteState {
-  const QuoteState({this.quotes});
+  const QuoteState({
+    this.quotes,
+    this.authors,
+  });
 
   final List<QuoteResponseDTO>? quotes;
+  final List<String>? authors;
 }
 
 class FetchQuoteLoading extends QuoteState {}

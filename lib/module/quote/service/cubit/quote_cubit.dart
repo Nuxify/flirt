@@ -21,6 +21,8 @@ class QuoteCubit extends Cubit<QuoteState> {
       // get latest quotes
       final List<QuoteResponseDTO> quotes =
           state.quotes ?? <QuoteResponseDTO>[];
+      // get latest authors
+      final List<String> authors = state.authors ?? <String>[];
 
       final QuoteResponse response = await _quoteRepository.fetchQuote();
       final QuoteResponseDTO quote = QuoteResponseDTO(
@@ -30,10 +32,15 @@ class QuoteCubit extends Cubit<QuoteState> {
       );
 
       quotes.add(quote);
+      authors.add(quote.author);
 
-      emit(
-        FetchQuoteSuccess(quotes),
-      );
+      // emit FetchQuoteSuccess event
+      // this set `quotes` in base class and emits an event
+      emit(FetchQuoteSuccess(quotes));
+
+      // set quote authors
+      // this set `authors` directly from base class
+      emit(QuoteState(authors: authors));
     } catch (e) {
       final APIResponse<QuoteResponse> error = e as APIResponse<QuoteResponse>;
       emit(
