@@ -9,8 +9,8 @@ class ListQuotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<QuoteResponseDTO> state =
-        context.watch<QuoteCubit>().state.state as List<QuoteResponseDTO>;
+    final List<QuoteResponseDTO>? state =
+        context.watch<QuoteCubit>().state.quotes;
 
     return Scaffold(
       appBar: AppBar(
@@ -38,14 +38,14 @@ class ListQuotes extends StatelessWidget {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: state.length,
+                  itemCount: state != null ? state.length : 0,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: Text(state[index].en),
+                          child: Text(state![index].en),
                         ),
                       ),
                     );
