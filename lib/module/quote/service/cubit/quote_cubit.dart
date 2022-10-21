@@ -9,7 +9,7 @@ part 'quote_state.dart';
 
 /// Cubit for general Quote
 class QuoteCubit extends Cubit<QuoteState> {
-  QuoteCubit() : super(QuoteInitial());
+  QuoteCubit() : super(const QuoteState());
 
   final QuoteRepository _quoteRepository = QuoteRepository();
 

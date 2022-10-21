@@ -10,8 +10,6 @@ class QuoteState {
   final List<String>? authors;
 }
 
-class QuoteInitial extends QuoteState {}
-
 /// Event Classes
 class FetchQuoteLoading extends QuoteState {}
 
