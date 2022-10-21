@@ -12,6 +12,8 @@ class ListQuotes extends StatelessWidget {
     final List<QuoteResponseDTO>? state =
         context.watch<QuoteCubit>().state.quotes;
 
+    final List<String>? author = context.watch<QuoteCubit>().state.authors;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('List of quotes'),
