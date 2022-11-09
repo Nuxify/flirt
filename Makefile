@@ -23,6 +23,12 @@ clean:
 run:
 	flutter run
 
+.PHONY:	compile
+compile:
+	flutter clean
+	flutter pub get
+	flutter pub run build_runner build --delete-conflicting-outputs
+
 .PHONY:	build-json
 build-json:
-	flutter pub run build_runner build
+	flutter pub run build_runner build --delete-conflicting-outputs
