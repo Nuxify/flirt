@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flirt/infrastructures/api/api_response.dart';
+import 'package:flirt/infrastructures/models/api_response.dart';
 import 'package:flirt/module/quote/models/quote_response.dart';
 import 'package:http/http.dart' as http;
 
