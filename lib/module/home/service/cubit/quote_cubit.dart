@@ -1,3 +1,5 @@
+import 'package:flirt/infrastructures/models/api_response.dart';
+import 'package:flirt/infrastructures/models/quote/quote_response.dart';
 import 'package:flirt/infrastructures/repository/interface/quote_repository.dart';
 import 'package:flirt/module/home/service/cubit/quote_dto.dart';
 import 'package:flutter/foundation.dart';
@@ -13,22 +15,22 @@ class QuoteCubit extends Cubit<QuoteState> {
   /// Get Quote
   Future<void> fetchQuote() async {
     try {
-      // emit(FetchQuoteLoading());
-      // final QuoteResponse response = await quoteRepository.fetchQuote();
-      // emit(
-      //   FetchQuoteSuccess(
-      //     QuoteResponseDTO(
-      //       id: response.id,
-      //       author: response.author,
-      //       en: response.en,
-      //     ),
-      //   ),
-      // );
+      emit(FetchQuoteLoading());
+      final QuoteResponse response = await quoteRepository.fetchQuote();
+      emit(
+        FetchQuoteSuccess(
+          QuoteResponseDTO(
+            id: response.id,
+            author: response.author,
+            en: response.en,
+          ),
+        ),
+      );
     } catch (e) {
-      // final APIResponse<QuoteResponse> error = e as APIResponse<QuoteResponse>;
-      // emit(
-      //   FetchQuoteFailed(errorCode: error.errorCode!, message: error.message),
-      // );
+      final APIResponse<QuoteResponse> error = e as APIResponse<QuoteResponse>;
+      emit(
+        FetchQuoteFailed(errorCode: error.errorCode!, message: error.message),
+      );
     }
   }
 }
