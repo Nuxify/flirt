@@ -41,6 +41,7 @@ dev_dependencies:
     sdk: flutter
   json_serializable: ^6.3.1
   lint: ^1.5.3
+  mocktail: ^0.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
