@@ -49,6 +49,5 @@ analyzer:
     strict-raw-types: true
   exclude:
     - lib/**/**/**.g.dart
-    - test/**
   errors:
     parameter_assignments: error
