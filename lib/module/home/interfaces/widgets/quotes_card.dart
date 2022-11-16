@@ -35,8 +35,8 @@ class _QuotesCardState extends State<QuotesCard> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData _theme = Theme.of(context);
-    final double _width = MediaQuery.of(context).size.width;
+    final ThemeData theme = Theme.of(context);
+    final double width = MediaQuery.of(context).size.width;
     // final double _height = MediaQuery.of(context).size.height;
 
     return BlocBuilder<QuoteCubit, QuoteState>(
@@ -47,11 +47,11 @@ class _QuotesCardState extends State<QuotesCard> {
           return FadeIn(
             duration: const Duration(milliseconds: 800),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: _width * 0.1),
+              padding: EdgeInsets.symmetric(horizontal: width * 0.1),
               child: Text(
                 '"${state.quoteResponse.en}"',
                 textAlign: TextAlign.center,
-                style: _theme.textTheme.bodyMedium?.copyWith(
+                style: theme.textTheme.bodyMedium?.copyWith(
                   fontStyle: FontStyle.italic,
                   fontFamily: 'Nunito',
                   color: Colors.white,
