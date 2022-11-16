@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flirt/module/home/interfaces/screens/home_screen.dart';
-import 'package:flirt/module/home/interfaces/screens/next_screen.dart';
 import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,38 +51,6 @@ void main() {
         },
       );
     });
-    group('New test case.', () {
-      testWidgets('There should be a button with a label of next.',
-          (WidgetTester tester) async {
-        _listenStub();
-        await _pumpWidget(tester);
-        await tester.pump();
 
-        final Finder btnNext = find.ancestor(
-          of: find.text('Next'),
-          matching: find.byType(ElevatedButton),
-        );
-
-        expect(btnNext, findsOneWidget);
-      });
-      testWidgets('On click next button, it should render another screen.',
-          (WidgetTester tester) async {
-        _listenStub();
-        await _pumpWidget(tester);
-        await tester.pump();
-
-        expect(find.byType(NextScreen), findsNothing);
-
-        final Finder btnNext = find.ancestor(
-          of: find.text('Next'),
-          matching: find.byType(ElevatedButton),
-        );
-        
-        await tester.tap(btnNext);
-        await tester.pumpAndSettle();
-
-        expect(find.byType(NextScreen), findsOneWidget);
-      });
-    });
   });
 }
