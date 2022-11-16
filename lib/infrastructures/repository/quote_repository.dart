@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flirt/infrastructures/models/api_response.dart';
 import 'package:flirt/infrastructures/models/quote/quote_response.dart';
-import 'package:flirt/infrastructures/repository/interface/quote_repository.dart';
+import 'package:flirt/infrastructures/repository/interfaces/quote_repository.dart';
 import 'package:http/http.dart' as http;
 
 class QuoteRepository implements IQuoteRepository {
