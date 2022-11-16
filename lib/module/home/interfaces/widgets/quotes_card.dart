@@ -65,7 +65,7 @@ class _QuotesCardState extends State<QuotesCard> {
             child: Shimmer.fromColors(
               baseColor: shimmerBase,
               highlightColor: shimmerGlow,
-              child: Container(
+              child: DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
                   color: Colors.white,
