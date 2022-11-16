@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flirt/configs/themes.dart';
-import 'package:flirt/module/home/interfaces/screens/next_screen.dart';
 import 'package:flirt/module/home/interfaces/widgets/quotes_card.dart';
 import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
 import 'package:flutter/material.dart';
@@ -91,18 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         onTap: () => launchUrlString('https://nuxify.tech/'),
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  const NextScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text('Next'),
-                      )
                     ],
                   ),
                 )
