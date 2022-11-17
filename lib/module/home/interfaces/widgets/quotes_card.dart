@@ -39,7 +39,19 @@ class _QuotesCardState extends State<QuotesCard> {
     final double _width = MediaQuery.of(context).size.width;
     // final double _height = MediaQuery.of(context).size.height;
 
-    return BlocBuilder<QuoteCubit, QuoteState>(
+    return BlocConsumer<QuoteCubit, QuoteState>(
+      listenWhen: (QuoteState previous, QuoteState current) =>
+          current is FetchQuoteFailed,
+      listener: (BuildContext context, QuoteState state) {
+        if (state is FetchQuoteFailed) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      },
       buildWhen: (QuoteState previous, QuoteState current) =>
           current is FetchQuoteSuccess || current is FetchQuoteLoading,
       builder: (BuildContext context, QuoteState state) {
