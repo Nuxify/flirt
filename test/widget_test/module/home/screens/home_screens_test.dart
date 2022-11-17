@@ -16,7 +16,7 @@ void main() {
     mockQuoteCubit = MockQuoteCubit();
   });
 
-  Future<void> _pumpWidget(WidgetTester tester) async => tester.pumpWidget(
+  Future<void> pumpWidget(WidgetTester tester) async => tester.pumpWidget(
         BlocProvider<QuoteCubit>(
           create: (BuildContext context) => mockQuoteCubit,
           child: const MaterialApp(
@@ -24,7 +24,7 @@ void main() {
           ),
         ),
       );
-  void _listenStub() {
+  void listenStub() {
     when(() => mockQuoteCubit.state).thenReturn(QuoteInitial());
     when(() => mockQuoteCubit.fetchQuote()).thenAnswer((_) async {});
   }
@@ -34,16 +34,16 @@ void main() {
     group('Old test case.', () {
       testWidgets('There should be QuotesCard custom widget.',
           (WidgetTester tester) async {
-        _listenStub();
-        await _pumpWidget(tester);
+        listenStub();
+        await pumpWidget(tester);
 
         await tester.pump();
       });
       testWidgets(
         'Flirt title should be visible also Made with <3 by Nuxify.',
         (WidgetTester tester) async {
-          _listenStub();
-          await _pumpWidget(tester);
+          listenStub();
+          await pumpWidget(tester);
           await tester.pump();
 
           expect(find.text(title), findsOneWidget);
@@ -51,6 +51,5 @@ void main() {
         },
       );
     });
-
   });
 }
