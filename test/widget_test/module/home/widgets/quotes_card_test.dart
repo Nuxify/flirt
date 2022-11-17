@@ -17,7 +17,7 @@ void main() {
     mockQuoteCubit = MockQuoteCubit();
   });
 
-  Future<void> _pumpWidget(WidgetTester tester) async => tester.pumpWidget(
+  Future<void> pumpWidget(WidgetTester tester) async => tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<QuoteCubit>(
             create: (BuildContext context) => mockQuoteCubit,
@@ -27,7 +27,7 @@ void main() {
           ),
         ),
       );
-  void _listenStub() {
+  void listenStub() {
     when(() => mockQuoteCubit.state).thenReturn(QuoteInitial());
     when(() => mockQuoteCubit.fetchQuote()).thenAnswer((_) async {});
   }
@@ -35,7 +35,7 @@ void main() {
   group('Quotes Card.', () {
     testWidgets('On FetchQuoteLoading, it should show skeleton loader.',
         (WidgetTester tester) async {
-      _listenStub();
+      listenStub();
 
       whenListen(
         mockQuoteCubit,
@@ -46,14 +46,14 @@ void main() {
         ),
       );
 
-      await _pumpWidget(tester);
+      await pumpWidget(tester);
       await tester.pump();
 
       expect(find.byType(Shimmer), findsOneWidget);
     });
     testWidgets('On FetchQuoteSuccess, it should show skeleton loader.',
         (WidgetTester tester) async {
-      _listenStub();
+      listenStub();
       const String author = 'John Doe';
       const String en =
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis luctus accumsan. Cras porta mattis ultrices. Nunc metus leo, fermentum id euismod vel, fringilla non urna. Morbi id augue diam. Nam laoreet purus non urna luctus tempus. Morbi sit amet orci luctus, dapibus libero sed, semper sem. Praesent nec vulputate arcu. Fusce porta sapien non congue fermentum. Quisque odio odio, blandit ac molestie eu, cursus in diam. Praesent euismod urna risus. Donec ut sem lectus.';
@@ -73,14 +73,14 @@ void main() {
         ),
       );
 
-      await _pumpWidget(tester);
+      await pumpWidget(tester);
       await tester.pump();
 
       expect(find.text('"$en"'), findsOneWidget);
     });
     testWidgets('On FetchQuoteFailed, it should snackbar with a message error.',
         (WidgetTester tester) async {
-      _listenStub();
+      listenStub();
       const String errorCode = '524';
       const String message = 'Something went wrong.';
       whenListen(
@@ -95,7 +95,7 @@ void main() {
         ),
       );
 
-      await _pumpWidget(tester);
+      await pumpWidget(tester);
       await tester.pump();
 
       /// Find snackbar with a child of error message.
@@ -110,9 +110,9 @@ void main() {
 
     testWidgets('Periodic call should should be executed accordingly.',
         (WidgetTester tester) async {
-      _listenStub();
+      listenStub();
 
-      await _pumpWidget(tester);
+      await pumpWidget(tester);
       await tester.pump();
 
       const int numberOfTimes = 4;

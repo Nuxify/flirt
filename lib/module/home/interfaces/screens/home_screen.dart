@@ -41,13 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData _theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     // final double _width = MediaQuery.of(context).size.width;
-    final double _height = MediaQuery.of(context).size.height;
+    final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: DecoratedBox(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: flirtGradient,
@@ -59,16 +59,15 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 const QuotesCard(),
                 Padding(
-                  padding: EdgeInsets.only(top: _height * 0.1),
+                  padding: EdgeInsets.only(top: height * 0.1),
                   child: Column(
                     children: <Widget>[
                       AnimatedDefaultTextStyle(
                         duration: const Duration(milliseconds: 500),
                         style: TextStyle(
                           color: _fontColor,
-                          fontSize: _theme.textTheme.displayMedium?.fontSize,
-                          fontFamily:
-                              _theme.textTheme.displayMedium?.fontFamily,
+                          fontSize: theme.textTheme.displayMedium?.fontSize,
+                          fontFamily: theme.textTheme.displayMedium?.fontFamily,
                         ),
                         child: const Text(
                           'Flirt',
@@ -77,13 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Text(
                         'A Flutter template.',
-                        style: _theme.textTheme.bodyText1
+                        style: theme.textTheme.bodyText1
                             ?.copyWith(color: Colors.white),
                       ),
                       GestureDetector(
                         child: Text(
                           'Made with <3 by Nuxify',
-                          style: _theme.textTheme.caption?.copyWith(
+                          style: theme.textTheme.caption?.copyWith(
                             color: Colors.white,
                             decoration: TextDecoration.underline,
                           ),
