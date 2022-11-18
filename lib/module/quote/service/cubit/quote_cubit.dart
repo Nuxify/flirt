@@ -2,27 +2,29 @@ import 'package:flirt/infrastructures/api/api_response.dart';
 import 'package:flirt/module/quote/models/quote_response.dart';
 import 'package:flirt/module/quote/repository/quote_repository.dart';
 import 'package:flirt/module/quote/service/cubit/quote_dto.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'quote_state.dart';
 
 /// Cubit for general Quote
 class QuoteCubit extends Cubit<QuoteState> {
-  QuoteCubit() : super(const QuoteState());
+  QuoteCubit()
+      : super(
+          QuoteState(
+            data: QuoteStateDTO(
+              authors: <String>[],
+              quotes: <QuoteResponseDTO>[],
+            ),
+          ),
+        );
 
   final QuoteRepository _quoteRepository = QuoteRepository();
 
   /// Get Quote
   Future<void> fetchQuote() async {
     try {
-      emit(FetchQuoteLoading());
-
-      // get latest quotes
-      final List<QuoteResponseDTO> quotes =
-          state.quotes ?? <QuoteResponseDTO>[];
-      // get latest authors
-      final List<String> authors = state.authors ?? <String>[];
+      /// Persist data inside state by emitting the default value of state. If not, it will override the value.
+      emit(FetchQuoteLoading(state.data));
 
       final QuoteResponse response = await _quoteRepository.fetchQuote();
       final QuoteResponseDTO quote = QuoteResponseDTO(
@@ -31,20 +33,21 @@ class QuoteCubit extends Cubit<QuoteState> {
         en: response.en,
       );
 
-      quotes.add(quote);
-      authors.add(quote.author);
+      /// Appending new value inside the list of the properties of DTO.
+      state.data.quotes.add(quote);
+      state.data.authors.add(quote.author);
 
       // emit FetchQuoteSuccess event
       // this set `quotes` in base class and emits an event
-      emit(FetchQuoteSuccess(quotes));
+      emit(FetchQuoteSuccess(state.data, quote));
 
-      // set quote authors
-      // this set `authors` directly from base class
-      emit(QuoteState(authors: authors));
+      // TODO: If you want update the state directly, just emit the state with custom value
+      // emit(QuoteState(data: QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[])));
     } catch (e) {
       final APIResponse<QuoteResponse> error = e as APIResponse<QuoteResponse>;
       emit(
         FetchQuoteFailed(
+          state.data,
           errorCode: error.errorCode!,
           message: error.message,
         ),
