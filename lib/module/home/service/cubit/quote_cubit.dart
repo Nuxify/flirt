@@ -1,14 +1,14 @@
-import 'package:flirt/infrastructures/api/api_response.dart';
-import 'package:flirt/module/quote/models/quote_response.dart';
-import 'package:flirt/module/quote/repository/quote_repository.dart';
-import 'package:flirt/module/quote/service/cubit/quote_dto.dart';
+import 'package:flirt/infrastructures/models/api_response.dart';
+import 'package:flirt/infrastructures/models/quote/quote_response.dart';
+import 'package:flirt/infrastructures/repository/interfaces/quote_repository.dart';
+import 'package:flirt/module/home/service/cubit/quote_dto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'quote_state.dart';
 
 /// Cubit for general Quote
 class QuoteCubit extends Cubit<QuoteState> {
-  QuoteCubit()
+  QuoteCubit({required this.quoteRepository})
       : super(
           QuoteState(
             data: QuoteStateDTO(
@@ -18,7 +18,7 @@ class QuoteCubit extends Cubit<QuoteState> {
           ),
         );
 
-  final QuoteRepository _quoteRepository = QuoteRepository();
+  final IQuoteRepository quoteRepository;
 
   /// Get Quote
   Future<void> fetchQuote() async {
@@ -26,7 +26,7 @@ class QuoteCubit extends Cubit<QuoteState> {
       /// Persist data inside state by emitting the default value of state. If not, it will override the value.
       emit(FetchQuoteLoading(state.data));
 
-      final QuoteResponse response = await _quoteRepository.fetchQuote();
+      final QuoteResponse response = await quoteRepository.fetchQuote();
       final QuoteResponseDTO quote = QuoteResponseDTO(
         id: response.id,
         author: response.author,

@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flirt/infrastructures/api/api_response.dart';
-import 'package:flirt/module/quote/models/quote_response.dart';
+import 'package:flirt/infrastructures/models/api_response.dart';
+import 'package:flirt/infrastructures/models/quote/quote_response.dart';
+import 'package:flirt/infrastructures/repository/interfaces/quote_repository.dart';
 import 'package:http/http.dart' as http;
 
-class QuoteRepository {
+class QuoteRepository implements IQuoteRepository {
   final String _baseURL = 'programming-quotes-api.herokuapp.com';
   final String _quoteRepositoryURL = '/Quotes/random';
 
+  @override
   Future<QuoteResponse> fetchQuote() async {
     try {
       final http.Response response = await http.get(

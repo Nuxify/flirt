@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flirt/configs/themes.dart';
-import 'package:flirt/module/quote/service/cubit/quote_cubit.dart';
+import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
@@ -35,10 +35,23 @@ class _QuotesCardState extends State<QuotesCard> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData _theme = Theme.of(context);
-    final double _width = MediaQuery.of(context).size.width;
+    final ThemeData theme = Theme.of(context);
+    final double width = MediaQuery.of(context).size.width;
+    // final double _height = MediaQuery.of(context).size.height;
 
-    return BlocBuilder<QuoteCubit, QuoteState>(
+    return BlocConsumer<QuoteCubit, QuoteState>(
+      listenWhen: (QuoteState previous, QuoteState current) =>
+          current is FetchQuoteFailed,
+      listener: (BuildContext context, QuoteState state) {
+        if (state is FetchQuoteFailed) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      },
       buildWhen: (QuoteState previous, QuoteState current) =>
           current is FetchQuoteSuccess || current is FetchQuoteLoading,
       builder: (BuildContext context, QuoteState state) {
@@ -46,11 +59,11 @@ class _QuotesCardState extends State<QuotesCard> {
           return FadeIn(
             duration: const Duration(milliseconds: 800),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: _width * 0.1),
+              padding: EdgeInsets.symmetric(horizontal: width * 0.1),
               child: Text(
                 '"${state.quoteResponse.en}"', // Display the quotes with en key.
                 textAlign: TextAlign.center,
-                style: _theme.textTheme.bodyMedium?.copyWith(
+                style: theme.textTheme.bodyMedium?.copyWith(
                   fontStyle: FontStyle.italic,
                   fontFamily: 'Nunito',
                   color: Colors.white,
@@ -64,7 +77,7 @@ class _QuotesCardState extends State<QuotesCard> {
             child: Shimmer.fromColors(
               baseColor: shimmerBase,
               highlightColor: shimmerGlow,
-              child: Container(
+              child: DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
                   color: Colors.white,
