@@ -1,6 +1,6 @@
 import 'package:flirt/configs/themes.dart';
-import 'package:flirt/module/quote/service/cubit/quote_cubit.dart';
-import 'package:flirt/module/quote/service/cubit/quote_dto.dart';
+import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
+import 'package:flirt/module/home/service/cubit/quote_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,13 +12,13 @@ class ListAuthors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final QuoteStateDTO state = context.watch<QuoteCubit>().state.data;
-    final  ThemeData theme =  Theme.of(context);
+    final ThemeData theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('List of authors'),
       ),
-      body: Container(
+      body: DecoratedBox(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: flirtGradient,

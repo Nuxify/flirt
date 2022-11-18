@@ -1,6 +1,6 @@
 import 'package:flirt/configs/themes.dart';
-import 'package:flirt/module/quote/service/cubit/quote_cubit.dart';
-import 'package:flirt/module/quote/service/cubit/quote_dto.dart';
+import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
+import 'package:flirt/module/home/service/cubit/quote_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +18,7 @@ class ListQuotes extends StatelessWidget {
       appBar: AppBar(
         title: const Text('List of quotes'),
       ),
-      body: Container(
+      body: DecoratedBox(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: flirtGradient,
