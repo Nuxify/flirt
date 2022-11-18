@@ -48,7 +48,7 @@ class _QuotesCardState extends State<QuotesCard> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: _width * 0.1),
               child: Text(
-                '"${state.quoteResponse[0].en}"', // FIXME: didn't understand
+                '"${state.quoteResponse.en}"', // Display the quotes with en key.
                 textAlign: TextAlign.center,
                 style: _theme.textTheme.bodyMedium?.copyWith(
                   fontStyle: FontStyle.italic,
