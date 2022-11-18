@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flirt/configs/themes.dart';
+import 'package:flirt/module/home/interfaces/screens/list_authors.dart';
 import 'package:flirt/module/home/interfaces/screens/list_quotes.dart';
 import 'package:flirt/module/home/interfaces/widgets/quotes_card.dart';
-import 'package:flirt/module/quote/service/cubit/quote_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<QuoteCubit>().fetchQuote();
 
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (_fontColor == Colors.white) {
@@ -101,11 +99,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute<void>(
-                          builder: (BuildContext context) => const ListQuotes(),
+                          builder: (BuildContext context) => ListQuotes(),
                         ),
                       );
                     },
-                    child: const Text('New Page'),
+                    child: const Text('List of Quotes'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) => ListAuthors(),
+                        ),
+                      );
+                    },
+                    child: const Text('List of Authors'),
                   ),
                 ),
               ],
