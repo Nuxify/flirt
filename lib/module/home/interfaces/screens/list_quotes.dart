@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListQuotes extends StatelessWidget {
-  const ListQuotes({Key? key}) : super(key: key);
+  ListQuotes({Key? key}) : super(key: key);
+
+  final ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    final List<QuoteResponseDTO>? state =
-        context.watch<QuoteCubit>().state.quotes;
-
-    final List<String>? author = context.watch<QuoteCubit>().state.authors;
+    final ThemeData theme = Theme.of(context);
+    final QuoteStateDTO state = context.watch<QuoteCubit>().state.data;
 
     return Scaffold(
       appBar: AppBar(
@@ -40,14 +40,15 @@ class ListQuotes extends StatelessWidget {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: state != null ? state.length : 0,
+                  controller: _controller,
+                  itemCount: state.quotes.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: Text(state![index].en),
+                          child: Text(state.quotes[index].en),
                         ),
                       ),
                     );
@@ -56,6 +57,19 @@ class ListQuotes extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: Card(
+        color: theme.primaryColor,
+        child: IconButton(
+          onPressed: () {
+            _controller.animateTo(
+              _controller.position.maxScrollExtent,
+              duration: const Duration(seconds: 2),
+              curve: Curves.fastOutSlowIn,
+            );
+          },
+          icon: const Icon(Icons.arrow_downward_sharp),
         ),
       ),
     );
