@@ -41,7 +41,10 @@ class QuoteCubit extends Cubit<QuoteState> {
       // this set `quotes` in base class and emits an event
       emit(FetchQuoteSuccess(state.data, quote));
 
-      // TODO: If you want update the state directly, just emit the state with custom value
+      /// This approach is used to demonstrate persistent data storing that you might use on cases where you need to hold data for a series of screens in a module.
+      /// For example: If you separate a lengthy registration form in to 5 separate screens, you would need to hold that data until the last step.
+
+      // If not for demonstration purposes, this approach should be using code below - emitting state directly.
       // emit(QuoteState(data: QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[])));
     } catch (e) {
       final APIResponse<QuoteResponse> error = e as APIResponse<QuoteResponse>;
