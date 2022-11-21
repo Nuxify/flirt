@@ -1,4 +1,5 @@
 import 'package:flirt/configs/themes.dart';
+import 'package:flirt/module/home/interfaces/widgets/floating_button.dart';
 import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
 import 'package:flirt/module/home/service/cubit/quote_dto.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ListAuthors extends StatelessWidget {
   ListAuthors({Key? key}) : super(key: key);
 
-  final ScrollController _controller = ScrollController();
+  final ScrollController controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,13 @@ class ListAuthors extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List of authors'),
+        // ignore: use_decorated_box
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(colors: flirtGradient),
+          ),
+        ),
+        elevation: 0,
       ),
       body: DecoratedBox(
         decoration: const BoxDecoration(
@@ -27,20 +34,9 @@ class ListAuthors extends StatelessWidget {
         child: Center(
           child: Column(
             children: <Widget>[
-              const Card(
-                child: Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Text(
-                    'List is updated when the state is updated',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
               Expanded(
                 child: ListView.builder(
-                  controller: _controller,
+                  controller: controller,
                   itemCount: state.authors.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
@@ -48,23 +44,21 @@ class ListAuthors extends StatelessWidget {
                       child: Card(
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: Row(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               Text(
-                                state.authors[index],
+                                '"${state.quotes[index].en}"',
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                              Text(
+                                '\n- ${state.authors[index]}',
                                 style: const TextStyle(
                                   color: Colors.pink,
                                 ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Text(
-                                    '"${state.quotes[index].en}"',
-                                    overflow: TextOverflow.fade,
-                                    maxLines: 3,
-                                  ),
-                                ),
+                                textAlign: TextAlign.right,
                               ),
                             ],
                           ),
@@ -78,19 +72,7 @@ class ListAuthors extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: Card(
-        color: theme.primaryColor,
-        child: IconButton(
-          onPressed: () {
-            _controller.animateTo(
-              _controller.position.maxScrollExtent,
-              duration: const Duration(seconds: 2),
-              curve: Curves.fastOutSlowIn,
-            );
-          },
-          icon: const Icon(Icons.arrow_downward_sharp),
-        ),
-      ),
+      floatingActionButton: QuoteFloatingButton(controller: controller),
     );
   }
 }
