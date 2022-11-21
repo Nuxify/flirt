@@ -16,7 +16,13 @@ class ListQuotes extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List of quotes'),
+        // ignore: use_decorated_box
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(colors: flirtGradient),
+          ),
+        ),
+        elevation: 0,
       ),
       body: DecoratedBox(
         decoration: const BoxDecoration(
@@ -27,17 +33,6 @@ class ListQuotes extends StatelessWidget {
         child: Center(
           child: Column(
             children: <Widget>[
-              const Card(
-                child: Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Text(
-                    'List is updated when the state is updated',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
               Expanded(
                 child: ListView.builder(
                   controller: _controller,
@@ -46,6 +41,7 @@ class ListQuotes extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
+                        elevation: 0,
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Text(state.quotes[index].en),
@@ -60,7 +56,8 @@ class ListQuotes extends StatelessWidget {
         ),
       ),
       floatingActionButton: Card(
-        color: theme.primaryColor,
+        shape: const CircleBorder(),
+        color: theme.primaryColor.withAlpha(240),
         child: IconButton(
           onPressed: () {
             _controller.animateTo(
@@ -69,7 +66,10 @@ class ListQuotes extends StatelessWidget {
               curve: Curves.fastOutSlowIn,
             );
           },
-          icon: const Icon(Icons.arrow_downward_sharp),
+          icon: const Icon(
+            Icons.arrow_downward_sharp,
+            color: Colors.white,
+          ),
         ),
       ),
     );
