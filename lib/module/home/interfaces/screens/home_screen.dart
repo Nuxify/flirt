@@ -18,6 +18,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Color _fontColor = Colors.white;
   Timer? _timer;
+  ButtonStyle buttonStyle = ButtonStyle(
+    elevation: MaterialStateProperty.all(0),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(6),
+      ),
+    ),
+    side: MaterialStateProperty.all(
+      const BorderSide(color: Colors.white),
+    ),
+  );
 
   @override
   void initState() {
@@ -41,10 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    // final double _width = MediaQuery.of(context).size.width;
+    final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: DecoratedBox(
           decoration: const BoxDecoration(
@@ -58,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 const QuotesCard(),
                 Padding(
-                  padding: EdgeInsets.only(top: height * 0.1),
+                  padding: EdgeInsets.only(top: height * 0.05),
                   child: Column(
                     children: <Widget>[
                       AnimatedDefaultTextStyle(
@@ -80,10 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       GestureDetector(
                         child: Text(
-                          'Made with <3 by Nuxify',
+                          'Made with ♥️ by Nuxify',
                           style: theme.textTheme.caption?.copyWith(
                             color: Colors.white,
-                            decoration: TextDecoration.underline,
                           ),
                         ),
                         onTap: () => launchUrlString('https://nuxify.tech/'),
@@ -91,34 +102,45 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (BuildContext context) => ListQuotes(),
+                Container(
+                  width: width * 0.45,
+                  padding: EdgeInsets.only(top: height * 0.03),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      OutlinedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => ListQuotes(),
+                            ),
+                          );
+                        },
+                        style: buttonStyle,
+                        child: const Text(
+                          'Quotes',
+                          style: TextStyle(color: Colors.white),
                         ),
-                      );
-                    },
-                    child: const Text('List of Quotes'),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (BuildContext context) => ListAuthors(),
+                      ),
+                      OutlinedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => ListAuthors(),
+                            ),
+                          );
+                        },
+                        style: buttonStyle,
+                        child: const Text(
+                          'Authors',
+                          style: TextStyle(color: Colors.white),
                         ),
-                      );
-                    },
-                    child: const Text('List of Authors'),
+                      ),
+                    ],
                   ),
-                ),
+                )
               ],
             ),
           ),
