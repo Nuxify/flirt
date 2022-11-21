@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 const QuotesCard(),
                 Padding(
