@@ -56,6 +56,15 @@ class _HomeScreenState extends State<HomeScreen> {
     final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        // ignore: use_decorated_box
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(colors: flirtGradient),
+          ),
+        ),
+      ),
       backgroundColor: Colors.transparent,
       body: SafeArea(
         child: DecoratedBox(
