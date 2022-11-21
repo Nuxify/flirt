@@ -28,7 +28,11 @@ void main() {
         ),
       );
   void listenStub() {
-    when(() => mockQuoteCubit.state).thenReturn(QuoteInitial());
+    when(() => mockQuoteCubit.state).thenReturn(
+      QuoteState(
+        data: QuoteStateDTO(authors: <String>[], quotes: <QuoteResponseDTO>[]),
+      ),
+    );
     when(() => mockQuoteCubit.fetchQuote()).thenAnswer((_) async {});
   }
 
@@ -41,7 +45,7 @@ void main() {
         mockQuoteCubit,
         Stream<QuoteState>.fromIterable(
           <QuoteState>[
-            FetchQuoteLoading(),
+            FetchQuoteLoading(mockQuoteCubit.state.data),
           ],
         ),
       );
@@ -63,6 +67,7 @@ void main() {
         Stream<QuoteState>.fromIterable(
           <QuoteState>[
             FetchQuoteSuccess(
+              mockQuoteCubit.state.data,
               QuoteResponseDTO(
                 author: author,
                 en: en,
@@ -87,7 +92,8 @@ void main() {
         mockQuoteCubit,
         Stream<QuoteState>.fromIterable(
           <QuoteState>[
-            const FetchQuoteFailed(
+            FetchQuoteFailed(
+              mockQuoteCubit.state.data,
               errorCode: errorCode,
               message: message,
             ),

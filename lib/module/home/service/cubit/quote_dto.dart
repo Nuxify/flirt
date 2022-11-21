@@ -19,3 +19,12 @@ class QuoteResponseDTO {
   final String author;
   final String en;
 }
+
+class QuoteStateDTO {
+  QuoteStateDTO({
+    required this.quotes,
+    required this.authors,
+  });
+  final List<QuoteResponseDTO> quotes;
+  final List<String> authors;
+}

@@ -1,24 +1,31 @@
 part of 'quote_cubit.dart';
 
-@immutable
-abstract class QuoteState {
-  const QuoteState();
+class QuoteState {
+  const QuoteState({
+    required this.data,
+  });
+
+  final QuoteStateDTO data;
 }
 
-class QuoteInitial extends QuoteState {}
-
-class FetchQuoteLoading extends QuoteState {}
+/// Event Classes
+class FetchQuoteLoading extends QuoteState {
+  FetchQuoteLoading(QuoteStateDTO data) : super(data: data);
+}
 
 class FetchQuoteSuccess extends QuoteState {
-  const FetchQuoteSuccess(this.quoteResponse);
+  const FetchQuoteSuccess(QuoteStateDTO data, this.quoteResponse)
+      : super(data: data);
+
   final QuoteResponseDTO quoteResponse;
 }
 
 class FetchQuoteFailed extends QuoteState {
-  const FetchQuoteFailed({
+  const FetchQuoteFailed(
+    QuoteStateDTO data, {
     required this.errorCode,
     required this.message,
-  });
+  }) : super(data: data);
 
   final String errorCode;
   final String message;
