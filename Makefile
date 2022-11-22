@@ -7,13 +7,29 @@ default: run
 install:
 	flutter pub get
 
-.PHONY:	lint
-lint:
+.PHONY:	analyze
+analyze:
 	flutter analyze
+
+.PHONY:	lint-dry-run
+lint-dry-run:
+	dart fix --dry-run
+	
+.PHONY:	lint-fix
+lint-fix:
+	dart fix --apply
 
 .PHONY:	test
 test:
-	echo "TODO: test"
+	flutter test
+
+.PHONY:	test-unit
+test-unit:
+	flutter test test/unit
+
+.PHONY:	test-widget
+test-widget:
+	flutter test test/widget
 
 .PHONY:	clean
 clean:
