@@ -27,8 +27,5 @@ All these steps are assuming you're using VS Code as your editor.
 To use Flutter debug tools, go to Run -> Start Debugging in VS Code.
 
 See Makefile for other commands.
-## Roadmap
-
-- Test Driven Development (TDD) approach
 
 Made with ❤️ at [Nuxify](https://nuxify.tech)
