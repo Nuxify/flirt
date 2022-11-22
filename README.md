@@ -1,6 +1,8 @@
 # Flirt
 Flutter Template for Building Amazing Mobile Apps
 
+An article explaining the deeper intricacies of the template can be found here: https://nuxify.tech/blog/modular-flutter-template-with-state-management
+
 ## Example
 
 You can check the `qr-example-flutter-2` branch.
