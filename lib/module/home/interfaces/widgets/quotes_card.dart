@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flirt/configs/themes.dart';
 import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
 import 'package:flutter/material.dart';

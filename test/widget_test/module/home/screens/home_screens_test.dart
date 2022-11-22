@@ -25,6 +25,7 @@ void main() {
           ),
         ),
       );
+
   void listenStub() {
     when(() => mockQuoteCubit.state).thenReturn(
       QuoteState(

@@ -1,4 +1,3 @@
-
 import 'package:flirt/infrastructures/repository/interfaces/secure_storage_repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
