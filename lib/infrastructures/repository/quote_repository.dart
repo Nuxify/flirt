@@ -6,8 +6,8 @@ import 'package:flirt/infrastructures/repository/interfaces/quote_repository.dar
 import 'package:http/http.dart' as http;
 
 class QuoteRepository implements IQuoteRepository {
-  final String _baseURL = 'programming-quotes-api.herokuapp.com';
-  final String _quoteRepositoryURL = '/Quotes/random';
+  final String _baseURL = 'api.quotable.io';
+  final String _quoteRepositoryURL = '/random';
 
   @override
   Future<QuoteResponse> fetchQuote() async {
