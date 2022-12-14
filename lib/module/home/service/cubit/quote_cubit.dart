@@ -30,7 +30,7 @@ class QuoteCubit extends Cubit<QuoteState> {
       final QuoteResponseDTO quote = QuoteResponseDTO(
         id: response.id,
         author: response.author,
-        en: response.en,
+        content: response.content,
       );
 
       /// Appending new value inside the list of the properties of DTO.

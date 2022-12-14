@@ -60,7 +60,7 @@ class _QuotesCardState extends State<QuotesCard> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.1),
               child: Text(
-                '"${state.quoteResponse.en}"', // Display the quotes with en key.
+                '"${state.quoteResponse.content}"', // Display the quotes with en key.
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontStyle: FontStyle.italic,
