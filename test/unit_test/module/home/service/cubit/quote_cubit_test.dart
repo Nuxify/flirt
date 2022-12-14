@@ -19,7 +19,7 @@ void main() {
       'On successful fetch quote, it should emit FetchQuoteSuccess.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenAnswer((_) async {
-          return QuoteResponse(author: '', en: '', id: '');
+          return QuoteResponse(author: '', content: '', id: '');
         });
 
         return QuoteCubit(quoteRepository: mockQuoteRepository);
@@ -39,7 +39,7 @@ void main() {
             message: '',
             success: false,
             errorCode: '',
-            data: QuoteResponse(author: '', en: '', id: ''),
+            data: QuoteResponse(author: '', content: '', id: ''),
           ),
         );
 

@@ -71,7 +71,7 @@ void main() {
               mockQuoteCubit.state.data,
               QuoteResponseDTO(
                 author: author,
-                en: en,
+                content: en,
                 id: id,
               ),
             ),

@@ -44,7 +44,7 @@ class ListQuotes extends StatelessWidget {
                         elevation: 0,
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: Text(state.quotes[index].en),
+                          child: Text(state.quotes[index].content),
                         ),
                       ),
                     );

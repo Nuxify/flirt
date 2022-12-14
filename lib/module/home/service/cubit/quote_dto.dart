@@ -12,12 +12,12 @@ class QuoteResponseDTO {
   QuoteResponseDTO({
     required this.id,
     required this.author,
-    required this.en,
+    required this.content,
   });
 
   final String id;
   final String author;
-  final String en;
+  final String content;
 }
 
 class QuoteStateDTO {

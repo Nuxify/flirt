@@ -46,14 +46,14 @@ void main() {
         await tester.pump();
       });
       testWidgets(
-        'Flirt title should be visible also Made with <3 by Nuxify.',
+        'Flirt title should be visible also Made with ♥️ by Nuxify.',
         (WidgetTester tester) async {
           listenStub();
           await pumpWidget(tester);
           await tester.pump();
 
           expect(find.text(title), findsOneWidget);
-          expect(find.textContaining('Made with <3 by Nuxify'), findsOneWidget);
+          expect(find.textContaining('Made with ♥️ by Nuxify'), findsOneWidget);
         },
       );
     });

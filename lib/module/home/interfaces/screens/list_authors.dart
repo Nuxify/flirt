@@ -48,7 +48,7 @@ class ListAuthors extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               Text(
-                                '"${state.quotes[index].en}"',
+                                '"${state.quotes[index].content}"',
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   fontStyle: FontStyle.italic,
                                 ),
