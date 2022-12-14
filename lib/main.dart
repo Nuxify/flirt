@@ -4,8 +4,14 @@ import 'package:flirt/module/home/interfaces/screens/home_screen.dart';
 import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() => runApp(const App());
+void main() async {
+  /// Load env file
+  await dotenv.load();
+
+  runApp(const App());
+}
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
