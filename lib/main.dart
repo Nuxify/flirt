@@ -28,7 +28,7 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: dotenv.get('title'),
+        title: dotenv.get('TITLE'),
         home: _HomePageState(),
         theme: defaultTheme,
         supportedLocales: const <Locale>[
