@@ -108,6 +108,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         onTap: () => launchUrlString('https://nuxify.tech/'),
                       ),
+                      Text(
+                        'Build #7',
+                        style: theme.textTheme.caption
+                            ?.copyWith(color: Colors.white),
+                      ),
                     ],
                   ),
                 ),
