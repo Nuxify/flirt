@@ -3,6 +3,12 @@ Flutter Template for Building Amazing Mobile Apps
 
 An article explaining the deeper intricacies of the template can be found here: https://nuxify.tech/blog/modular-flutter-template-with-state-management
 
+## Demo
+
+Download the Flirt demo app from Google Play Store: https://play.google.com/store/apps/details?id=com.nuxify.flirt
+
+Coming soon in Apple App Store.
+
 ## Example
 
 You can check the `qr-example-flutter-2` branch.
@@ -10,6 +16,7 @@ You can check the `qr-example-flutter-2` branch.
 This app is a basic QR generator and scanner where the user:
 - can generate QR code with optional ID and custom data
 - scan the genereted QR code and display the decoded message to user
+
 ## Build steps
 
 All these steps are assuming you're using VS Code as your editor.
