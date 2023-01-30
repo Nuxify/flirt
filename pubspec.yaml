@@ -21,20 +21,16 @@ environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
-  camera: ^0.10.0+4
-  cupertino_icons: ^1.0.5
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
   flutter_dotenv: ^5.0.2
-  flutter_fadein: ^2.0.0
   flutter_secure_storage: ^6.0.0
   http: ^0.13.5
   json_annotation: ^4.7.0
   path: ^1.8.2
   path_provider: ^2.0.11
-  shimmer: ^2.0.0
   url_launcher: ^6.1.6
 
 dev_dependencies:

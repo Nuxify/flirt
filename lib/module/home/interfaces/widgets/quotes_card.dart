@@ -1,10 +1,7 @@
 import 'dart:async';
-import 'package:flirt/configs/themes.dart';
 import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fadein/flutter_fadein.dart';
-import 'package:shimmer/shimmer.dart';
 
 class QuotesCard extends StatefulWidget {
   const QuotesCard({Key? key}) : super(key: key);
@@ -55,36 +52,26 @@ class _QuotesCardState extends State<QuotesCard> {
           current is FetchQuoteSuccess || current is FetchQuoteLoading,
       builder: (BuildContext context, QuoteState state) {
         if (state is FetchQuoteSuccess) {
-          return FadeIn(
-            duration: const Duration(milliseconds: 800),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.1),
-              child: Text(
-                '"${state.quoteResponse.content}"', // Display the quotes with en key.
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  fontFamily: 'Nunito',
-                  color: Colors.white,
-                ),
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.1),
+            child: Text(
+              '"${state.quoteResponse.content}"', // Display the quotes with en key.
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontStyle: FontStyle.italic,
+                fontFamily: 'Nunito',
+                color: Colors.white,
               ),
             ),
           );
         } else {
-          return FadeIn(
-            duration: const Duration(milliseconds: 800),
-            child: Shimmer.fromColors(
-              baseColor: shimmerBase,
-              highlightColor: shimmerGlow,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(3),
-                  color: Colors.white,
-                ),
-                child: const Text(
-                  'This template is made with <3 by Nuxify',
-                ),
-              ),
+          return DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(3),
+              color: Colors.white,
+            ),
+            child: const Text(
+              'This template is made with <3 by Nuxify',
             ),
           );
         }

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:shimmer/shimmer.dart';
 
 class MockQuoteCubit extends MockCubit<QuoteState> implements QuoteCubit {}
 
@@ -38,24 +37,6 @@ void main() {
   }
 
   group('Quotes Card.', () {
-    testWidgets('On FetchQuoteLoading, it should show skeleton loader.',
-        (WidgetTester tester) async {
-      listenStub();
-
-      whenListen(
-        mockQuoteCubit,
-        Stream<QuoteState>.fromIterable(
-          <QuoteState>[
-            FetchQuoteLoading(mockQuoteCubit.state.data),
-          ],
-        ),
-      );
-
-      await pumpWidget(tester);
-      await tester.pump();
-
-      expect(find.byType(Shimmer), findsOneWidget);
-    });
     testWidgets('On FetchQuoteSuccess, it should show skeleton loader.',
         (WidgetTester tester) async {
       listenStub();
