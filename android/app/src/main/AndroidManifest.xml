@@ -3,7 +3,11 @@
     <!-- See more here: https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects -->
     <application
         android:label="flirt"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        >
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
