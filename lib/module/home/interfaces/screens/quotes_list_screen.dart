@@ -1,19 +1,18 @@
 import 'package:flirt/configs/themes.dart';
 import 'package:flirt/module/home/interfaces/widgets/floating_button.dart';
-import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
-import 'package:flirt/module/home/service/cubit/quote_dto.dart';
+import 'package:flirt/module/home/service/cubit/home_cubit.dart';
+import 'package:flirt/module/home/service/cubit/home_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ListAuthors extends StatelessWidget {
-  ListAuthors({Key? key}) : super(key: key);
+class QuotesListScreen extends StatelessWidget {
+  QuotesListScreen({Key? key}) : super(key: key);
 
   final ScrollController controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    final QuoteStateDTO state = context.watch<QuoteCubit>().state.data;
-    final ThemeData theme = Theme.of(context);
+    final QuoteStateDTO state = context.watch<HomeCubit>().state.data;
 
     return Scaffold(
       appBar: AppBar(
@@ -37,31 +36,15 @@ class ListAuthors extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   controller: controller,
-                  itemCount: state.authors.length,
+                  itemCount: state.quotes.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
+                        elevation: 0,
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
-                              Text(
-                                '"${state.quotes[index].content}"',
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                              Text(
-                                '\n- ${state.authors[index]}',
-                                style: const TextStyle(
-                                  color: Colors.pink,
-                                ),
-                                textAlign: TextAlign.right,
-                              ),
-                            ],
-                          ),
+                          child: Text(state.quotes[index].content),
                         ),
                       ),
                     );

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flirt/configs/themes.dart';
-import 'package:flirt/module/home/interfaces/screens/list_authors.dart';
-import 'package:flirt/module/home/interfaces/screens/list_quotes.dart';
+import 'package:flirt/module/home/interfaces/screens/authors_list_screen.dart';
+import 'package:flirt/module/home/interfaces/screens/quotes_list_screen.dart';
 import 'package:flirt/module/home/interfaces/widgets/quotes_card.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -127,7 +127,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) => ListQuotes(),
+                              builder: (BuildContext context) =>
+                                  QuotesListScreen(),
                             ),
                           );
                         },
@@ -142,7 +143,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) => ListAuthors(),
+                              builder: (BuildContext context) =>
+                                  AuthorsListScreen(),
                             ),
                           );
                         },

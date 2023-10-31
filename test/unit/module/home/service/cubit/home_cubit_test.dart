@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flirt/infrastructures/models/api_response.dart';
 import 'package:flirt/infrastructures/models/quote/quote_response.dart';
 import 'package:flirt/infrastructures/repository/quote_repository.dart';
-import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
+import 'package:flirt/module/home/service/cubit/home_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -15,23 +15,23 @@ void main() {
     mockQuoteRepository = MockQuoteRepository();
   });
   group('Quote cubit.', () {
-    blocTest<QuoteCubit, QuoteState>(
+    blocTest<HomeCubit, HomeState>(
       'On successful fetch quote, it should emit FetchQuoteSuccess.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenAnswer((_) async {
           return QuoteResponse(author: '', content: '', id: '');
         });
 
-        return QuoteCubit(quoteRepository: mockQuoteRepository);
+        return HomeCubit(quoteRepository: mockQuoteRepository);
       },
-      act: (QuoteCubit cubit) => cubit.fetchQuote(),
-      expect: () => <TypeMatcher<QuoteState>>[
+      act: (HomeCubit cubit) => cubit.fetchQuote(),
+      expect: () => <TypeMatcher<HomeState>>[
         isA<FetchQuoteLoading>(),
         isA<FetchQuoteSuccess>(),
       ],
     );
 
-    blocTest<QuoteCubit, QuoteState>(
+    blocTest<HomeCubit, HomeState>(
       'On failed fetch quote, it should emit FetchQuoteFailed.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenThrow(
@@ -43,10 +43,10 @@ void main() {
           ),
         );
 
-        return QuoteCubit(quoteRepository: mockQuoteRepository);
+        return HomeCubit(quoteRepository: mockQuoteRepository);
       },
-      act: (QuoteCubit cubit) => cubit.fetchQuote(),
-      expect: () => <TypeMatcher<QuoteState>>[
+      act: (HomeCubit cubit) => cubit.fetchQuote(),
+      expect: () => <TypeMatcher<HomeState>>[
         isA<FetchQuoteLoading>(),
         isA<FetchQuoteFailed>(),
       ],

@@ -1,16 +1,15 @@
 import 'package:flirt/infrastructures/models/api_response.dart';
 import 'package:flirt/infrastructures/models/quote/quote_response.dart';
 import 'package:flirt/infrastructures/repository/interfaces/quote_repository.dart';
-import 'package:flirt/module/home/service/cubit/quote_dto.dart';
+import 'package:flirt/module/home/service/cubit/home_dto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'quote_state.dart';
+part 'home_state.dart';
 
-/// Cubit for general Quote
-class QuoteCubit extends Cubit<QuoteState> {
-  QuoteCubit({required this.quoteRepository})
+class HomeCubit extends Cubit<HomeState> {
+  HomeCubit({required this.quoteRepository})
       : super(
-          QuoteState(
+          HomeState(
             data: QuoteStateDTO(
               authors: <String>[],
               quotes: <QuoteResponseDTO>[],

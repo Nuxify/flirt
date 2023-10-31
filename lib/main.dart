@@ -1,7 +1,7 @@
 import 'package:flirt/configs/themes.dart';
 import 'package:flirt/infrastructures/repository/quote_repository.dart';
 import 'package:flirt/module/home/interfaces/screens/home_screen.dart';
-import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
+import 'package:flirt/module/home/service/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -20,9 +20,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: <BlocProvider<dynamic>>[
-        // ================ quote module ================
-        BlocProvider<QuoteCubit>(
-          create: (BuildContext context) => QuoteCubit(
+        BlocProvider<HomeCubit>(
+          create: (BuildContext context) => HomeCubit(
             quoteRepository: QuoteRepository(),
           ),
         ),

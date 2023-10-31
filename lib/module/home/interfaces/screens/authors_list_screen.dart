@@ -1,18 +1,19 @@
 import 'package:flirt/configs/themes.dart';
 import 'package:flirt/module/home/interfaces/widgets/floating_button.dart';
-import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
-import 'package:flirt/module/home/service/cubit/quote_dto.dart';
+import 'package:flirt/module/home/service/cubit/home_cubit.dart';
+import 'package:flirt/module/home/service/cubit/home_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ListQuotes extends StatelessWidget {
-  ListQuotes({Key? key}) : super(key: key);
+class AuthorsListScreen extends StatelessWidget {
+  AuthorsListScreen({Key? key}) : super(key: key);
 
   final ScrollController controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    final QuoteStateDTO state = context.watch<QuoteCubit>().state.data;
+    final QuoteStateDTO state = context.watch<HomeCubit>().state.data;
+    final ThemeData theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -36,15 +37,31 @@ class ListQuotes extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   controller: controller,
-                  itemCount: state.quotes.length,
+                  itemCount: state.authors.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
-                        elevation: 0,
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: Text(state.quotes[index].content),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Text(
+                                '"${state.quotes[index].content}"',
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                              Text(
+                                '\n- ${state.authors[index]}',
+                                style: const TextStyle(
+                                  color: Colors.pink,
+                                ),
+                                textAlign: TextAlign.right,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
