@@ -15,7 +15,7 @@ You can check the `qr-example-flutter-2` branch.
 
 This app is a basic QR generator and scanner where the user:
 - can generate QR code with optional ID and custom data
-- scan the genereted QR code and display the decoded message to user
+- scan the generated QR code and display the decoded message to user
 
 ## Build steps
 
