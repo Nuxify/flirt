@@ -1,7 +1,7 @@
-part of 'quote_cubit.dart';
+part of 'home_cubit.dart';
 
-class QuoteState {
-  const QuoteState({
+class HomeState {
+  const HomeState({
     required this.data,
   });
 
@@ -9,18 +9,18 @@ class QuoteState {
 }
 
 /// Event Classes
-class FetchQuoteLoading extends QuoteState {
+class FetchQuoteLoading extends HomeState {
   FetchQuoteLoading(QuoteStateDTO data) : super(data: data);
 }
 
-class FetchQuoteSuccess extends QuoteState {
+class FetchQuoteSuccess extends HomeState {
   const FetchQuoteSuccess(QuoteStateDTO data, this.quoteResponse)
       : super(data: data);
 
   final QuoteResponseDTO quoteResponse;
 }
 
-class FetchQuoteFailed extends QuoteState {
+class FetchQuoteFailed extends HomeState {
   const FetchQuoteFailed(
     QuoteStateDTO data, {
     required this.errorCode,

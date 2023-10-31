@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
+import 'package:flirt/module/home/service/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,10 +16,10 @@ class _QuotesCardState extends State<QuotesCard> {
   @override
   void initState() {
     super.initState();
-    context.read<QuoteCubit>().fetchQuote();
+    context.read<HomeCubit>().fetchQuote();
     _quoteTimer = Timer.periodic(
       const Duration(seconds: 15),
-      (_) => context.read<QuoteCubit>().fetchQuote(),
+      (_) => context.read<HomeCubit>().fetchQuote(),
     );
   }
 
@@ -35,10 +35,10 @@ class _QuotesCardState extends State<QuotesCard> {
     final double width = MediaQuery.of(context).size.width;
     // final double _height = MediaQuery.of(context).size.height;
 
-    return BlocConsumer<QuoteCubit, QuoteState>(
-      listenWhen: (QuoteState previous, QuoteState current) =>
+    return BlocConsumer<HomeCubit, HomeState>(
+      listenWhen: (HomeState previous, HomeState current) =>
           current is FetchQuoteFailed,
-      listener: (BuildContext context, QuoteState state) {
+      listener: (BuildContext context, HomeState state) {
         if (state is FetchQuoteFailed) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -48,9 +48,9 @@ class _QuotesCardState extends State<QuotesCard> {
           );
         }
       },
-      buildWhen: (QuoteState previous, QuoteState current) =>
+      buildWhen: (HomeState previous, HomeState current) =>
           current is FetchQuoteSuccess || current is FetchQuoteLoading,
-      builder: (BuildContext context, QuoteState state) {
+      builder: (BuildContext context, HomeState state) {
         if (state is FetchQuoteSuccess) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: width * 0.1),

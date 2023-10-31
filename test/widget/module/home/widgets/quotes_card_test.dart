@@ -1,13 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flirt/module/home/interfaces/widgets/quotes_card.dart';
-import 'package:flirt/module/home/service/cubit/quote_cubit.dart';
-import 'package:flirt/module/home/service/cubit/quote_dto.dart';
+import 'package:flirt/module/home/service/cubit/home_cubit.dart';
+import 'package:flirt/module/home/service/cubit/home_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockQuoteCubit extends MockCubit<QuoteState> implements QuoteCubit {}
+class MockQuoteCubit extends MockCubit<HomeState> implements HomeCubit {}
 
 void main() {
   late MockQuoteCubit mockQuoteCubit;
@@ -18,7 +18,7 @@ void main() {
 
   Future<void> pumpWidget(WidgetTester tester) async => tester.pumpWidget(
         MaterialApp(
-          home: BlocProvider<QuoteCubit>(
+          home: BlocProvider<HomeCubit>(
             create: (BuildContext context) => mockQuoteCubit,
             child: const Scaffold(
               body: QuotesCard(),
@@ -29,7 +29,7 @@ void main() {
 
   void listenStub() {
     when(() => mockQuoteCubit.state).thenReturn(
-      QuoteState(
+      HomeState(
         data: QuoteStateDTO(authors: <String>[], quotes: <QuoteResponseDTO>[]),
       ),
     );
@@ -46,8 +46,8 @@ void main() {
       const String id = 'xxxxxxx';
       whenListen(
         mockQuoteCubit,
-        Stream<QuoteState>.fromIterable(
-          <QuoteState>[
+        Stream<HomeState>.fromIterable(
+          <HomeState>[
             FetchQuoteSuccess(
               mockQuoteCubit.state.data,
               QuoteResponseDTO(
@@ -72,8 +72,8 @@ void main() {
       const String message = 'Something went wrong.';
       whenListen(
         mockQuoteCubit,
-        Stream<QuoteState>.fromIterable(
-          <QuoteState>[
+        Stream<HomeState>.fromIterable(
+          <HomeState>[
             FetchQuoteFailed(
               mockQuoteCubit.state.data,
               errorCode: errorCode,
