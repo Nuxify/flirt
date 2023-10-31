@@ -96,13 +96,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Text(
                         'A Flutter template.',
-                        style: theme.textTheme.bodyText1
+                        style: theme.textTheme.bodyLarge
                             ?.copyWith(color: Colors.white),
                       ),
                       GestureDetector(
                         child: Text(
                           'Made with ♥️ by Nuxify',
-                          style: theme.textTheme.caption?.copyWith(
+                          style: theme.textTheme.bodySmall?.copyWith(
                             color: Colors.white,
                           ),
                         ),
@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Text(
                         'Build #7',
-                        style: theme.textTheme.caption
+                        style: theme.textTheme.bodySmall
                             ?.copyWith(color: Colors.white),
                       ),
                     ],
