@@ -62,6 +62,7 @@ android {
           exclude 'META-INF/LICENSE'
           exclude 'META-INF/NOTICE'
       }
+    namespace 'com.nuxify.flirt'
 }
 
 flutter {

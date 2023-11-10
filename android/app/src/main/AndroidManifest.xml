@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nuxify.flirt">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- See more here: https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects -->
     <application
         android:label="flirt"
