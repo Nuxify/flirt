@@ -44,7 +44,7 @@ compile:
 	fvm flutter clean
 	fvm flutter pub get
 	fvm dart run build_runner build --delete-conflicting-outputs
-	cd ios&&pod install
+	cd ios && pod install
 
 .PHONY:	build-json
 build-json:
