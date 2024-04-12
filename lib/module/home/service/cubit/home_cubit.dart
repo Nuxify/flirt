@@ -1,6 +1,6 @@
-import 'package:flirt/infrastructures/models/api_response.dart';
-import 'package:flirt/infrastructures/models/quote/quote_response.dart';
-import 'package:flirt/infrastructures/repository/interfaces/quote_repository.dart';
+import 'package:flirt/domain/models/api_response.dart';
+import 'package:flirt/domain/models/quote/quote_response.dart';
+import 'package:flirt/domain/repository/quote_repository.dart';
 import 'package:flirt/module/home/service/cubit/home_dto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
