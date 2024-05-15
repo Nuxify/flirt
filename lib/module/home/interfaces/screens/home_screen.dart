@@ -13,11 +13,11 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
-          children: [
+          children: <Widget>[
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   Assets.images.nuxifyLogo.image(width: width * 0.3),
                   const QuotesCard(),
                 ],
@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 11, color: Colors.white54),
                 textAlign: TextAlign.center,
               ),
-            )
+            ),
           ],
         ),
       ),

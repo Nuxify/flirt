@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class QuotesCard extends StatefulWidget {
-  const QuotesCard({Key? key}) : super(key: key);
+  const QuotesCard({super.key});
 
   @override
   State<QuotesCard> createState() => _QuotesCardState();
@@ -63,7 +63,7 @@ class _QuotesCardState extends State<QuotesCard> {
               duration: const Duration(seconds: 1),
               opacity: textOpacity,
               child: Column(
-                children: [
+                children: <Widget>[
                   Text(
                     state.quoteResponse.content,
                     textAlign: TextAlign.left,
