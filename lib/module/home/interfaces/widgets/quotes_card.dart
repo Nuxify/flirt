@@ -11,6 +11,7 @@ class QuotesCard extends StatefulWidget {
 }
 
 class _QuotesCardState extends State<QuotesCard> {
+  double textOpacity = 1.0;
   Timer? _quoteTimer;
 
   @override
@@ -31,13 +32,13 @@ class _QuotesCardState extends State<QuotesCard> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
     final double width = MediaQuery.of(context).size.width;
-    // final double _height = MediaQuery.of(context).size.height;
 
     return BlocConsumer<HomeCubit, HomeState>(
       listenWhen: (HomeState previous, HomeState current) =>
-          current is FetchQuoteFailed,
+          current is FetchQuoteFailed ||
+          current is FetchQuoteSuccess ||
+          current is FetchQuoteLoading,
       listener: (BuildContext context, HomeState state) {
         if (state is FetchQuoteFailed) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -46,32 +47,55 @@ class _QuotesCardState extends State<QuotesCard> {
               backgroundColor: Colors.red,
             ),
           );
+        } else if (state is FetchQuoteSuccess) {
+          setState(() => textOpacity = 1.0);
+        } else if (state is FetchQuoteLoading) {
+          setState(() => textOpacity = 0);
         }
       },
       buildWhen: (HomeState previous, HomeState current) =>
-          current is FetchQuoteSuccess || current is FetchQuoteLoading,
+          current is FetchQuoteSuccess,
       builder: (BuildContext context, HomeState state) {
         if (state is FetchQuoteSuccess) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.1),
-            child: Text(
-              '"${state.quoteResponse.content}"', // Display the quotes with en key.
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontStyle: FontStyle.italic,
-                fontFamily: 'Nunito',
-                color: Colors.white,
+            padding: const EdgeInsets.only(top: 15, left: 30, right: 30),
+            child: AnimatedOpacity(
+              duration: const Duration(seconds: 1),
+              opacity: textOpacity,
+              child: Column(
+                children: [
+                  Text(
+                    state.quoteResponse.content,
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      color: Colors.white54,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '- ${state.quoteResponse.author}',
+                      style: const TextStyle(
+                        color: Colors.white54,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           );
         } else {
-          return DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(3),
-              color: Colors.white,
-            ),
-            child: const Text(
-              'This template is made with <3 by Nuxify',
+          return Container(
+            padding: const EdgeInsets.only(top: 15),
+            width: width * .5,
+            child: LinearProgressIndicator(
+              color: Colors.white12,
+              backgroundColor: Colors.black,
+              borderRadius: BorderRadius.circular(20),
             ),
           );
         }

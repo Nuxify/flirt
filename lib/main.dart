@@ -1,6 +1,7 @@
 import 'package:flirt/configs/themes.dart';
 import 'package:flirt/infrastructures/repository/quote_repository.dart';
 import 'package:flirt/module/home/application/service/cubit/home_cubit.dart';
+import 'package:flirt/module/home/interfaces/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -26,7 +27,6 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: dotenv.get('TITLE'),
         home: _HomePageState(),
         theme: defaultTheme,
         supportedLocales: const <Locale>[
@@ -41,10 +41,6 @@ class App extends StatelessWidget {
 class _HomePageState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Text('hahah'),
-      ),
-    );
+    return const HomeScreen();
   }
 }

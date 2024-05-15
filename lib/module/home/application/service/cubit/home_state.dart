@@ -8,7 +8,6 @@ class HomeState {
   final QuoteStateDTO data;
 }
 
-/// Event Classes
 class FetchQuoteLoading extends HomeState {
   FetchQuoteLoading(QuoteStateDTO data) : super(data: data);
 }
