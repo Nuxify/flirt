@@ -10,15 +10,6 @@ Download the Flirt demo app from Google Play Store: https://play.google.com/stor
 
 Coming soon in Apple App Store.
 
-## Example
-
-You can check the `qr-example-flutter-2` branch.
-
-This app is a basic QR generator and scanner where the user:
-
-- can generate QR code with optional ID and custom data
-- scan the generated QR code and display the decoded message to user
-
 ## Flutter Version Manager (FVM)
 
 We recommend using FVM to manage Flutter versions as you may switch from different Flutter versions depending on the projects compatibility. Follow the guide here: https://fvm.app/documentation/getting-started/installation
