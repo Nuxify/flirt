@@ -2,7 +2,7 @@
 
 Flutter Template for Building Amazing Mobile Apps
 
-An article explaining the deeper intricacies of the template can be found here: https://nuxify.tech/blog/modular-flutter-template-with-state-management
+This template is inspired by the Domain-Driven Design (DDD) pattern.
 
 ## Demo
 
@@ -28,9 +28,11 @@ All these steps are assuming you're using VS Code as your editor.
 - iOS Simulator (Run `open -a Simulator` in the Terminal)
 - Physical device (Connect phone to your development machine)
 
-3. Run the command `make` on the Terminal. This will automatically run a sequence of commands such as `make install` that are necessary for running the project.
+3. Run the command `make compile` on the Terminal. This will automatically run a sequence of commands that are necessary for running the project.
 
-4. Voila! The project should now be running on your designated simulator/device.
+4. Create a .env file in the root of the folder, copy the contents of .env.example and fill it with the corresponding data. 
+
+5. Voila! The project should now be running on your designated simulator/device.
 
 To use Flutter debug tools, go to Run -> Start Debugging in VS Code.
 
