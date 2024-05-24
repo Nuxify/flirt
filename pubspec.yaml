@@ -1,10 +1,10 @@
 name: flirt
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 1.2.0
 
 environment:
-  sdk: '>=3.2.3 <4.0.0'
+  sdk: ">=3.2.3 <4.0.0"
 
 dependencies:
   flutter:
@@ -20,17 +20,17 @@ dependencies:
       ref: release/1.0.0
 
 dev_dependencies:
+  bloc_test: ^9.1.7
   build_runner: ^2.4.9
   flutter_gen_runner: ^5.4.0
   flutter_test:
     sdk: flutter
   json_serializable: ^6.8.0
   lint: ^2.3.0
-
+  mocktail: ^1.0.3
 
 flutter:
   uses-material-design: true
-
 
   assets:
     - .env
