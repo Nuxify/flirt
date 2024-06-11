@@ -48,3 +48,9 @@ flutter:
         - asset: assets/fonts/Nunito/Nunito-LightItalic.ttf
           weight: 300
           style: italic
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app-launcher-icon.png"
+  remove_alpha_ios: true
