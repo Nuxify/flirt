@@ -23,6 +23,8 @@ dev_dependencies:
   bloc_test: ^9.1.7
   build_runner: ^2.4.9
   flutter_gen_runner: ^5.4.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.0
   flutter_test:
     sdk: flutter
   json_serializable: ^6.8.0
@@ -46,3 +48,20 @@ flutter:
         - asset: assets/fonts/Nunito/Nunito-LightItalic.ttf
           weight: 300
           style: italic
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app-launcher-icon.png"
+  remove_alpha_ios: true
+
+flutter_native_splash:
+  color: "#000000"
+  image: assets/images/logo.png
+
+  web: false
+
+  android_12:
+    color: "#000000"
+    icon_background_color: "#000000"
+    image: assets/images/logo-android12.png
