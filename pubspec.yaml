@@ -17,7 +17,7 @@ dependencies:
   nuxify_widgetbook:
     git:
       url: git@github.com:Nuxify/widgetbook.git
-      ref: release/1.0.0
+      ref: v1.0.0
 
 dev_dependencies:
   bloc_test: ^9.1.7
