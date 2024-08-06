@@ -44,7 +44,7 @@ void main() {
 
       expect(find.byType(QuotesCard), findsOneWidget);
       expect(find.byType(Image), findsOneWidget);
-      expect(find.text('v1.2.0'), findsOneWidget);
+      expect(find.text('v1.3.0'), findsOneWidget);
     });
   });
 }
