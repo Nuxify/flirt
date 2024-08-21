@@ -9,8 +9,8 @@ import 'package:http/http.dart' as http;
 class QuoteRepository implements IQuoteRepository {
   // final ISecureStorageRepository _storage = SecureStorageRepository();
 
-  final String _baseURL = 'api.quotable.io';
-  final String _repositoryURL = '/random';
+  final String _baseURL = 'zenquotes.io';
+  final String _repositoryURL = '/api/random';
 
   /// This function can be used to set the base URL based on the environment,
   /// if you are running a staging/production environment
@@ -33,7 +33,9 @@ class QuoteRepository implements IQuoteRepository {
         headers: httpRequestHeaders,
       );
       final QuoteResponse result = QuoteResponse.fromJson(
-        jsonDecode(response.body) as Map<String, dynamic>,
+        List<Map<String, dynamic>>.from(
+          jsonDecode(response.body) as List<dynamic>,
+        ).first,
       );
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         return result;
