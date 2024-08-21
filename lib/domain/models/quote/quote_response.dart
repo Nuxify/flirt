@@ -5,7 +5,6 @@ part 'quote_response.g.dart';
 @JsonSerializable()
 class QuoteResponse {
   QuoteResponse({
-    required this.id,
     required this.author,
     required this.content,
   });
@@ -14,8 +13,8 @@ class QuoteResponse {
       _$QuoteResponseFromJson(json);
   Map<String, dynamic> toJson() => _$QuoteResponseToJson(this);
 
-  @JsonKey(name: '_id')
-  final String id;
+  @JsonKey(name: 'a')
   final String author;
+  @JsonKey(name: 'q')
   final String content;
 }
