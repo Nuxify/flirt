@@ -91,7 +91,6 @@ void main() {
             FetchQuoteSuccess(
               QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[]),
               QuoteResponseDTO(
-                id: '',
                 author: author,
                 content: content,
               ),

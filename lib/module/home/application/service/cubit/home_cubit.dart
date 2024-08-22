@@ -27,7 +27,6 @@ class HomeCubit extends Cubit<HomeState> {
 
       final QuoteResponse response = await quoteRepository.fetchQuote();
       final QuoteResponseDTO quote = QuoteResponseDTO(
-        id: response.id,
         author: response.author,
         content: response.content,
       );
