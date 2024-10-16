@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flirt/domain/models/api_response.dart';
-import 'package:flirt/domain/models/quote/quote_response.dart';
-import 'package:flirt/domain/repository/quote_repository.dart';
+import 'package:flirt/core/domain/models/api_response.dart';
+import 'package:flirt/core/domain/models/quote/quote_response.dart';
+import 'package:flirt/core/domain/repository/quote_repository.dart';
 import 'package:flirt/internal/utils.dart';
 import 'package:http/http.dart' as http;
 
