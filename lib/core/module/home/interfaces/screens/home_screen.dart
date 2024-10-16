@@ -1,5 +1,5 @@
+import 'package:flirt/core/module/home/interfaces/widgets/quotes_card.dart';
 import 'package:flirt/gen/assets.gen.dart';
-import 'package:flirt/module/home/interfaces/widgets/quotes_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
