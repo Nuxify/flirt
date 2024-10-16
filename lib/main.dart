@@ -1,7 +1,7 @@
 import 'package:flirt/configs/themes.dart';
 import 'package:flirt/core/infrastructures/repository/quote_repository.dart';
-import 'package:flirt/module/home/application/service/cubit/home_cubit.dart';
-import 'package:flirt/module/home/interfaces/screens/home_screen.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
+import 'package:flirt/core/module/home/interfaces/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
