@@ -1,4 +1,4 @@
-import 'package:flirt/domain/repository/secure_storage_repository.dart';
+import 'package:flirt/core/domain/repository/secure_storage_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SecureStorageCubit extends Cubit<void> {

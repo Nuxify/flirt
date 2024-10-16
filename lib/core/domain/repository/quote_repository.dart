@@ -1,4 +1,4 @@
-import 'package:flirt/domain/models/quote/quote_response.dart';
+import 'package:flirt/core/domain/models/quote/quote_response.dart';
 
 abstract class IQuoteRepository {
   /// This function can be used to set the base URL based on the environment,

@@ -1,5 +1,5 @@
 import 'package:flirt/configs/themes.dart';
-import 'package:flirt/infrastructures/repository/quote_repository.dart';
+import 'package:flirt/core/infrastructures/repository/quote_repository.dart';
 import 'package:flirt/module/home/application/service/cubit/home_cubit.dart';
 import 'package:flirt/module/home/interfaces/screens/home_screen.dart';
 import 'package:flutter/material.dart';
