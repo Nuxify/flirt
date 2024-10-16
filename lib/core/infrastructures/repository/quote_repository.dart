@@ -4,12 +4,15 @@ import 'package:flirt/core/domain/models/api_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/domain/repository/quote_repository.dart';
 import 'package:flirt/internal/utils.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class QuoteRepository implements IQuoteRepository {
   // final ISecureStorageRepository _storage = SecureStorageRepository();
 
-  final String _baseURL = 'zenquotes.io';
+  final String _baseURL = dotenv.get('API_ENV') != 'production'
+      ? dotenv.get('QUOTE_API')
+      : dotenv.get('STAGING_QUOTE_API');
   final String _repositoryURL = '/api/random';
 
   /// This function can be used to set the base URL based on the environment,
