@@ -43,11 +43,8 @@ class QuoteRepository implements IQuoteRepository {
           jsonDecode(response.body) as List<dynamic>,
         ).first,
       );
-      if (response.statusCode >= 200 && response.statusCode <= 299) {
-        return result;
-      }
 
-      throw result;
+      return result;
     } on SocketException {
       throw APIErrorResponse.socketErrorResponse();
     } catch (e) {
