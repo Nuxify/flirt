@@ -9,7 +9,6 @@ class APIResponse<T> {
   APIResponse({
     required this.success,
     required this.message,
-    required this.errorCode,
     required this.data,
   });
 
@@ -32,7 +31,6 @@ class APIResponse<T> {
   /// base API response
   final bool success;
   final String message;
-  final String? errorCode;
   final T data;
 }
 
@@ -43,7 +41,6 @@ class APIListResponse<T> {
   APIListResponse({
     required this.success,
     required this.message,
-    required this.errorCode,
     required this.data,
   });
 
@@ -58,6 +55,5 @@ class APIListResponse<T> {
   /// base API response
   final bool success;
   final String message;
-  final String? errorCode;
   final List<T> data;
 }
