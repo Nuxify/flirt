@@ -21,7 +21,14 @@ void main() {
       'On successful fetch quote, it should emit FetchQuoteSuccess.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenAnswer((_) async {
-          return QuoteResponse(author: '', content: '');
+          return APIListResponse<QuoteResponse>(
+            success: true,
+            message: '',
+            errorCode: null,
+            data: <QuoteResponse>[
+              QuoteResponse(author: '', quote: ''),
+            ],
+          );
         });
 
         return HomeCubit(quoteRepository: mockQuoteRepository);
@@ -41,7 +48,7 @@ void main() {
             message: '',
             success: false,
             errorCode: '',
-            data: QuoteResponse(author: '', content: ''),
+            data: QuoteResponse(author: '', quote: ''),
           ),
         );
 
