@@ -6,15 +6,14 @@ part 'quote_response.g.dart';
 class QuoteResponse {
   QuoteResponse({
     required this.author,
-    required this.content,
+    required this.quote,
   });
 
   factory QuoteResponse.fromJson(Map<String, dynamic> json) =>
       _$QuoteResponseFromJson(json);
   Map<String, dynamic> toJson() => _$QuoteResponseToJson(this);
 
-  @JsonKey(name: 'a')
   final String author;
-  @JsonKey(name: 'q')
-  final String content;
+  @JsonKey(name: 'quote')
+  final String quote;
 }
