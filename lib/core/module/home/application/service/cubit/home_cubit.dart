@@ -2,6 +2,7 @@ import 'package:flirt/core/domain/models/api_error_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/domain/repository/quote_repository.dart';
 import 'package:flirt/core/module/home/application/service/cubit/home_dto.dart';
+import 'package:flirt/internal/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'home_state.dart';
@@ -47,9 +48,19 @@ class HomeCubit extends Cubit<HomeState> {
     } on APIErrorResponse catch (error) {
       emit(
         FetchQuoteFailed(
-          state.data,
           errorCode: error.errorCode!,
           message: error.message,
+          data: state.data,
+        ),
+      );
+    } catch (e, stackTrace) {
+      logError(e, stackTrace);
+
+      emit(
+        FetchQuoteFailed(
+          errorCode: '$e',
+          message: 'Something went wrong.',
+          data: state.data,
         ),
       );
     }
