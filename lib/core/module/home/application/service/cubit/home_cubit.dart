@@ -1,4 +1,4 @@
-import 'package:flirt/core/domain/models/api_response.dart';
+import 'package:flirt/core/domain/models/api_error_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/domain/repository/quote_repository.dart';
 import 'package:flirt/core/module/home/application/service/cubit/home_dto.dart';
@@ -44,8 +44,7 @@ class HomeCubit extends Cubit<HomeState> {
 
       // If not for demonstration purposes, this approach should be using code below - emitting state directly.
       // emit(QuoteState(data: QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[])));
-    } catch (e) {
-      final APIResponse<QuoteResponse> error = e as APIResponse<QuoteResponse>;
+    } on APIErrorResponse catch (error) {
       emit(
         FetchQuoteFailed(
           state.data,
