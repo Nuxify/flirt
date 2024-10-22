@@ -13,7 +13,7 @@ class QuoteRepository implements IQuoteRepository {
   final String _baseURL = dotenv.get('API_ENV') != 'production'
       ? dotenv.get('QUOTE_API')
       : dotenv.get('STAGING_QUOTE_API');
-  final String _repositoryURL = '/api/random';
+  final String _repositoryURL = '/api/v1/flirt/quote/random';
 
   /// This function can be used to set the base URL based on the environment,
   /// if you are running a staging/production environment
@@ -29,16 +29,17 @@ class QuoteRepository implements IQuoteRepository {
   // }
 
   @override
-  Future<QuoteResponse> fetchQuote() async {
+  Future<APIListResponse<QuoteResponse>> fetchQuote() async {
     try {
       final http.Response response = await http.get(
         Uri.https(_baseURL, _repositoryURL),
         headers: httpRequestHeaders,
       );
-      final QuoteResponse result = QuoteResponse.fromJson(
-        List<Map<String, dynamic>>.from(
-          jsonDecode(response.body) as List<dynamic>,
-        ).first,
+
+      final APIListResponse<QuoteResponse> result =
+          APIListResponse<QuoteResponse>.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>,
+        (Object? data) => QuoteResponse.fromJson(data! as Map<String, dynamic>),
       );
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         return result;
