@@ -65,9 +65,12 @@ void main() {
           mockHomeCubit,
           Stream<FetchQuoteFailed>.fromIterable(<FetchQuoteFailed>[
             FetchQuoteFailed(
-              QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[]),
               errorCode: '',
               message: errorMessage,
+              data: QuoteStateDTO(
+                quotes: <QuoteResponseDTO>[],
+                authors: <String>[],
+              ),
             ),
           ]),
         );

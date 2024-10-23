@@ -1,34 +1,36 @@
+import 'package:flirt/internal/repository_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'api_error_response.g.dart';
 
-@JsonSerializable(
-  genericArgumentFactories: true,
-)
 @JsonSerializable()
-class APIErrorResponse<T> {
+class APIErrorResponse {
   APIErrorResponse({
     required this.message,
-    required this.errorCode,
-    required this.data,
+    this.errorCode,
   });
+
+  factory APIErrorResponse.socketErrorResponse() => APIErrorResponse(
+        message: APIErrorStatus.socketExceptionError.errorMessage,
+        errorCode: APIErrorStatus.socketExceptionError.errorTemplate,
+      );
+
+  factory APIErrorResponse.typeCastingErrorResponse() => APIErrorResponse(
+        message: APIErrorStatus.typeCastingError.errorMessage,
+        errorCode: APIErrorStatus.typeCastingError.errorTemplate,
+      );
+
+  factory APIErrorResponse.unauthorizedErrorResponse() => APIErrorResponse(
+        message: APIErrorStatus.unauthorized.errorMessage,
+        errorCode: APIErrorStatus.unauthorized.errorTemplate,
+      );
 
   factory APIErrorResponse.fromJson(
     Map<String, dynamic> json,
-    T Function(Object? json) fromJsonT,
   ) =>
-      _$APIErrorResponseFromJson(json, fromJsonT);
-  Map<String, dynamic> toJson(Object Function(T value) toJsonT) =>
-      _$APIErrorResponseToJson(this, toJsonT);
-
-  static Map<String, dynamic> socketErrorResponse() {
-    return <String, dynamic>{
-      'error': 'NO_INTERNET_CONNECTION',
-      'user_message': 'No Internet Connection',
-    };
-  }
+      _$APIErrorResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$APIErrorResponseToJson(this);
 
   final String message;
   final String? errorCode;
-  final T data;
 }

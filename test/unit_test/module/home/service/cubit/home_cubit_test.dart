@@ -1,7 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flirt/core/domain/models/api_response.dart';
+import 'package:flirt/core/domain/models/api_error_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/infrastructures/repository/quote_repository.dart';
 import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
@@ -37,11 +37,9 @@ void main() {
       'On failed fetch quote, it should emit FetchQuoteFailed.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenThrow(
-          APIResponse<QuoteResponse>(
+          APIErrorResponse(
             message: '',
-            success: false,
             errorCode: '',
-            data: QuoteResponse(author: '', content: ''),
           ),
         );
 

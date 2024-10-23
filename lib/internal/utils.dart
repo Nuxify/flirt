@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 final Map<String, String> httpRequestHeaders = <String, String>{
@@ -47,4 +49,30 @@ FadeTransition fadeTransition(
     opacity: tween.animate(curvedAnimation),
     child: child,
   );
+}
+
+/// Logs an error with the function name extracted from the stack trace.
+///
+/// [e] The error object to be logged.
+///
+/// [stacktrace] The stack trace of the error.
+///
+/// Returns a string representation of the error including the function name.
+void logError(dynamic e, StackTrace stacktrace) {
+  // Parse the stack trace to extract the current function name
+  final String functionName = _getFunctionName(stacktrace);
+  log('Error in function: $functionName - $e');
+}
+
+/// Extracts the function name from the stack trace.
+///
+/// [stacktrace] The stack trace from which to extract the function name.
+///
+/// Returns the extracted function name as a string.
+String _getFunctionName(StackTrace stacktrace) {
+  // Extracting the topmost line from the stack trace, which contains the function name
+  final String traceString = stacktrace.toString().split('\n')[0];
+  // Parsing the line to extract only the function name
+  final String functionName = traceString.split(' ').reversed.elementAt(1);
+  return functionName;
 }
