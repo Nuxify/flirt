@@ -44,6 +44,7 @@ class QuoteRepository implements IQuoteRepository {
         jsonDecode(response.body) as Map<String, dynamic>,
         (Object? data) => QuoteResponse.fromJson(data! as Map<String, dynamic>),
       );
+      
       return result;
     } on SocketException {
       throw APIErrorResponse.socketErrorResponse();
