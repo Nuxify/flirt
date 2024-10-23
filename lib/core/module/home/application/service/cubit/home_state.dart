@@ -20,11 +20,11 @@ class FetchQuoteSuccess extends HomeState {
 }
 
 class FetchQuoteFailed extends HomeState {
-  const FetchQuoteFailed(
-    QuoteStateDTO data, {
+  const FetchQuoteFailed({
     required this.errorCode,
     required this.message,
-  }) : super(data: data);
+    required super.data,
+  });
 
   final String errorCode;
   final String message;

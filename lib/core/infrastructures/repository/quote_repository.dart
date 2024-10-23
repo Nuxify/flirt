@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flirt/core/domain/models/api_error_response.dart';
 import 'package:flirt/core/domain/models/api_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/domain/repository/quote_repository.dart';
@@ -15,41 +16,39 @@ class QuoteRepository implements IQuoteRepository {
       : dotenv.get('STAGING_QUOTE_API');
   final String _repositoryURL = '/api/v1/flirt/quote/random';
 
-  /// This function can be used to set the base URL based on the environment,
+  /// This getter can be used to set the base URL based on the environment,
   /// if you are running a staging/production environment
-  ///
-  // @override
-  // Future<void> checkEnvironment() async {
-  //   if (await _storage.read(key: lsEnvironment) != 'production' &&
-  //       dotenv.get('API_ENV') != 'production') {
-  //     _baseURL = dotenv.get('STAGING_APP_API');
-  //   } else {
-  //     _baseURL = dotenv.get('APP_API');
-  //   }
-  // }
+  // Future<String> get _baseURL => checkEnvironment(_storage);
 
   @override
   Future<APIListResponse<QuoteResponse>> fetchQuote() async {
+    final http.Response response;
     try {
-      final http.Response response = await http.get(
+      response = await http.get(
         Uri.https(_baseURL, _repositoryURL),
         headers: httpRequestHeaders,
       );
+
+      if (response.statusCode < 200 || response.statusCode > 299) {
+        if (response.statusCode == 401) {
+          throw APIErrorResponse.unauthorizedErrorResponse();
+        }
+
+        throw APIErrorResponse.fromJson(
+          jsonDecode(response.body) as Map<String, dynamic>,
+        );
+      }
 
       final APIListResponse<QuoteResponse> result =
           APIListResponse<QuoteResponse>.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>,
         (Object? data) => QuoteResponse.fromJson(data! as Map<String, dynamic>),
       );
-      if (response.statusCode >= 200 && response.statusCode <= 299) {
-        return result;
-      }
-
-      throw result;
+      return result;
     } on SocketException {
-      final QuoteResponse error =
-          QuoteResponse.fromJson(APIResponse.socketErrorResponse());
-      throw error;
+      throw APIErrorResponse.socketErrorResponse();
+    } catch (e) {
+      throw APIErrorResponse.typeCastingErrorResponse();
     }
   }
 
