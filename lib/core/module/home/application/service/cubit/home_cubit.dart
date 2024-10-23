@@ -1,4 +1,5 @@
 import 'package:flirt/core/domain/models/api_error_response.dart';
+import 'package:flirt/core/domain/models/api_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/domain/repository/quote_repository.dart';
 import 'package:flirt/core/module/home/application/service/cubit/home_dto.dart';
@@ -26,10 +27,11 @@ class HomeCubit extends Cubit<HomeState> {
       /// Persist data inside state by emitting the default value of state. If not, it will override the value.
       emit(FetchQuoteLoading(state.data));
 
-      final QuoteResponse response = await quoteRepository.fetchQuote();
+      final APIListResponse<QuoteResponse> response =
+          await quoteRepository.fetchQuote();
       final QuoteResponseDTO quote = QuoteResponseDTO(
-        author: response.author,
-        content: response.content,
+        author: response.data.first.author,
+        content: response.data.first.quote,
       );
 
       /// Appending new value inside the list of the properties of DTO.

@@ -2,6 +2,7 @@
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flirt/core/domain/models/api_error_response.dart';
+import 'package:flirt/core/domain/models/api_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/infrastructures/repository/quote_repository.dart';
 import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
@@ -21,7 +22,13 @@ void main() {
       'On successful fetch quote, it should emit FetchQuoteSuccess.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenAnswer((_) async {
-          return QuoteResponse(author: '', content: '');
+          return APIListResponse<QuoteResponse>(
+            success: true,
+            message: '',
+            data: <QuoteResponse>[
+              QuoteResponse(author: '', quote: ''),
+            ],
+          );
         });
 
         return HomeCubit(quoteRepository: mockQuoteRepository);

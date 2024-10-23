@@ -1,3 +1,4 @@
+import 'package:flirt/core/domain/models/api_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 
 abstract class IQuoteRepository {
@@ -6,5 +7,5 @@ abstract class IQuoteRepository {
   ///
   // Future<void> checkEnvironment();
 
-  Future<QuoteResponse> fetchQuote();
+  Future<APIListResponse<QuoteResponse>> fetchQuote();
 }

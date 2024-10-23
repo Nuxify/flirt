@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flirt/core/domain/models/api_error_response.dart';
+import 'package:flirt/core/domain/models/api_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/domain/repository/quote_repository.dart';
 import 'package:flirt/internal/utils.dart';
@@ -13,14 +14,14 @@ class QuoteRepository implements IQuoteRepository {
   final String _baseURL = dotenv.get('API_ENV') != 'production'
       ? dotenv.get('QUOTE_API')
       : dotenv.get('STAGING_QUOTE_API');
-  final String _repositoryURL = '/api/random';
+  final String _repositoryURL = '/api/v1/flirt/quote/random';
 
   /// This getter can be used to set the base URL based on the environment,
   /// if you are running a staging/production environment
   // Future<String> get _baseURL => checkEnvironment(_storage);
 
   @override
-  Future<QuoteResponse> fetchQuote() async {
+  Future<APIListResponse<QuoteResponse>> fetchQuote() async {
     final http.Response response;
     try {
       response = await http.get(
@@ -38,12 +39,12 @@ class QuoteRepository implements IQuoteRepository {
         );
       }
 
-      final QuoteResponse result = QuoteResponse.fromJson(
-        List<Map<String, dynamic>>.from(
-          jsonDecode(response.body) as List<dynamic>,
-        ).first,
+      final APIListResponse<QuoteResponse> result =
+          APIListResponse<QuoteResponse>.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>,
+        (Object? data) => QuoteResponse.fromJson(data! as Map<String, dynamic>),
       );
-
+      
       return result;
     } on SocketException {
       throw APIErrorResponse.socketErrorResponse();
