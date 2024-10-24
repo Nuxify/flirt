@@ -1,4 +1,4 @@
-import 'package:flirt/internal/repository_utils.dart';
+import 'package:flirt/internal/api.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'api_error_response.g.dart';
