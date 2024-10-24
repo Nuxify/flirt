@@ -15,8 +15,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 /// Returns the base URL for the current environment.
 Future<String> checkEnvironment(
   ISecureStorageRepository storage, {
-  String apiStaging = 'STAGING_QUOTE_API',
-  String apiProduction = 'QUOTE_API',
+  String apiStaging = 'STAGING_API_URL',
+  String apiProduction = 'API_URL',
 }) async {
   String baseURL = dotenv.get(apiProduction);
 
