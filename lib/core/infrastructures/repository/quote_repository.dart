@@ -22,7 +22,8 @@ class QuoteRepository implements IQuoteRepository {
 
   @override
   Future<APIListResponse<QuoteResponse>> fetchQuote() async {
-    final http.Response response;
+    http.Response? response;
+
     try {
       response = await http.get(
         Uri.https(_baseURL, _repositoryURL),
@@ -44,7 +45,7 @@ class QuoteRepository implements IQuoteRepository {
         jsonDecode(response.body) as Map<String, dynamic>,
         (Object? data) => QuoteResponse.fromJson(data! as Map<String, dynamic>),
       );
-      
+
       return result;
     } on SocketException {
       throw APIErrorResponse.socketErrorResponse();
