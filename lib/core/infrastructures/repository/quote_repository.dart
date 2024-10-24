@@ -50,6 +50,8 @@ class QuoteRepository implements IQuoteRepository {
     } on SocketException {
       throw APIErrorResponse.socketErrorResponse();
     } catch (e) {
+      if (e is APIErrorResponse) rethrow;
+
       throw APIErrorResponse.typeCastingErrorResponse();
     }
   }
