@@ -7,8 +7,8 @@ import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/domain/repository/quote_repository.dart';
 import 'package:flirt/core/domain/repository/secure_storage_repository.dart';
 import 'package:flirt/core/infrastructures/repository/secure_storage_repository.dart';
+import 'package:flirt/internal/api.dart';
 import 'package:flirt/internal/env.dart';
-import 'package:flirt/internal/utils.dart';
 import 'package:http/http.dart' as http;
 
 class QuoteRepository implements IQuoteRepository {

@@ -1,3 +1,7 @@
+final Map<String, String> httpRequestHeaders = <String, String>{
+  'Content-Type': 'application/json; charset=UTF-8',
+};
+
 enum APIErrorStatus {
   unauthorized,
   typeCastingError,
