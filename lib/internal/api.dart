@@ -1,7 +1,3 @@
-final Map<String, String> httpRequestHeaders = <String, String>{
-  'Content-Type': 'application/json; charset=UTF-8',
-};
-
 enum APIErrorStatus {
   unauthorized,
   typeCastingError,
@@ -35,3 +31,7 @@ extension APIErrorStatusExtension on APIErrorStatus {
     }
   }
 }
+
+final Map<String, String> httpRequestHeaders = <String, String>{
+  'Content-Type': 'application/json; charset=UTF-8',
+};
