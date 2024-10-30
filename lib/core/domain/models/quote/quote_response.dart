@@ -14,6 +14,5 @@ class QuoteResponse {
   Map<String, dynamic> toJson() => _$QuoteResponseToJson(this);
 
   final String author;
-  @JsonKey(name: 'quote')
   final String quote;
 }
