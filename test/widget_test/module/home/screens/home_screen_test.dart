@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flirt/core/application/service/cubit/quote_api_cubit.dart';
-import 'package:flirt/core/application/service/cubit/quote_dto.dart';
 import 'package:flirt/core/module/home/interfaces/screens/home_screen.dart';
 import 'package:flirt/core/module/home/interfaces/widgets/quotes_card.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +28,7 @@ void main() {
 
   void listenStub() {
     when(() => mockQuoteCubit.state).thenReturn(
-      QuoteAPIState(
-        data: QuoteStateDTO(authors: <String>[], quotes: <QuoteResponseDTO>[]),
-      ),
+      QuoteAPIState(),
     );
     when(() => mockQuoteCubit.fetchQuote()).thenAnswer((_) async {});
   }

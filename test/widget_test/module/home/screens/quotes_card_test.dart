@@ -30,9 +30,7 @@ void main() {
 
   void initializeListener() {
     when(() => mockHomeCubit.state).thenReturn(
-      QuoteAPIState(
-        data: QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[]),
-      ),
+      QuoteAPIState(),
     );
     when(() => mockHomeCubit.fetchQuote()).thenAnswer((_) async {});
   }
@@ -67,10 +65,6 @@ void main() {
             FetchQuoteFailed(
               errorCode: '',
               message: errorMessage,
-              data: QuoteStateDTO(
-                quotes: <QuoteResponseDTO>[],
-                authors: <String>[],
-              ),
             ),
           ]),
         );
@@ -92,7 +86,6 @@ void main() {
           mockHomeCubit,
           Stream<FetchQuoteSuccess>.fromIterable(<FetchQuoteSuccess>[
             FetchQuoteSuccess(
-              QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[]),
               QuoteResponseDTO(
                 author: author,
                 content: content,
@@ -114,9 +107,7 @@ void main() {
         whenListen(
           mockHomeCubit,
           Stream<FetchQuoteLoading>.fromIterable(<FetchQuoteLoading>[
-            FetchQuoteLoading(
-              QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[]),
-            ),
+            FetchQuoteLoading(),
           ]),
         );
         initializeListener();
