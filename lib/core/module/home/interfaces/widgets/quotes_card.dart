@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'package:flirt/core/application/service/cubit/quote_api_cubit.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,6 +51,8 @@ class _QuotesCardState extends State<QuotesCard> {
           );
         } else if (state is FetchQuoteSuccess) {
           setState(() => textOpacity = 1.0);
+
+          context.read<HomeCubit>().storeState(state.quoteResponse);
         } else if (state is FetchQuoteLoading) {
           setState(() => textOpacity = 0);
         }
