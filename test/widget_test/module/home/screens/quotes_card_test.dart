@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockHomeCubit extends MockCubit<QuoteApiState> implements QuoteApiCubit {}
+class MockHomeCubit extends MockCubit<QuoteAPIState> implements QuoteAPICubit {}
 
 void main() {
   late MockHomeCubit mockHomeCubit;
@@ -18,7 +18,7 @@ void main() {
   });
 
   Future<void> widgetPumper(WidgetTester tester) => tester.pumpWidget(
-        BlocProvider<QuoteApiCubit>(
+        BlocProvider<QuoteAPICubit>(
           create: (BuildContext context) => mockHomeCubit,
           child: universalPumper(
             const Scaffold(
@@ -30,7 +30,7 @@ void main() {
 
   void initializeListener() {
     when(() => mockHomeCubit.state).thenReturn(
-      QuoteApiState(
+      QuoteAPIState(
         data: QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[]),
       ),
     );

@@ -20,8 +20,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: <BlocProvider<dynamic>>[
-        BlocProvider<QuoteApiCubit>(
-          create: (BuildContext context) => QuoteApiCubit(
+        BlocProvider<QuoteAPICubit>(
+          create: (BuildContext context) => QuoteAPICubit(
             quoteRepository: QuoteRepository(),
           ),
         ),

@@ -8,10 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'quote_api_state.dart';
 
-class QuoteApiCubit extends Cubit<QuoteApiState> {
-  QuoteApiCubit({required this.quoteRepository})
+class QuoteAPICubit extends Cubit<QuoteAPIState> {
+  QuoteAPICubit({required this.quoteRepository})
       : super(
-          QuoteApiState(
+          QuoteAPIState(
             data: QuoteStateDTO(
               authors: <String>[],
               quotes: <QuoteResponseDTO>[],

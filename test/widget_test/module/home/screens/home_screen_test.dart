@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockQuoteCubit extends MockCubit<QuoteApiState>
-    implements QuoteApiCubit {}
+class MockQuoteCubit extends MockCubit<QuoteAPIState>
+    implements QuoteAPICubit {}
 
 void main() {
   late MockQuoteCubit mockQuoteCubit;
@@ -19,7 +19,7 @@ void main() {
   });
 
   Future<void> pumpWidget(WidgetTester tester) async => tester.pumpWidget(
-        BlocProvider<QuoteApiCubit>(
+        BlocProvider<QuoteAPICubit>(
           create: (BuildContext context) => mockQuoteCubit,
           child: const MaterialApp(
             home: HomeScreen(),
@@ -29,7 +29,7 @@ void main() {
 
   void listenStub() {
     when(() => mockQuoteCubit.state).thenReturn(
-      QuoteApiState(
+      QuoteAPIState(
         data: QuoteStateDTO(authors: <String>[], quotes: <QuoteResponseDTO>[]),
       ),
     );

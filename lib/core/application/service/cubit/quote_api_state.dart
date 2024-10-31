@@ -1,25 +1,25 @@
 part of 'quote_api_cubit.dart';
 
-class QuoteApiState {
-  const QuoteApiState({
+class QuoteAPIState {
+  const QuoteAPIState({
     required this.data,
   });
 
   final QuoteStateDTO data;
 }
 
-class FetchQuoteLoading extends QuoteApiState {
+class FetchQuoteLoading extends QuoteAPIState {
   FetchQuoteLoading(QuoteStateDTO data) : super(data: data);
 }
 
-class FetchQuoteSuccess extends QuoteApiState {
+class FetchQuoteSuccess extends QuoteAPIState {
   const FetchQuoteSuccess(QuoteStateDTO data, this.quoteResponse)
       : super(data: data);
 
   final QuoteResponseDTO quoteResponse;
 }
 
-class FetchQuoteFailed extends QuoteApiState {
+class FetchQuoteFailed extends QuoteAPIState {
   const FetchQuoteFailed({
     required this.errorCode,
     required this.message,
