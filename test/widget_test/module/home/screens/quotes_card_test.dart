@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
-import 'package:flirt/core/module/home/application/service/cubit/home_dto.dart';
+import 'package:flirt/core/application/service/cubit/quote_api_cubit.dart';
+import 'package:flirt/core/application/service/cubit/quote_dto.dart';
 import 'package:flirt/core/module/home/interfaces/widgets/quotes_card.dart';
 import 'package:flirt/test/main_test.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockHomeCubit extends MockCubit<HomeState> implements HomeCubit {}
+class MockHomeCubit extends MockCubit<QuoteApiState> implements QuoteApiCubit {}
 
 void main() {
   late MockHomeCubit mockHomeCubit;
@@ -18,7 +18,7 @@ void main() {
   });
 
   Future<void> widgetPumper(WidgetTester tester) => tester.pumpWidget(
-        BlocProvider<HomeCubit>(
+        BlocProvider<QuoteApiCubit>(
           create: (BuildContext context) => mockHomeCubit,
           child: universalPumper(
             const Scaffold(
@@ -30,7 +30,7 @@ void main() {
 
   void initializeListener() {
     when(() => mockHomeCubit.state).thenReturn(
-      HomeState(
+      QuoteApiState(
         data: QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[]),
       ),
     );
