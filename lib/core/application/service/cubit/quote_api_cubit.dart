@@ -9,49 +9,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'quote_api_state.dart';
 
 class QuoteAPICubit extends Cubit<QuoteAPIState> {
-  QuoteAPICubit({required this.quoteRepository})
-      : super(
-          QuoteAPIState(
-            data: QuoteStateDTO(
-              authors: <String>[],
-              quotes: <QuoteResponseDTO>[],
-            ),
-          ),
-        );
+  QuoteAPICubit({required this.quoteRepository}) : super(QuoteAPIState());
   final IQuoteRepository quoteRepository;
 
   /// Get Quote
   Future<void> fetchQuote() async {
     try {
-      /// Persist data inside state by emitting the default value of state. If not, it will override the value.
-      emit(FetchQuoteLoading(state.data));
+      emit(FetchQuoteLoading());
 
       final APIListResponse<QuoteResponse> response =
           await quoteRepository.fetchQuote();
+
       final QuoteResponseDTO quote = QuoteResponseDTO(
         author: response.data.first.author,
         content: response.data.first.quote,
       );
 
-      /// Appending new value inside the list of the properties of DTO.
-      state.data.quotes.add(quote);
-      state.data.authors.add(quote.author);
-
       // emit FetchQuoteSuccess event
       // this set `quotes` in base class and emits an event
-      emit(FetchQuoteSuccess(state.data, quote));
-
-      /// This approach is used to demonstrate persistent data storing that you might use on cases where you need to hold data for a series of screens in a module.
-      /// For example: If you separate a lengthy registration form in to 5 separate screens, you would need to hold that data until the last step.
-
-      // If not for demonstration purposes, this approach should be using code below - emitting state directly.
-      // emit(QuoteState(data: QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[])));
+      emit(FetchQuoteSuccess(quote));
     } on APIErrorResponse catch (error) {
       emit(
         FetchQuoteFailed(
           errorCode: error.errorCode!,
           message: error.message,
-          data: state.data,
         ),
       );
     } catch (e, stackTrace) {
@@ -61,7 +42,6 @@ class QuoteAPICubit extends Cubit<QuoteAPIState> {
         FetchQuoteFailed(
           errorCode: '$e',
           message: 'Something went wrong.',
-          data: state.data,
         ),
       );
     }
