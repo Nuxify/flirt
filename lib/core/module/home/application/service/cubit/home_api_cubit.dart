@@ -1,15 +1,15 @@
-import 'package:flirt/core/application/service/cubit/quote_dto.dart';
 import 'package:flirt/core/domain/models/api_error_response.dart';
 import 'package:flirt/core/domain/models/api_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/domain/repository/quote_repository.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_dto.dart';
 import 'package:flirt/internal/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'quote_api_state.dart';
+part 'home_api_state.dart';
 
-class QuoteAPICubit extends Cubit<QuoteAPIState> {
-  QuoteAPICubit({required this.quoteRepository}) : super(QuoteAPIState());
+class HomeAPICubit extends Cubit<HomeAPIState> {
+  HomeAPICubit({required this.quoteRepository}) : super(HomeAPIState());
   final IQuoteRepository quoteRepository;
 
   /// Get Quote

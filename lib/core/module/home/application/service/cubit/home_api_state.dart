@@ -1,16 +1,16 @@
-part of 'quote_api_cubit.dart';
+part of 'home_api_cubit.dart';
 
-class QuoteAPIState {}
+class HomeAPIState {}
 
-class FetchQuoteLoading extends QuoteAPIState {}
+class FetchQuoteLoading extends HomeAPIState {}
 
-class FetchQuoteSuccess extends QuoteAPIState {
+class FetchQuoteSuccess extends HomeAPIState {
   FetchQuoteSuccess(this.quoteResponse);
 
   final QuoteResponseDTO quoteResponse;
 }
 
-class FetchQuoteFailed extends QuoteAPIState {
+class FetchQuoteFailed extends HomeAPIState {
   FetchQuoteFailed({
     required this.errorCode,
     required this.message,
