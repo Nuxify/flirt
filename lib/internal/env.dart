@@ -21,7 +21,7 @@ Future<String> checkEnvironment(
   String baseURL = dotenv.get(apiProduction);
 
   if (await storage.read(key: lsEnvironment) != 'production' &&
-      dotenv.get('API_ENV') != 'production') {
+      dotenv.get('APP_ENV') != 'production') {
     baseURL = dotenv.get(apiStaging);
   }
 
