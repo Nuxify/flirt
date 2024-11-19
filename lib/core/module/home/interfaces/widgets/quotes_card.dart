@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flirt/core/application/service/cubit/quote_api_cubit.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,10 +17,10 @@ class _QuotesCardState extends State<QuotesCard> {
   @override
   void initState() {
     super.initState();
-    context.read<QuoteApiCubit>().fetchQuote();
+    context.read<HomeCubit>().fetchQuote();
     _quoteTimer = Timer.periodic(
       const Duration(seconds: 15),
-      (_) => context.read<QuoteApiCubit>().fetchQuote(),
+      (_) => context.read<HomeCubit>().fetchQuote(),
     );
   }
 
@@ -34,12 +34,12 @@ class _QuotesCardState extends State<QuotesCard> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
 
-    return BlocConsumer<QuoteApiCubit, QuoteApiState>(
-      listenWhen: (QuoteApiState previous, QuoteApiState current) =>
+    return BlocConsumer<HomeCubit, HomeState>(
+      listenWhen: (HomeState previous, HomeState current) =>
           current is FetchQuoteFailed ||
           current is FetchQuoteSuccess ||
           current is FetchQuoteLoading,
-      listener: (BuildContext context, QuoteApiState state) {
+      listener: (BuildContext context, HomeState state) {
         if (state is FetchQuoteFailed) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -53,9 +53,9 @@ class _QuotesCardState extends State<QuotesCard> {
           setState(() => textOpacity = 0);
         }
       },
-      buildWhen: (QuoteApiState previous, QuoteApiState current) =>
+      buildWhen: (HomeState previous, HomeState current) =>
           current is FetchQuoteSuccess,
-      builder: (BuildContext context, QuoteApiState state) {
+      builder: (BuildContext context, HomeState state) {
         if (state is FetchQuoteSuccess) {
           return Padding(
             padding: const EdgeInsets.only(top: 15, left: 30, right: 30),
