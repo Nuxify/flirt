@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:flirt/core/application/service/cubit/quote_api_cubit.dart';
-import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_api_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,10 +18,10 @@ class _QuotesCardState extends State<QuotesCard> {
   @override
   void initState() {
     super.initState();
-    context.read<QuoteAPICubit>().fetchQuote();
+    context.read<HomeAPICubit>().fetchQuote();
     _quoteTimer = Timer.periodic(
       const Duration(seconds: 15),
-      (_) => context.read<QuoteAPICubit>().fetchQuote(),
+      (_) => context.read<HomeAPICubit>().fetchQuote(),
     );
   }
 
@@ -36,12 +35,12 @@ class _QuotesCardState extends State<QuotesCard> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
 
-    return BlocConsumer<QuoteAPICubit, QuoteAPIState>(
-      listenWhen: (QuoteAPIState previous, QuoteAPIState current) =>
+    return BlocConsumer<HomeAPICubit, HomeAPIState>(
+      listenWhen: (HomeAPIState previous, HomeAPIState current) =>
           current is FetchQuoteFailed ||
           current is FetchQuoteSuccess ||
           current is FetchQuoteLoading,
-      listener: (BuildContext context, QuoteAPIState state) {
+      listener: (BuildContext context, HomeAPIState state) {
         if (state is FetchQuoteFailed) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -51,15 +50,13 @@ class _QuotesCardState extends State<QuotesCard> {
           );
         } else if (state is FetchQuoteSuccess) {
           setState(() => textOpacity = 1.0);
-
-          context.read<HomeCubit>().storeState(state.quoteResponse);
         } else if (state is FetchQuoteLoading) {
           setState(() => textOpacity = 0);
         }
       },
-      buildWhen: (QuoteAPIState previous, QuoteAPIState current) =>
+      buildWhen: (HomeAPIState previous, HomeAPIState current) =>
           current is FetchQuoteSuccess,
-      builder: (BuildContext context, QuoteAPIState state) {
+      builder: (BuildContext context, HomeAPIState state) {
         if (state is FetchQuoteSuccess) {
           return Padding(
             padding: const EdgeInsets.only(top: 15, left: 30, right: 30),
