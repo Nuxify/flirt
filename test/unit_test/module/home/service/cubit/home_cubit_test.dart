@@ -1,11 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flirt/core/application/service/cubit/quote_api_cubit.dart';
 import 'package:flirt/core/domain/models/api_error_response.dart';
 import 'package:flirt/core/domain/models/api_response.dart';
 import 'package:flirt/core/domain/models/quote/quote_response.dart';
 import 'package:flirt/core/infrastructures/repository/quote_repository.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -18,7 +18,7 @@ void main() {
     mockQuoteRepository = MockQuoteRepository();
   });
   group('Quote cubit.', () {
-    blocTest<QuoteApiCubit, QuoteApiState>(
+    blocTest<HomeCubit, HomeState>(
       'On successful fetch quote, it should emit FetchQuoteSuccess.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenAnswer((_) async {
@@ -31,16 +31,16 @@ void main() {
           );
         });
 
-        return QuoteApiCubit(quoteRepository: mockQuoteRepository);
+        return HomeCubit(quoteRepository: mockQuoteRepository);
       },
-      act: (QuoteApiCubit cubit) => cubit.fetchQuote(),
-      expect: () => <TypeMatcher<QuoteApiState>>[
+      act: (HomeCubit cubit) => cubit.fetchQuote(),
+      expect: () => <TypeMatcher<HomeState>>[
         isA<FetchQuoteLoading>(),
         isA<FetchQuoteSuccess>(),
       ],
     );
 
-    blocTest<QuoteApiCubit, QuoteApiState>(
+    blocTest<HomeCubit, HomeState>(
       'On failed fetch quote, it should emit FetchQuoteFailed.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenThrow(
@@ -50,10 +50,10 @@ void main() {
           ),
         );
 
-        return QuoteApiCubit(quoteRepository: mockQuoteRepository);
+        return HomeCubit(quoteRepository: mockQuoteRepository);
       },
-      act: (QuoteApiCubit cubit) => cubit.fetchQuote(),
-      expect: () => <TypeMatcher<QuoteApiState>>[
+      act: (HomeCubit cubit) => cubit.fetchQuote(),
+      expect: () => <TypeMatcher<HomeState>>[
         isA<FetchQuoteLoading>(),
         isA<FetchQuoteFailed>(),
       ],
