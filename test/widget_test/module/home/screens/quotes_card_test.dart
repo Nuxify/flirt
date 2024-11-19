@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flirt/core/application/service/cubit/quote_api_cubit.dart';
-import 'package:flirt/core/application/service/cubit/quote_dto.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_api_cubit.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_dto.dart';
 import 'package:flirt/core/module/home/interfaces/widgets/quotes_card.dart';
 import 'package:flirt/test/main_test.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockHomeCubit extends MockCubit<QuoteAPIState> implements QuoteAPICubit {}
+class MockHomeCubit extends MockCubit<HomeAPIState> implements HomeAPICubit {}
 
 void main() {
   late MockHomeCubit mockHomeCubit;
@@ -18,7 +18,7 @@ void main() {
   });
 
   Future<void> widgetPumper(WidgetTester tester) => tester.pumpWidget(
-        BlocProvider<QuoteAPICubit>(
+        BlocProvider<HomeAPICubit>(
           create: (BuildContext context) => mockHomeCubit,
           child: universalPumper(
             const Scaffold(
@@ -30,7 +30,7 @@ void main() {
 
   void initializeListener() {
     when(() => mockHomeCubit.state).thenReturn(
-      QuoteAPIState(),
+      HomeAPIState(),
     );
     when(() => mockHomeCubit.fetchQuote()).thenAnswer((_) async {});
   }
