@@ -18,7 +18,7 @@ void main() {
     mockQuoteRepository = MockQuoteRepository();
   });
   group('Quote cubit.', () {
-    blocTest<QuoteAPICubit, QuoteAPIState>(
+    blocTest<QuoteApiCubit, QuoteApiState>(
       'On successful fetch quote, it should emit FetchQuoteSuccess.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenAnswer((_) async {
@@ -31,16 +31,16 @@ void main() {
           );
         });
 
-        return QuoteAPICubit(quoteRepository: mockQuoteRepository);
+        return QuoteApiCubit(quoteRepository: mockQuoteRepository);
       },
-      act: (QuoteAPICubit cubit) => cubit.fetchQuote(),
-      expect: () => <TypeMatcher<QuoteAPIState>>[
+      act: (QuoteApiCubit cubit) => cubit.fetchQuote(),
+      expect: () => <TypeMatcher<QuoteApiState>>[
         isA<FetchQuoteLoading>(),
         isA<FetchQuoteSuccess>(),
       ],
     );
 
-    blocTest<QuoteAPICubit, QuoteAPIState>(
+    blocTest<QuoteApiCubit, QuoteApiState>(
       'On failed fetch quote, it should emit FetchQuoteFailed.',
       build: () {
         when(() => mockQuoteRepository.fetchQuote()).thenThrow(
@@ -50,10 +50,10 @@ void main() {
           ),
         );
 
-        return QuoteAPICubit(quoteRepository: mockQuoteRepository);
+        return QuoteApiCubit(quoteRepository: mockQuoteRepository);
       },
-      act: (QuoteAPICubit cubit) => cubit.fetchQuote(),
-      expect: () => <TypeMatcher<QuoteAPIState>>[
+      act: (QuoteApiCubit cubit) => cubit.fetchQuote(),
+      expect: () => <TypeMatcher<QuoteApiState>>[
         isA<FetchQuoteLoading>(),
         isA<FetchQuoteFailed>(),
       ],

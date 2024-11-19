@@ -17,10 +17,10 @@ class _QuotesCardState extends State<QuotesCard> {
   @override
   void initState() {
     super.initState();
-    context.read<QuoteAPICubit>().fetchQuote();
+    context.read<QuoteApiCubit>().fetchQuote();
     _quoteTimer = Timer.periodic(
       const Duration(seconds: 15),
-      (_) => context.read<QuoteAPICubit>().fetchQuote(),
+      (_) => context.read<QuoteApiCubit>().fetchQuote(),
     );
   }
 
@@ -34,12 +34,12 @@ class _QuotesCardState extends State<QuotesCard> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
 
-    return BlocConsumer<QuoteAPICubit, QuoteAPIState>(
-      listenWhen: (QuoteAPIState previous, QuoteAPIState current) =>
+    return BlocConsumer<QuoteApiCubit, QuoteApiState>(
+      listenWhen: (QuoteApiState previous, QuoteApiState current) =>
           current is FetchQuoteFailed ||
           current is FetchQuoteSuccess ||
           current is FetchQuoteLoading,
-      listener: (BuildContext context, QuoteAPIState state) {
+      listener: (BuildContext context, QuoteApiState state) {
         if (state is FetchQuoteFailed) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -53,9 +53,9 @@ class _QuotesCardState extends State<QuotesCard> {
           setState(() => textOpacity = 0);
         }
       },
-      buildWhen: (QuoteAPIState previous, QuoteAPIState current) =>
+      buildWhen: (QuoteApiState previous, QuoteApiState current) =>
           current is FetchQuoteSuccess,
-      builder: (BuildContext context, QuoteAPIState state) {
+      builder: (BuildContext context, QuoteApiState state) {
         if (state is FetchQuoteSuccess) {
           return Padding(
             padding: const EdgeInsets.only(top: 15, left: 30, right: 30),
