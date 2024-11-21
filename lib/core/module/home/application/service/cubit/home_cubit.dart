@@ -1,4 +1,4 @@
-import 'package:flirt/core/application/service/cubit/quote_dto.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_dto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'home_state.dart';
