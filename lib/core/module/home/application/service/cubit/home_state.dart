@@ -1,3 +1,9 @@
 part of 'home_cubit.dart';
 
-class HomeState {}
+class HomeState {
+  HomeState({
+    required this.data,
+  });
+
+  final QuoteStateDTO data;
+}
