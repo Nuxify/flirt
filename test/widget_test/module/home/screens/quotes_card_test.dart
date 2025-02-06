@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flirt/core/application/service/cubit/quote_api_cubit.dart';
-import 'package:flirt/core/application/service/cubit/quote_dto.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
+import 'package:flirt/core/module/home/application/service/cubit/home_dto.dart';
 import 'package:flirt/core/module/home/interfaces/widgets/quotes_card.dart';
 import 'package:flirt/test/main_test.dart';
 import 'package:flutter/material.dart';
@@ -8,17 +8,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockHomeCubit extends MockCubit<QuoteAPIState> implements QuoteAPICubit {}
+class MockHomeCubit extends MockCubit<HomeState> implements HomeCubit {}
 
 void main() {
   late MockHomeCubit mockHomeCubit;
 
   setUp(() {
     mockHomeCubit = MockHomeCubit();
+
+    registerFallbackValue(
+      QuoteResponseDTO(
+        author: '',
+        content: '',
+      ),
+    );
   });
 
   Future<void> widgetPumper(WidgetTester tester) => tester.pumpWidget(
-        BlocProvider<QuoteAPICubit>(
+        BlocProvider<HomeCubit>(
           create: (BuildContext context) => mockHomeCubit,
           child: universalPumper(
             const Scaffold(
@@ -30,8 +37,14 @@ void main() {
 
   void initializeListener() {
     when(() => mockHomeCubit.state).thenReturn(
-      QuoteAPIState(),
+      HomeState(
+        data: QuoteStateDTO(
+          quotes: <QuoteResponseDTO>[],
+          authors: <String>[],
+        ),
+      ),
     );
+    when(() => mockHomeCubit.storeState(any())).thenAnswer((_) async {});
     when(() => mockHomeCubit.fetchQuote()).thenAnswer((_) async {});
   }
 
@@ -65,6 +78,10 @@ void main() {
             FetchQuoteFailed(
               errorCode: '',
               message: errorMessage,
+              data: QuoteStateDTO(
+                quotes: <QuoteResponseDTO>[],
+                authors: <String>[],
+              ),
             ),
           ]),
         );
@@ -90,6 +107,10 @@ void main() {
                 author: author,
                 content: content,
               ),
+              data: QuoteStateDTO(
+                quotes: <QuoteResponseDTO>[],
+                authors: <String>[],
+              ),
             ),
           ]),
         );
@@ -107,7 +128,12 @@ void main() {
         whenListen(
           mockHomeCubit,
           Stream<FetchQuoteLoading>.fromIterable(<FetchQuoteLoading>[
-            FetchQuoteLoading(),
+            FetchQuoteLoading(
+              data: QuoteStateDTO(
+                quotes: <QuoteResponseDTO>[],
+                authors: <String>[],
+              ),
+            ),
           ]),
         );
         initializeListener();
