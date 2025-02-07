@@ -1,5 +1,4 @@
 import 'package:flirt/configs/themes.dart';
-import 'package:flirt/core/application/service/cubit/quote_api_cubit.dart';
 import 'package:flirt/core/infrastructures/repository/quote_repository.dart';
 import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
 import 'package:flirt/core/module/home/interfaces/screens/home_screen.dart';
@@ -21,13 +20,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: <BlocProvider<dynamic>>[
-        BlocProvider<QuoteAPICubit>(
-          create: (BuildContext context) => QuoteAPICubit(
+        BlocProvider<HomeCubit>(
+          create: (BuildContext context) => HomeCubit(
             quoteRepository: QuoteRepository(),
           ),
-        ),
-        BlocProvider<HomeCubit>(
-          create: (BuildContext context) => HomeCubit(),
         ),
       ],
       child: MaterialApp(
