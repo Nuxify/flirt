@@ -29,7 +29,6 @@ void showSnackbar(
 }
 
 FadeTransition fadeTransition(
-  _,
   Animation<double> animation,
   __,
   Widget child,
