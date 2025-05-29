@@ -14,10 +14,18 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   http: ^1.1.2
   json_annotation: ^4.8.1
-  nuxify_widgetbook:
-    git:
-      url: git@github.com:Nuxify/widgetbook.git
-      ref: v1.0.0
+  # Core UI widgets
+  # nuxify_widgetbook_core:
+  #     git:
+  #       url: https://github.com/Nuxify/widgetbook.git
+  #       path: core
+  #       ref: v1.7.2
+  # Mobile Scanner widget
+  # nuxify_widgetbook_qr_scanner:
+  #     git:
+  #       url: https://github.com/Nuxify/widgetbook.git
+  #       path: qr_scanner
+  #       ref: v1.7.2
 
 dev_dependencies:
   bloc_test: ^9.1.7
