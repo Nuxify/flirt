@@ -13,8 +13,6 @@ extension APIErrorStatusExtension on APIErrorStatus {
         return 'TYPE_CASTING_ERROR';
       case APIErrorStatus.socketExceptionError:
         return 'NO_INTERNET_CONNECTION';
-      default:
-        return 'An unknown error occurred.';
     }
   }
 
@@ -26,8 +24,6 @@ extension APIErrorStatusExtension on APIErrorStatus {
         return 'Type casting error occurred.';
       case APIErrorStatus.socketExceptionError:
         return 'No Internet Connection.';
-      default:
-        return 'An unknown error occurred.';
     }
   }
 }
