@@ -9,27 +9,36 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.5
-  flutter_dotenv: ^5.1.0
-  flutter_secure_storage: ^9.0.0
-  http: ^1.1.2
-  json_annotation: ^4.8.1
-  nuxify_widgetbook:
-    git:
-      url: git@github.com:Nuxify/widgetbook.git
-      ref: v1.0.0
+  flutter_bloc: ^9.1.1
+  flutter_dotenv: ^5.2.1
+  flutter_secure_storage: ^9.2.4
+  http: ^1.4.0
+  intl: ^0.20.2
+  json_annotation: ^4.9.0
+  # Core UI widgets
+  # nuxify_widgetbook_core:
+  #     git:
+  #       url: https://github.com/Nuxify/widgetbook.git
+  #       path: core
+  #       ref: v1.7.2
+  # Mobile Scanner widget
+  # nuxify_widgetbook_qr_scanner:
+  #     git:
+  #       url: https://github.com/Nuxify/widgetbook.git
+  #       path: qr_scanner
+  #       ref: v1.7.2
 
 dev_dependencies:
-  bloc_test: ^9.1.7
-  build_runner: ^2.4.9
-  flutter_gen_runner: ^5.4.0
-  flutter_launcher_icons: ^0.13.1
-  flutter_native_splash: ^2.4.0
+  bloc_test: ^10.0.0
+  build_runner: ^2.4.15
+  flutter_gen_runner: ^5.10.0
+  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.6
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.8.0
-  lint: ^2.3.0
-  mocktail: ^1.0.3
+  json_serializable: ^6.9.5
+  lint: ^2.8.0
+  mocktail: ^1.0.4
 
 flutter:
   uses-material-design: true

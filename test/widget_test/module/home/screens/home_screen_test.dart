@@ -17,7 +17,7 @@ void main() {
     mockQuoteCubit = MockQuoteCubit();
   });
 
-  Future<void> pumpWidget(WidgetTester tester) async => tester.pumpWidget(
+  Future<void> pumpWidget(WidgetTester tester) => tester.pumpWidget(
         BlocProvider<HomeCubit>(
           create: (BuildContext context) => mockQuoteCubit,
           child: const MaterialApp(
