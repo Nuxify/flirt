@@ -1,6 +1,7 @@
 plugins {
     id "com.android.application"
-    id "kotlin-android"
+    // Use modern Kotlin Android plugin ID aligned with settings.gradle
+    id 'org.jetbrains.kotlin.android'
     id "dev.flutter.flutter-gradle-plugin"
 }
 
@@ -32,8 +33,10 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.example.flirt"
-    compileSdkVersion 35
-    ndkVersion flutter.ndkVersion
+
+    compileSdkVersion 36
+    buildToolsVersion "36.0.0"
+    ndkVersion "28.0.12674087"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
