@@ -64,6 +64,7 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/images/app-launcher-icon.png"
   remove_alpha_ios: true
+  background_color_ios: "#000000"
 
 flutter_native_splash:
   color: "#000000"
