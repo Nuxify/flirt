@@ -1,21 +1,21 @@
 name: flirt
 description: "A new Flutter project."
 publish_to: "none"
-version: 1.5.0
+version: 1.6.0
 
 environment:
-  sdk: ">=3.2.3 <4.0.0"
+  sdk: ^3.10.7
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
-  flutter_dotenv: ^5.2.1
-  flutter_secure_storage: ^9.2.4
-  http: ^1.4.0
+  flutter_dotenv: ^6.0.0
+  flutter_secure_storage: ^10.0.0
+  http: ^1.6.0
   intl: ^0.20.2
   json_annotation: ^4.9.0
-  # Core UI widgets
+   # Core UI widgets
   # nuxify_widgetbook_core:
   #     git:
   #       url: https://github.com/Nuxify/widgetbook.git
@@ -30,13 +30,14 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^10.0.0
-  build_runner: ^2.4.15
-  flutter_gen_runner: ^5.10.0
-  flutter_launcher_icons: ^0.14.3
-  flutter_native_splash: ^2.4.6
+  build_runner: ^2.10.5
+  flutter_gen_runner: ^5.12.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_lints: ^6.0.0
+  flutter_native_splash: ^2.4.7
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.9.5
+  json_serializable: ^6.11.2
   lint: ^2.8.0
   mocktail: ^1.0.4
 
@@ -63,6 +64,7 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/images/app-launcher-icon.png"
   remove_alpha_ios: true
+  background_color_ios: "#000000"
 
 flutter_native_splash:
   color: "#000000"

@@ -30,7 +30,7 @@ void showSnackbar(
 
 FadeTransition fadeTransition(
   Animation<double> animation,
-  __,
+  _,
   Widget child,
 ) {
   const double begin = 0.0;
