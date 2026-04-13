@@ -1,7 +1,7 @@
 name: flirt
 description: "A new Flutter project."
 publish_to: "none"
-version: 1.6.0
+version: 1.6.1
 
 environment:
   sdk: ^3.10.7
