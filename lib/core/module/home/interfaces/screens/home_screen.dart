@@ -18,7 +18,8 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Assets.images.nuxifyLogo.image(width: width * 0.3),
+                    Assets.images.nuxifyLogo
+                      .image(width: width * 0.3, semanticLabel: 'Nuxify logo'),
                   const QuotesCard(),
                 ],
               ),
@@ -27,7 +28,7 @@ class HomeScreen extends StatelessWidget {
               width: width,
               padding: const EdgeInsets.all(20),
               child: const Text(
-                'v1.6.0',
+                'v1.6.1',
                 style: TextStyle(fontSize: 11, color: Colors.white54),
                 textAlign: TextAlign.center,
               ),
