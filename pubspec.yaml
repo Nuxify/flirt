@@ -20,13 +20,13 @@ dependencies:
   #     git:
   #       url: https://github.com/Nuxify/widgetbook.git
   #       path: core
-  #       ref: v1.7.2
+  #       ref: v1.7.7
   # Mobile Scanner widget
   # nuxify_widgetbook_qr_scanner:
   #     git:
   #       url: https://github.com/Nuxify/widgetbook.git
   #       path: qr_scanner
-  #       ref: v1.7.2
+  #       ref: v1.7.7
 
 dev_dependencies:
   bloc_test: ^10.0.0
