@@ -67,23 +67,33 @@ class _QuotesCardState extends State<QuotesCard> {
               opacity: textOpacity,
               child: Column(
                 children: <Widget>[
-                  Text(
-                    state.quoteResponse.content,
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                      color: Colors.white54,
-                      fontStyle: FontStyle.italic,
-                      fontSize: 12,
+                  Semantics(
+                    label: 'Quote: ${state.quoteResponse.content}',
+                    child: ExcludeSemantics(
+                      child: Text(
+                        state.quoteResponse.content,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          color: Colors.white54,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 12,
+                        ),
+                      ),
                     ),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: Text(
-                      '- ${state.quoteResponse.author}',
-                      style: const TextStyle(
-                        color: Colors.white54,
-                        fontStyle: FontStyle.italic,
-                        fontSize: 12,
+                    child: Semantics(
+                      label: 'Author: ${state.quoteResponse.author}',
+                      child: ExcludeSemantics(
+                        child: Text(
+                          '- ${state.quoteResponse.author}',
+                          style: const TextStyle(
+                            color: Colors.white54,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 12,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -95,10 +105,13 @@ class _QuotesCardState extends State<QuotesCard> {
           return Container(
             padding: const EdgeInsets.only(top: 15),
             width: width * .5,
-            child: LinearProgressIndicator(
-              color: Colors.white12,
-              backgroundColor: Colors.black,
-              borderRadius: BorderRadius.circular(20),
+            child: Semantics(
+              label: 'Loading quotes',
+              child: LinearProgressIndicator(
+                color: Colors.white12,
+                backgroundColor: Colors.black,
+                borderRadius: BorderRadius.circular(20),
+              ),
             ),
           );
         }
