@@ -18,21 +18,16 @@ void main() {
   });
 
   Future<void> pumpWidget(WidgetTester tester) => tester.pumpWidget(
-        BlocProvider<HomeCubit>(
-          create: (BuildContext context) => mockQuoteCubit,
-          child: const MaterialApp(
-            home: HomeScreen(),
-          ),
-        ),
-      );
+    BlocProvider<HomeCubit>(
+      create: (BuildContext context) => mockQuoteCubit,
+      child: const MaterialApp(home: HomeScreen()),
+    ),
+  );
 
   void listenStub() {
     when(() => mockQuoteCubit.state).thenReturn(
       HomeState(
-        data: QuoteStateDTO(
-          quotes: <QuoteResponseDTO>[],
-          authors: <String>[],
-        ),
+        data: QuoteStateDTO(quotes: <QuoteResponseDTO>[], authors: <String>[]),
       ),
     );
     when(() => mockQuoteCubit.fetchQuote()).thenAnswer((_) async {});
@@ -47,7 +42,7 @@ void main() {
 
       expect(find.byType(QuotesCard), findsOneWidget);
       expect(find.byType(Image), findsOneWidget);
-      expect(find.text('v1.6.1'), findsOneWidget);
+      expect(find.text('v1.7.0'), findsOneWidget);
     });
   });
 }
