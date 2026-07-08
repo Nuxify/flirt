@@ -52,6 +52,11 @@ class APIErrorResponse {
     errorCode: APIErrorStatus.unauthorized.errorTemplate,
   );
 
+  factory APIErrorResponse.serverErrorResponse() => APIErrorResponse(
+    message: APIErrorStatus.serverError.errorMessage,
+    errorCode: APIErrorStatus.serverError.errorTemplate,
+  );
+
   factory APIErrorResponse.fromJson(Map<String, dynamic> json) =>
       _$APIErrorResponseFromJson(json);
   Map<String, dynamic> toJson() => _$APIErrorResponseToJson(this);
