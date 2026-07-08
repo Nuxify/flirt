@@ -85,19 +85,17 @@ class SettingsCubit extends Cubit<SettingsState> {
           ),
         ),
       );
-    } on APIErrorResponse catch (error) {
+    } catch (e, stackTrace) {
+      if (e is! APIErrorResponse) {
+        logError(e, stackTrace);
+      }
+
+      final APIErrorResponse error = translateError(e);
+
       emit(
         FetchLatestVersionFailed(
           message: error.message,
           errorCode: error.errorCode,
-        ),
-      );
-    } catch (e, stackTrace) {
-      logError(e, stackTrace);
-      emit(
-        FetchLatestVersionFailed(
-          message: '$e',
-          errorCode: 'Something went wrong.',
         ),
       );
     }
