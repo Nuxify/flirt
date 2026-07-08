@@ -2,6 +2,7 @@ enum APIErrorStatus {
   unauthorized,
   typeCastingError,
   socketExceptionError,
+  timeoutError,
 }
 
 extension APIErrorStatusExtension on APIErrorStatus {
@@ -13,6 +14,8 @@ extension APIErrorStatusExtension on APIErrorStatus {
         return 'TYPE_CASTING_ERROR';
       case APIErrorStatus.socketExceptionError:
         return 'NO_INTERNET_CONNECTION';
+      case APIErrorStatus.timeoutError:
+        return 'REQUEST_TIMEOUT';
     }
   }
 
@@ -24,6 +27,8 @@ extension APIErrorStatusExtension on APIErrorStatus {
         return 'Type casting error occurred.';
       case APIErrorStatus.socketExceptionError:
         return 'No Internet Connection.';
+      case APIErrorStatus.timeoutError:
+        return 'Request timed out. Please try again.';
     }
   }
 }
