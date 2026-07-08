@@ -10,14 +10,14 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit({required this.quoteRepository})
-      : super(
-          HomeState(
-            data: QuoteStateDTO(
-              authors: <String>[],
-              quotes: <QuoteResponseDTO>[],
-            ),
+    : super(
+        HomeState(
+          data: QuoteStateDTO(
+            authors: <String>[],
+            quotes: <QuoteResponseDTO>[],
           ),
-        );
+        ),
+      );
   final IQuoteRepository quoteRepository;
 
   /// This method is used to store a new quote and its author in the state.
@@ -36,8 +36,8 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       emit(FetchQuoteLoading(data: state.data));
 
-      final APIListResponse<QuoteResponse> response =
-          await quoteRepository.fetchQuote();
+      final APIListResponse<QuoteResponse> response = await quoteRepository
+          .fetchQuote();
 
       final QuoteResponseDTO quote = QuoteResponseDTO(
         author: response.data.first.author,
@@ -49,21 +49,17 @@ class HomeCubit extends Cubit<HomeState> {
       // emit FetchQuoteSuccess event
       // this set `quotes` in base class and emits an event
       emit(FetchQuoteSuccess(quote, data: state.data));
-    } on APIErrorResponse catch (error) {
+    } catch (e, stackTrace) {
+      if (e is! APIErrorResponse) {
+        logError(e, stackTrace);
+      }
+
+      final APIErrorResponse error = translateError(e);
+
       emit(
         FetchQuoteFailed(
           errorCode: error.errorCode!,
           message: error.message,
-          data: state.data,
-        ),
-      );
-    } catch (e, stackTrace) {
-      logError(e, stackTrace);
-
-      emit(
-        FetchQuoteFailed(
-          errorCode: '$e',
-          message: 'Something went wrong.',
           data: state.data,
         ),
       );

@@ -38,4 +38,16 @@ To use Flutter debug tools, go to Run -> Start Debugging in VS Code.
 
 See Makefile for other commands.
 
+## Error Codes
+
+The following table documents the standard error codes used across the project, their keys, and a short description or suggested action.
+
+| Code | Key | Description | Notes |
+|------|-----|-------------|-------|
+| `ERR-DAT-1` | `apiParseError` | TypeError or FormatException while parsing API response | Check API response shape and parsing logic |
+| `ERR-NET-1` | `serverError` | Server error returned by backend | HTTP 500/503 — backend may be crashing |
+| `ERR-NET-2` | `timeout` | Connection timeout | Check network connectivity; retry or increase timeout |
+| `ERR-NET-3` | (socket exception) | Socket exception occurred | Verify internet connection and socket handling |
+| `ERR-AUTH-1` | `unauthenticated` | Unauthenticated request | HTTP 401 — token expired or invalid; re-authenticate |
+
 Made with ❤️ at [Nuxify](https://nuxify.tech)

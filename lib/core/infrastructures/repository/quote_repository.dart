@@ -35,6 +35,10 @@ class QuoteRepository implements IQuoteRepository {
           throw APIErrorResponse.unauthorizedErrorResponse();
         }
 
+        if (response.statusCode >= 500 && response.statusCode <= 599) {
+          throw APIErrorResponse.serverErrorResponse();
+        }
+
         throw APIErrorResponse.fromJson(
           jsonDecode(response.body) as Map<String, dynamic>,
         );
