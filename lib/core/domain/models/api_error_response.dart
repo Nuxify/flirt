@@ -26,7 +26,11 @@ APIErrorResponse translateError(Object error) {
   if (error is TimeoutException) {
     return APIErrorResponse.timeoutErrorResponse();
   }
-  return APIErrorResponse.typeCastingErrorResponse();
+  if (error is FormatException || error is TypeError) {
+    return APIErrorResponse.typeCastingErrorResponse();
+  }
+
+  return APIErrorResponse(message: 'Something went wrong.');
 }
 
 @JsonSerializable()
