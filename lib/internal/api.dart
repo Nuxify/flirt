@@ -29,7 +29,7 @@ extension APIErrorStatusExtension on APIErrorStatus {
       case APIErrorStatus.serverError:
         return 'Server error occurred. (ERR-NET-1)';
       case APIErrorStatus.typeCastingError:
-        return 'Type casting error occurred. (ERR-DAT-1)';
+        return 'Something went wrong. (ERR-DAT-1)';
       case APIErrorStatus.socketExceptionError:
         return 'No Internet Connection. (ERR-NET-3)';
       case APIErrorStatus.timeoutError:
