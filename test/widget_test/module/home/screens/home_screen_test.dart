@@ -42,7 +42,7 @@ void main() {
 
       expect(find.byType(QuotesCard), findsOneWidget);
       expect(find.byType(Image), findsOneWidget);
-      expect(find.text('v1.7.0'), findsOneWidget);
+      expect(find.text('v1.7.1'), findsOneWidget);
     });
   });
 }
