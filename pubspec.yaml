@@ -16,6 +16,7 @@ dependencies:
   http: ^1.6.0
   intl: ^0.20.2
   json_annotation: ^4.9.0
+  live_activities: ^2.4.7
   url_launcher: ^6.3.2
    # Core UI widgets
   # nuxify_widgetbook_core:
