@@ -1,5 +1,5 @@
 import 'package:flirt/core/module/home/interfaces/widgets/quotes_card.dart';
-import 'package:flirt/features/live_activity_demo/live_activity_demo_page.dart';
+import 'package:flirt/core/module/live_activity/interfaces/screens/live_activity_demo_screen.dart';
 import 'package:flirt/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            const LiveActivityDemoPage(),
+                            const LiveActivityDemoPageScreen(),
                       ),
                     );
                   },

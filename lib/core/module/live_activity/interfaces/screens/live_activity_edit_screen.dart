@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class LiveActivityEditPage extends StatefulWidget {
-  const LiveActivityEditPage({required this.data, super.key});
+class LiveActivityEditScreen extends StatefulWidget {
+  const LiveActivityEditScreen({required this.data, super.key});
 
   final Map<String, dynamic> data;
 
   @override
-  State<LiveActivityEditPage> createState() => _LiveActivityEditPageState();
+  State<LiveActivityEditScreen> createState() => _LiveActivityEditScreenState();
 }
 
-class _LiveActivityEditPageState extends State<LiveActivityEditPage> {
+class _LiveActivityEditScreenState extends State<LiveActivityEditScreen> {
   late TextEditingController _titleController;
   late TextEditingController _authorController;
   late TextEditingController _coverController;

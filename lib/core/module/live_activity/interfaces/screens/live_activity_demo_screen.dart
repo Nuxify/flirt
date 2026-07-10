@@ -1,18 +1,20 @@
 import 'package:flirt/core/domain/live_activities_service.dart';
-import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
 import 'package:flirt/core/module/home/application/service/cubit/home_dto.dart';
+import 'package:flirt/core/module/live_activity/application/service/cubit/live_activity_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LiveActivityDemoPage extends StatefulWidget {
-  const LiveActivityDemoPage({super.key});
+class LiveActivityDemoPageScreen extends StatefulWidget {
+  const LiveActivityDemoPageScreen({super.key});
 
   @override
-  State<LiveActivityDemoPage> createState() => _LiveActivityDemoPageState();
+  State<LiveActivityDemoPageScreen> createState() =>
+      _LiveActivityDemoPageScreenState();
 }
 
-class _LiveActivityDemoPageState extends State<LiveActivityDemoPage> {
+class _LiveActivityDemoPageScreenState
+    extends State<LiveActivityDemoPageScreen> {
   final LiveActivitiesService _service = LiveActivitiesService.instance;
   bool _isFetching = false;
 
@@ -104,8 +106,8 @@ class _LiveActivityDemoPageState extends State<LiveActivityDemoPage> {
   Widget build(BuildContext context) {
     final List<LiveActivityData> activities = _service.liveActivities;
 
-    return BlocListener<HomeCubit, HomeState>(
-      listener: (BuildContext context, HomeState state) async {
+    return BlocListener<LiveActivityCubit, LiveActivityState>(
+      listener: (BuildContext context, LiveActivityState state) async {
         if (state is FetchQuoteOnceLoading) {
           setState(() => _isFetching = true);
         } else if (state is FetchQuoteOnceSuccess) {
@@ -190,7 +192,7 @@ class _LiveActivityDemoPageState extends State<LiveActivityDemoPage> {
               ElevatedButton(
                 onPressed: _isFetching
                     ? null
-                    : () => context.read<HomeCubit>().fetchQuoteOnce(),
+                    : () => context.read<LiveActivityCubit>().fetchQuoteOnce(),
                 child: _isFetching
                     ? const SizedBox(
                         width: 20,
