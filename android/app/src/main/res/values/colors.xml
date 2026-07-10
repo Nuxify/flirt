@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="text_primary">#000000</color>
+    <!-- Semi-transparent overlay used on live activity backgrounds -->
+    <color name="live_activity_overlay">#80000000</color>
 </resources>

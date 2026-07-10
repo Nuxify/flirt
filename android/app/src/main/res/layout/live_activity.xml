@@ -1,96 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="top|center_horizontal">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp">
 
-    <LinearLayout
-            android:orientation="horizontal"
-            android:gravity="top|center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <!-- Team 1 -->
         <LinearLayout
-                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="top|center_horizontal">
+                android:padding="8dp">
 
-            <ImageView
-                    android:id="@+id/team1_image_placeholder"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"/>
+                <ImageView
+                        android:id="@+id/book_cover"
+                        android:layout_width="56dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Book cover" />
 
-            <TextView
-                    android:id="@+id/team1_name"
-                    android:textColor="@color/text_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Team 1"
-                    android:textSize="10sp"
-                    android:layout_marginTop="8dp"
-                    android:ellipsize="end"
-                    android:gravity="center"/>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp">
+
+                        <TextView
+                                android:id="@+id/book_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_primary"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="Book title" />
+
+                        <TextView
+                                android:id="@+id/book_author"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_primary"
+                                android:textSize="12sp"
+                                android:text="Author" />
+
+                        <TextView
+                                android:id="@+id/page_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_primary"
+                                android:textSize="12sp"
+                                android:text="Page 1" />
+                </LinearLayout>
+
         </LinearLayout>
 
-        <!-- Score and Time -->
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="top|center_horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
-
-            <TextView
-                    android:id="@+id/score"
-                    android:textColor="@color/text_primary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 : 0"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
-
-            <Chronometer
-                    android:id="@+id/match_time"
-                    android:textColor="@color/text_primary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp"
-                    android:format="%s"/>
-        </LinearLayout>
-
-        <!-- Team 2 -->
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="top|center_horizontal">
-
-            <ImageView
-                    android:id="@+id/team2_image_placeholder"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"/>
-
-            <TextView
-                    android:id="@+id/team2_name"
-                    android:textColor="@color/text_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Team 2"
-                    android:textSize="10sp"
-                    android:layout_marginTop="8dp"
-                    android:ellipsize="end"
-                    android:gravity="center"/>
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+</FrameLayout>
