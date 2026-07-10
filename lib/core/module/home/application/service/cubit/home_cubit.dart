@@ -65,35 +65,4 @@ class HomeCubit extends Cubit<HomeState> {
       );
     }
   }
-
-  /// Fetch a quote without emitting state changes (useful for one-off requests).
-  Future<void> fetchQuoteOnce() async {
-    try {
-      emit(FetchQuoteOnceLoading(data: state.data));
-
-      final APIListResponse<QuoteResponse> response = await quoteRepository
-          .fetchQuote();
-
-      final QuoteResponseDTO quote = QuoteResponseDTO(
-        author: response.data.first.author,
-        content: response.data.first.quote,
-      );
-
-      emit(FetchQuoteOnceSuccess(quote, data: state.data));
-    } catch (e, stackTrace) {
-      if (e is! APIErrorResponse) {
-        logError(e, stackTrace);
-      }
-
-      final APIErrorResponse error = translateError(e);
-
-      emit(
-        FetchQuoteFailed(
-          errorCode: error.errorCode!,
-          message: error.message,
-          data: state.data,
-        ),
-      );
-    }
-  }
 }
