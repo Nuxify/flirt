@@ -1,4 +1,5 @@
 import 'package:flirt/core/module/home/interfaces/widgets/quotes_card.dart';
+import 'package:flirt/features/live_activity_demo/live_activity_demo_page.dart';
 import 'package:flirt/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,23 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const QuotesCard(),
                 ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24.0),
+              child: SizedBox(
+                width: width * 0.8,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const LiveActivityDemoPage(),
+                      ),
+                    );
+                  },
+                  child: const Text('Live Activity Demo'),
+                ),
               ),
             ),
             Container(
