@@ -4,6 +4,7 @@ import 'package:flirt/core/infrastructures/repository/quote_repository.dart';
 import 'package:flirt/core/infrastructures/repository/settings_repository.dart';
 import 'package:flirt/core/module/home/application/service/cubit/home_cubit.dart';
 import 'package:flirt/core/module/home/interfaces/screens/home_screen.dart';
+import 'package:flirt/core/module/live_activity/application/service/cubit/live_activity_cubit.dart';
 import 'package:flirt/core/module/settings/interfaces/widgets/force_upgrade_dialog.dart';
 import 'package:flirt/core/module/settings/service/settings_cubit.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,10 @@ class App extends StatelessWidget {
         BlocProvider<HomeCubit>(
           create: (BuildContext context) =>
               HomeCubit(quoteRepository: QuoteRepository()),
+        ),
+        BlocProvider<LiveActivityCubit>(
+          create: (BuildContext context) =>
+              LiveActivityCubit(quoteRepository: QuoteRepository()),
         ),
         BlocProvider<SettingsCubit>(
           create: (BuildContext context) =>
