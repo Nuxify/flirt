@@ -45,20 +45,15 @@ struct FlirtAppWidgetLiveActivity: Widget {
             let coverUrl = sharedDefault.string(forKey: "\(prefix)_coverUrl")
 
             HStack(alignment: .center, spacing: 12) {
-                if let cover = coverUrl, let url = URL(string: cover) {
-                    AsyncImage(url: url) { image in
-                        image.resizable().scaledToFill()
-                    } placeholder: {
-                        Color.gray
-                    }
-                    .frame(width: 56, height: 80)
+                // Use a static book image (SF Symbol) for Live Activity
+                Image(systemName: "book.fill")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 48, height: 50)
+                    .padding(.leading, 4)
                     .clipped()
-                } else {
-                    Image(systemName: "book.fill")
-                        .resizable()
-                        .frame(width: 40, height: 56)
-                        .foregroundColor(.primary)
-                }
+                    .foregroundColor(.primary)
+                    
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(bookTitle)
@@ -93,19 +88,13 @@ struct FlirtAppWidgetLiveActivity: Widget {
 
             return DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    if let cover = coverUrl, let url = URL(string: cover) {
-                        AsyncImage(url: url) { image in
-                            image.resizable().scaledToFill()
-                        } placeholder: {
-                            Color.gray
-                        }
-                        .frame(width: 48, height: 68)
+
+                    Image(systemName: "book.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 56)
+                        .padding(.leading, 4)
                         .clipped()
-                    } else {
-                        Image(systemName: "book.fill")
-                            .resizable()
-                            .frame(width: 36, height: 48)
-                    }
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     VStack(alignment: .leading) {
