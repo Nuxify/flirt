@@ -10,28 +10,42 @@ import WidgetKit
 import SwiftUI
 
 
-let sharedDefault = UserDefaults(suiteName: "YOUR_GROUP_ID")!
+let sharedDefault = UserDefaults(suiteName: "group.com.nuxify.flirttemplate")!
 
-struct FlirtAppWidgetAttributes: ActivityAttributes, Identifiable  {
+// Use the same attributes type name as the plugin's LiveActivitiesAppAttributes
+// so ActivityKit can associate activities created by the plugin with this widget.
+struct LiveActivitiesAppAttributes: ActivityAttributes, Identifiable {
     public struct ContentState: Codable, Hashable {
-        // Dynamic stateful properties about your activity go here!
-        var bookTitle: String
-        var author: String
+        // The plugin stores the appGroupId in the content state.
+        var appGroupId: String
+        // Optional preview fields for Xcode previews
+        var bookTitle: String?
+        var author: String?
         var coverUrl: String?
-        var page: Int
+        var page: Int?
     }
 
     // Fixed non-changing properties about your activity go here!
-    var name: String
     var id = UUID()
 }
 
 struct FlirtAppWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: FlirtAppWidgetAttributes.self) { context in
-            // Lock screen/banner UI — compact cover + metadata (no background image or dim)
+        ActivityConfiguration(for: LiveActivitiesAppAttributes.self) { context in
+            // Lock screen/banner UI — read details from shared App Group UserDefaults
+            let prefix = context.attributes.id.uuidString
+            let bookTitle = sharedDefault.string(forKey: "\(prefix)_bookTitle") ?? "Untitled"
+            let author = sharedDefault.string(forKey: "\(prefix)_author") ?? "Unknown"
+            let pageValue = sharedDefault.object(forKey: "\(prefix)_page")
+            let page: Int = {
+                if let p = pageValue as? Int { return p }
+                if let s = pageValue as? String, let pi = Int(s) { return pi }
+                return 1
+            }()
+            let coverUrl = sharedDefault.string(forKey: "\(prefix)_coverUrl")
+
             HStack(alignment: .center, spacing: 12) {
-                if let cover = context.state.coverUrl, let url = URL(string: cover) {
+                if let cover = coverUrl, let url = URL(string: cover) {
                     AsyncImage(url: url) { image in
                         image.resizable().scaledToFill()
                     } placeholder: {
@@ -47,14 +61,14 @@ struct FlirtAppWidgetLiveActivity: Widget {
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(context.state.bookTitle)
+                    Text(bookTitle)
                         .font(.headline)
                         .foregroundColor(.primary)
                         .lineLimit(2)
-                    Text("by \(context.state.author)")
+                    Text("by \(author)")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
-                    Text("Page \(context.state.page)")
+                    Text("Page \(page)")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -65,9 +79,21 @@ struct FlirtAppWidgetLiveActivity: Widget {
             .padding(8)
 
         } dynamicIsland: { context in
-            DynamicIsland {
+            // Compute the same shared values here — dynamicIsland closure has its own scope
+            let prefix = context.attributes.id.uuidString
+            let bookTitle = sharedDefault.string(forKey: "\(prefix)_bookTitle") ?? "Untitled"
+            let author = sharedDefault.string(forKey: "\(prefix)_author") ?? "Unknown"
+            let pageValue = sharedDefault.object(forKey: "\(prefix)_page")
+            let page: Int = {
+                if let p = pageValue as? Int { return p }
+                if let s = pageValue as? String, let pi = Int(s) { return pi }
+                return 1
+            }()
+            let coverUrl = sharedDefault.string(forKey: "\(prefix)_coverUrl")
+
+            return DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    if let cover = context.state.coverUrl, let url = URL(string: cover) {
+                    if let cover = coverUrl, let url = URL(string: cover) {
                         AsyncImage(url: url) { image in
                             image.resizable().scaledToFill()
                         } placeholder: {
@@ -83,20 +109,20 @@ struct FlirtAppWidgetLiveActivity: Widget {
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     VStack(alignment: .leading) {
-                        Text(context.state.bookTitle).font(.headline)
-                        Text("by \(context.state.author)").font(.subheadline)
-                        Text("Page \(context.state.page)").font(.caption)
+                        Text(bookTitle).font(.headline)
+                        Text("by \(author)").font(.subheadline)
+                        Text("Page \(page)").font(.caption)
                     }
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Reading: \(context.state.bookTitle) — Page \(context.state.page)")
+                    Text("Reading: \(bookTitle) — Page \(page)")
                 }
             } compactLeading: {
-                Text(context.state.bookTitle.prefix(1))
+                Text(String(bookTitle.prefix(1)))
             } compactTrailing: {
-                Text("Pg \(context.state.page)")
+                Text("Pg \(page)")
             } minimal: {
-                Text(context.state.bookTitle.prefix(1))
+                Text(String(bookTitle.prefix(1)))
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)
@@ -104,31 +130,31 @@ struct FlirtAppWidgetLiveActivity: Widget {
     }
 }
 
-extension FlirtAppWidgetAttributes {
-    fileprivate static var preview: FlirtAppWidgetAttributes {
-        FlirtAppWidgetAttributes(name: "World")
+extension LiveActivitiesAppAttributes {
+    fileprivate static var preview: LiveActivitiesAppAttributes {
+        LiveActivitiesAppAttributes()
     }
 }
 
-extension FlirtAppWidgetAttributes.ContentState {
-    fileprivate static var sampleOne: FlirtAppWidgetAttributes.ContentState {
-        FlirtAppWidgetAttributes.ContentState(bookTitle: "The Great Gatsby", author: "F. Scott Fitzgerald", coverUrl: "https://picsum.photos/seed/gatsby/200/300", page: 12)
+extension LiveActivitiesAppAttributes.ContentState {
+    fileprivate static var sampleOne: LiveActivitiesAppAttributes.ContentState {
+        LiveActivitiesAppAttributes.ContentState(appGroupId: "group.com.nuxify.flirttemplate", bookTitle: "The Great Gatsby", author: "F. Scott Fitzgerald", coverUrl: "https://picsum.photos/seed/gatsby/200/300", page: 12)
     }
 
-    fileprivate static var sampleTwo: FlirtAppWidgetAttributes.ContentState {
-        FlirtAppWidgetAttributes.ContentState(bookTitle: "1984", author: "George Orwell", coverUrl: "https://picsum.photos/seed/1984/200/300", page: 42)
+    fileprivate static var sampleTwo: LiveActivitiesAppAttributes.ContentState {
+        LiveActivitiesAppAttributes.ContentState(appGroupId: "group.com.nuxify.flirttemplate", bookTitle: "1984", author: "George Orwell", coverUrl: "https://picsum.photos/seed/1984/200/300", page: 42)
     }
 }
 
-#Preview("Notification", as: .content, using: FlirtAppWidgetAttributes.preview) {
+#Preview("Notification", as: .content, using: LiveActivitiesAppAttributes.preview) {
    FlirtAppWidgetLiveActivity()
 } contentStates: {
-    FlirtAppWidgetAttributes.ContentState.sampleOne
-    FlirtAppWidgetAttributes.ContentState.sampleTwo
+    LiveActivitiesAppAttributes.ContentState.sampleOne
+    LiveActivitiesAppAttributes.ContentState.sampleTwo
 }
 
 
-extension FlirtAppWidgetAttributes {
+extension LiveActivitiesAppAttributes {
   func prefixedKey(_ key: String) -> String {
     return "\(id)_\(key)"
   }

@@ -30,7 +30,7 @@ class LiveActivitiesService {
   /// URL scheme used for deep linking. Both have sensible defaults for demo
   /// usage but should be provided for production.
   Future<void> init({
-    String appGroup = 'group.com.nuxify.flirt',
+    String appGroup = 'group.com.nuxify.flirttemplate',
     String urlScheme = 'flirt',
   }) {
     debugPrint(
