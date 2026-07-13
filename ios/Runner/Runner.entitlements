@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.nuxify.flirt</string>
+		<string>group.com.nuxify.flirttemplate</string>
 	</array>
 </dict>
 </plist>
