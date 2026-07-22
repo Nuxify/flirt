@@ -63,12 +63,12 @@ class SettingsCubit extends Cubit<SettingsState> {
       emit(FetchLatestVersionLoading());
 
       final String remoteConfigId =
-          'certifika-${Platform.isIOS ? 'ios' : 'android'}';
+          'flirt-${Platform.isIOS ? 'ios' : 'android'}';
 
       final APIResponse<RemoteConfigResponse> response =
           await settingsRepository.fetchLatestVersion(remoteConfigId);
 
-      final String currentLocalVersion = dotenv.get('VERSION');
+      final String currentLocalVersion = dotenv.get('APP_VERSION');
       final String currentRemoteVersion = response.data.minimumRequiredVersion;
 
       emit(

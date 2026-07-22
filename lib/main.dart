@@ -45,11 +45,6 @@ class App extends StatelessWidget {
 class _HomePageState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ForceUpgradeDialog(
-      onValidate: () {
-        // context.read<OnboardingCubit>().getCurrentUser(fromValidateToken: true);
-      },
-      child: const HomeScreen(),
-    );
+    return ForceUpgradeDialog(onValidate: () {}, child: const HomeScreen());
   }
 }

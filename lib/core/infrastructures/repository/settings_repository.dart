@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 class SettingsRepository implements ISettingsRepository {
   final ISecureStorageRepository _storage = SecureStorageRepository();
-  final String _remoteConfigURL = '/v1/setting/remote-config';
+  final String _remoteConfigURL = '/api/v1/setting/remote-config';
 
   Future<String> get _baseURL => checkEnvironment(_storage);
 

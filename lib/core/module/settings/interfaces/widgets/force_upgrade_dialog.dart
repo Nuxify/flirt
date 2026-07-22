@@ -96,8 +96,7 @@ class _ForceUpgradeDialogState extends State<ForceUpgradeDialog> {
   void initState() {
     super.initState();
 
-    // FIXME: Integrate force upgrade feature (needs settings endpoint to cross-check latest version)
-    // context.read<SettingsCubit>().fetchLatestVersion();
+    context.read<SettingsCubit>().fetchLatestVersion();
   }
 
   @override
