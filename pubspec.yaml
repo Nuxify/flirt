@@ -43,8 +43,8 @@ dev_dependencies:
   mocktail: ^1.0.5
 
 flutter:
-  # config:
-  #   enable-swift-package-manager: false
+  config:
+    enable-swift-package-manager: true
   uses-material-design: true
 
   assets:
