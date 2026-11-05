@@ -4,19 +4,19 @@ publish_to: "none"
 version: 1.7.5
 
 environment:
-  sdk: ^3.10.7
+  sdk: ^3.13.7
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
-  flutter_dotenv: ^6.0.0
-  flutter_native_splash: ^2.4.7
-  flutter_secure_storage: ^10.0.0
+  flutter_dotenv: ^6.0.1
+  flutter_native_splash: ^2.4.8
+  flutter_secure_storage: ^10.3.4
   http: ^1.6.0
-  intl: ^0.20.2
-  json_annotation: ^4.9.0
-  url_launcher: ^6.3.2
+  intl: ^0.20.3
+  json_annotation: ^4.12.0
+  url_launcher: ^6.3.3
    # Core UI widgets
   # nuxify_widgetbook_core:
   #     git:
@@ -32,17 +32,19 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^10.0.0
-  build_runner: ^2.10.5
-  flutter_gen_runner: ^5.12.0
+  build_runner: ^2.16.1
+  flutter_gen_runner: ^5.15.0
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.11.2
-  lint: ^2.8.0
-  mocktail: ^1.0.4
+  json_serializable: ^6.15.2
+  lint: 2.8.0
+  mocktail: ^1.0.5
 
 flutter:
+  # config:
+  #   enable-swift-package-manager: false
   uses-material-design: true
 
   assets:
