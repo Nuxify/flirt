@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               width: width,
               padding: const EdgeInsets.all(20),
               child: const Text(
-                'v1.7.5',
+                'v1.8.0',
                 style: TextStyle(fontSize: 11, color: Colors.white54),
                 textAlign: TextAlign.center,
               ),
